@@ -1,6 +1,18 @@
 ## Welcome!
 This GitHub repository contains the source code that is used to build an Android app to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
 
+**************************************************************************************
+# Team 16736 - Atomic Narwahls
+**************************************************************************************
+
+Steps:
+ * If you are using windows, create folder c:\dev\sandbox
+ * clone repository under here - so it will look like c:\dev\sandbox\ftc_app
+ * Add your java code under: C:\dev\tennisbox\ftc_app\TeamCode\src\main\java>
+ * Feel free to introudce new packages. For example: com.atomic.narwahls.simple
+
+**************************************************************************************
+
 ## Downloading the Project
 * If you are a git user, *FIRST* recommends that you use the --depth command line argument to only clone the most current version of the repository:
 
@@ -18,14 +30,3 @@ Documentation for the FTC SDK is also included with this repository.  There is a
  * The folder "apk" contains the .apk files for the FTC Driver Station and FTC Robot Controller apps.
  * The folder "javadoc" contains the JavaDoc user documentation for the FTC SDK.
 
-**************************************************************************************
-# Team 16736 - Atomic Narwahls
-**************************************************************************************
-
-Tips
- * If you are using windows, create folder c:\dev\sandbox
- * clone repository under here - so it will look like c:\dev\sandbox\ftc_app
- * Add your java code under: C:\dev\tennisbox\ftc_app\TeamCode\src\main\java>
- * Feel free to introudce new packages. For example: com.atomic.narwahls.simple
-
-**************************************************************************************
