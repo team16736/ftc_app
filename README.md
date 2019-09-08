@@ -1,5 +1,7 @@
 ## Welcome!
-This GitHub repository contains the source code that is used to build an Android app to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
+This repository contains the source to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
+
+![Team 16736](ftc_logo_16736.jpg)
 
 **************************************************************************************
 # Team 16736 - Atomic Narwahls
