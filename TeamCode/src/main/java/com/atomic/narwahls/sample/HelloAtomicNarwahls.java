@@ -1,4 +1,4 @@
-package com.atomic.narwahls.simple;
+package com.atomic.narwahls.sample;
 
 public class HelloAtomicNarwahls {
 
