@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.util.Range;
  * It includes all the skeletal structure that all iterative OpModes contain.
  */
 
-@TeleOp(name="Basic: Iterative OpMode", group="Iterative Opmode")
+@TeleOp(name="Basic: Iterative OpMode", group="Atomic Iterative Opmode")
 public class RobotMoveProgram1 extends OpMode
 {
     // Declare OpMode members.
