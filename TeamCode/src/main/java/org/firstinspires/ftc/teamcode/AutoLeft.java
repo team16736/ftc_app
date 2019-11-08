@@ -74,4 +74,5 @@ public class AutoLeft extends LinearOpMode {
         telemetry.update();
         sleep(1000);
     }
+    
 }
