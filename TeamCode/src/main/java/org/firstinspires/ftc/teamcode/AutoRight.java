@@ -74,4 +74,5 @@ public class AutoRight extends LinearOpMode {
         telemetry.update();
         sleep(1000);
     }
+    
 }
