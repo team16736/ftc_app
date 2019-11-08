@@ -19,10 +19,12 @@ public class BasicRobotMoveWithArm extends OpMode {
     public static final String LEFT_DRIVE = "left_drive";
     public static final String RIGHT_DRIVE = "right_drive";
     public static final String ARM_DRIVE = "arm_drive";
+    public static final String PICKUP_DRIVE = "pickup_drive";
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private DcMotor armDrive = null;
+    private DcMotor pickupDrive = null;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -36,10 +38,12 @@ public class BasicRobotMoveWithArm extends OpMode {
         leftDrive = hardwareMap.get(DcMotor.class, LEFT_DRIVE);
         rightDrive = hardwareMap.get(DcMotor.class, RIGHT_DRIVE);
         armDrive = hardwareMap.get(DcMotor.class, ARM_DRIVE);
+        pickupDrive = hardwareMap.get(DcMotor.class, PICKUP_DRIVE);
 
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
         armDrive.setDirection(DcMotor.Direction.FORWARD);
+        pickupDrive.setDirection(DcMotor.Direction.FORWARD);
 
         telemetry.addData("Status", "initialization is complete");
     }
@@ -67,6 +71,7 @@ public class BasicRobotMoveWithArm extends OpMode {
         double leftPower;
         double rightPower;
         double armPower;
+        double pickupPower;
 
         // POV Mode
         double drive = -gamepad1.left_stick_y;
@@ -79,13 +84,13 @@ public class BasicRobotMoveWithArm extends OpMode {
         rightPower = Range.clip(drive - turn, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
 
         armPower = Range.clip(arm_up - arm_down, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
-
+        pickupPower = Range.clip(arm_up - arm_down, -10.0, 10.0);
 
         // Send calculated power to wheels
         leftDrive.setPower(leftPower);
         rightDrive.setPower(rightPower);
         armDrive.setPower(armPower);
-
+        pickupDrive.setPower(pickupPower);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
