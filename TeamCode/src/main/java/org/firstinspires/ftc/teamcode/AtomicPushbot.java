@@ -49,4 +49,3 @@ public class AtomicPushbot {
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 }
-
