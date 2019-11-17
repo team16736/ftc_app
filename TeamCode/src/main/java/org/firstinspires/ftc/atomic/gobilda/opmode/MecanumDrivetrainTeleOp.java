@@ -10,7 +10,7 @@ import org.firstinspires.ftc.atomic.gobilda.util.MecanumConfigConstants;
 public class MecanumDrivetrainTeleOp extends LinearOpMode {
 
     private static final double THROTTLE = 0.8;
-    private MecanumDrivetrain MecanumDrivetrain = null;
+    private MecanumDrivetrain mecanumDrivetrain = null;
 
     @Override
     public void runOpMode() {
@@ -20,7 +20,7 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
         DcMotor backRight = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_RIGHT);
         DcMotor backLeft = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_LEFT);
 
-        MecanumDrivetrain = new MecanumDrivetrain(telemetry, frontLeft, frontRight, backLeft, backRight);
+        mecanumDrivetrain = new MecanumDrivetrain(telemetry, frontLeft, frontRight, backLeft, backRight);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -28,13 +28,13 @@ public class MecanumDrivetrainTeleOp extends LinearOpMode {
         while (opModeIsActive()) {
 
             /* Gamepad 1 */
-            MecanumDrivetrain.drive(gamepad1.left_stick_x, //speed x
+            mecanumDrivetrain.drive(gamepad1.left_stick_x, //speed x
                                     -gamepad1.left_stick_y, //speed y
                                     gamepad1.right_stick_x,  //rotation
                                     THROTTLE); //throttle
         }
 
         telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
-        //MecanumDrivetrain.stop();
+        //mecanumDrivetrain.stop();
     }
 }

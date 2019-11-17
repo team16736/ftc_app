@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.atomic.gobilda.hardware.MecanumDrivetrain;
+import org.firstinspires.ftc.atomic.gobilda.util.MecanumConfigConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="TestMecanum OpMode", group="Linear Opmode")
 public class TestTeleop extends LinearOpMode {
@@ -20,10 +21,10 @@ public class TestTeleop extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        DcMotor frontLeft  = hardwareMap.get(DcMotor.class, "LF");
-        DcMotor frontRight = hardwareMap.get(DcMotor.class, "RF");
-        DcMotor backRight = hardwareMap.get(DcMotor.class, "RB");
-        DcMotor backLeft = hardwareMap.get(DcMotor.class, "LR");
+        DcMotor frontLeft  = hardwareMap.get(DcMotor.class, MecanumConfigConstants.FRONT_LEFT);
+        DcMotor frontRight = hardwareMap.get(DcMotor.class, MecanumConfigConstants.FRONT_RIGHT);
+        DcMotor backRight = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_RIGHT);
+        DcMotor backLeft = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_LEFT);
         mMecanumDrivetrain = new MecanumDrivetrain(telemetry, frontLeft, frontRight, backLeft, backRight);
 
         // Most robots need the motor on one side to be reversed to drive forward

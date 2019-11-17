@@ -3,6 +3,7 @@ package org.firstinspires.ftc.atomic.gobilda.hardware;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.atomic.gobilda.util.MecanumConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.util.NumberUtility;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -16,10 +17,10 @@ public class MecanumDrivetrain implements DrivetrainInterface {
     public static final int DIRECTION_STRAFE_RIGHT = 2;
     public static final int DIRECTION_STRAFE_LEFT = 3;
 
-    private DcMotor motorFrontLeft;
-    private DcMotor motorFrontRight;
-    private DcMotor motorBackLeft;
-    private DcMotor motorBackRight;
+    public DcMotor motorFrontLeft;
+    public DcMotor motorFrontRight;
+    public DcMotor motorBackLeft;
+    public DcMotor motorBackRight;
 
     private Telemetry mTelemetry;
 
@@ -44,39 +45,39 @@ public class MecanumDrivetrain implements DrivetrainInterface {
 
         setMotorDirection(DIRECTION_FORWARD);
 
-        motorBackLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorBackRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motorBackLeft.setZeroPowerBehavior(MecanumConfigConstants.BRAKE);
+        motorBackRight.setZeroPowerBehavior(MecanumConfigConstants.BRAKE);
+        motorFrontLeft.setZeroPowerBehavior(MecanumConfigConstants.BRAKE);
+        motorFrontRight.setZeroPowerBehavior(MecanumConfigConstants.BRAKE);
     }
-
     private void setMotorDirection(int direction){
 
         if (DIRECTION_REVERSE == direction){
-            motorBackLeft.setDirection(REVERSE);
-            motorBackRight.setDirection(FORWARD);
-            motorFrontLeft.setDirection(REVERSE);
-            motorFrontRight.setDirection(FORWARD);
+            motorBackLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorBackRight.setDirection(MecanumConfigConstants.FORWARD);
+            motorFrontLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorFrontRight.setDirection(MecanumConfigConstants.FORWARD);
 
         } else if (DIRECTION_STRAFE_LEFT == direction){
-            motorBackLeft.setDirection(FORWARD);
-            motorBackRight.setDirection(FORWARD);
-            motorFrontLeft.setDirection(REVERSE);
-            motorFrontRight.setDirection(REVERSE);
+            motorBackLeft.setDirection(MecanumConfigConstants.FORWARD);
+            motorBackRight.setDirection(MecanumConfigConstants.FORWARD);
+            motorFrontLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorFrontRight.setDirection(MecanumConfigConstants.REVERSE);
 
         } else if (DIRECTION_STRAFE_RIGHT == direction){
-            motorBackLeft.setDirection(REVERSE);
-            motorBackRight.setDirection(REVERSE);
-            motorFrontLeft.setDirection(FORWARD);
-            motorFrontRight.setDirection(FORWARD);
+            motorBackLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorBackRight.setDirection(MecanumConfigConstants.REVERSE);
+            motorFrontLeft.setDirection(MecanumConfigConstants.FORWARD);
+            motorFrontRight.setDirection(MecanumConfigConstants.FORWARD);
 
         } else {  //DIRECTION_FORWARD
-            motorBackLeft.setDirection(REVERSE);
-            motorBackRight.setDirection(REVERSE);
-            motorFrontLeft.setDirection(REVERSE);
-            motorFrontRight.setDirection(FORWARD);
+            motorBackLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorBackRight.setDirection(MecanumConfigConstants.REVERSE);
+            motorFrontLeft.setDirection(MecanumConfigConstants.REVERSE);
+            motorFrontRight.setDirection(MecanumConfigConstants.FORWARD);
         }
     }
+
 
     /**
      * Overload of drive method that allows for throttling of power

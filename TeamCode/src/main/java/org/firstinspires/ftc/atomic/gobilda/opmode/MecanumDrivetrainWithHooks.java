@@ -7,11 +7,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.atomic.gobilda.hardware.DraggerServo;
 import org.firstinspires.ftc.atomic.gobilda.hardware.MecanumDrivetrain;
+import org.firstinspires.ftc.atomic.gobilda.util.MecanumConfigConstants;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mecanum 1", group="Linear Opmode")
 public class MecanumDrivetrainWithHooks extends LinearOpMode {
 
     private static final double THROTTLE = .35;
+
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -20,15 +22,15 @@ public class MecanumDrivetrainWithHooks extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        DcMotor frontLeft = hardwareMap.get(DcMotor.class, "LF");
-        DcMotor frontRight = hardwareMap.get(DcMotor.class, "RF");
-        DcMotor backRight = hardwareMap.get(DcMotor.class, "RB");
-        DcMotor backLeft = hardwareMap.get(DcMotor.class, "LB");
+        DcMotor frontLeft = hardwareMap.get(DcMotor.class, MecanumConfigConstants.FRONT_LEFT);
+        DcMotor frontRight = hardwareMap.get(DcMotor.class, MecanumConfigConstants.FRONT_RIGHT);
+        DcMotor backRight = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_RIGHT);
+        DcMotor backLeft = hardwareMap.get(DcMotor.class, MecanumConfigConstants.BACK_LEFT);
         
         mMecanumDrivetrain = new MecanumDrivetrain(telemetry, frontLeft, frontRight, backLeft, backRight);
 
-        CRServo hook1  = hardwareMap.get(CRServo.class, "servo_left");
-        CRServo hook2  = hardwareMap.get(CRServo.class, "servo_right");
+        CRServo hook1  = hardwareMap.get(CRServo.class, MecanumConfigConstants.SERVO_LEFT);
+        CRServo hook2  = hardwareMap.get(CRServo.class, MecanumConfigConstants.SERVO_RIGHT);
 
         DraggerServo hookServo1 = new DraggerServo(hook1);
         DraggerServo hookServo2 = new DraggerServo(hook2);
