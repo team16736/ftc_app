@@ -1,9 +1,7 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.atomic.rev;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  * This is NOT an opmode.
@@ -48,5 +46,5 @@ public class AtomicPushbot {
         leftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
-    
 }
+

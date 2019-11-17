@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.atomic.rev;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -11,15 +11,19 @@ import com.qualcomm.robotcore.util.Range;
  * Download this to 16736-C-RC (Robot Controller phone)
  */
 
-@TeleOp(name = "Basic: Iterative OpMode", group = "Iterative Opmode")
-public class BasicRobotMove extends OpMode {
+@TeleOp(name = "Basic: Bjorn", group = "Iterative Opmode")
+public class ArmBlockGrabber extends OpMode {
 
     //The string values provide here should match the hardware variables names used on the RC phone (16736-C-RC - Robot Controller app)
     public static final String LEFT_DRIVE = "left_drive";
     public static final String RIGHT_DRIVE = "right_drive";
+    public static final String ARM_DRIVE = "arm_drive";
+    public static final String PICKUP_DRIVE = "pickup_drive";
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
+    private DcMotor armDrive = null;
+    private DcMotor pickupDrive = null;
 
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -32,9 +36,13 @@ public class BasicRobotMove extends OpMode {
 
         leftDrive = hardwareMap.get(DcMotor.class, LEFT_DRIVE);
         rightDrive = hardwareMap.get(DcMotor.class, RIGHT_DRIVE);
+        armDrive = hardwareMap.get(DcMotor.class, ARM_DRIVE);
+        pickupDrive = hardwareMap.get(DcMotor.class, PICKUP_DRIVE);
 
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
+        armDrive.setDirection(DcMotor.Direction.FORWARD);
+        pickupDrive.setDirection(DcMotor.Direction.FORWARD);
 
         telemetry.addData("Status", "initialization is complete");
     }
@@ -61,17 +69,42 @@ public class BasicRobotMove extends OpMode {
         // Setup power level for each drive wheel
         double leftPower;
         double rightPower;
+        double armPower;
+        double pickupPower;
 
         // POV Mode
         double drive = -gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
 
+        double arm_up = gamepad2.right_stick_y;
+        double arm_down = gamepad2.right_stick_x;
+
+        boolean pickup_up = gamepad2.a;
+        boolean pickup_down = gamepad2.b;
+
         leftPower = Range.clip(drive + turn, -10.0, 10.0); // TODO: Rahul - if 10.0 is high, the use 1.0
         rightPower = Range.clip(drive - turn, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
+
+        armPower = Range.clip(arm_up - arm_down, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
+       if (pickup_up){
+
+            pickupPower = 10.0;
+
+        }
+       else if(pickup_down){
+
+           pickupPower = -10.0;
+        }
+
+       else{
+        pickupPower = 0.0;
+    }
 
         // Send calculated power to wheels
         leftDrive.setPower(leftPower);
         rightDrive.setPower(rightPower);
+        armDrive.setPower(armPower);
+        pickupDrive.setPower(pickupPower);
 
         // Show the elapsed game time and wheel power.
         telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -99,4 +132,5 @@ public class BasicRobotMove extends OpMode {
     @Override
     public void stop() {
     }
+
 }

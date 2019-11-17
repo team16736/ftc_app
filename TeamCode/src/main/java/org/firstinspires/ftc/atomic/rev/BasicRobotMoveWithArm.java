@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.atomic.rev;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
@@ -12,20 +12,20 @@ import com.qualcomm.robotcore.util.Range;
  * Download this to 16736-C-RC (Robot Controller phone)
  */
 
-@TeleOp(name = "Basic: Arm OpMode", group = "Iterative Opmode")
+@TeleOp(name = "Basic: Hooks Arm OpMode", group = "Iterative Opmode")
 public class BasicRobotMoveWithArm extends OpMode {
 
-    //The string values provide here should match the hardware variables names used on the RC phone (16736-C-RC - Robot Controller app)
     public static final String LEFT_DRIVE = "left_drive";
     public static final String RIGHT_DRIVE = "right_drive";
     public static final String ARM_DRIVE = "arm_drive";
-    public static final String PICKUP_DRIVE = "pickup_drive";
+    public static final String SERVO_DRIVE_1 = "servo_left";
+    public static final String SERVO_DRIVE_2 = "servo_right";
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
     private DcMotor armDrive = null;
-    private DcMotor pickupDrive = null;
-
+    private Servo servo_left = null;
+    private Servo servo_right = null;
     private ElapsedTime runtime = new ElapsedTime();
 
     /*
@@ -38,12 +38,14 @@ public class BasicRobotMoveWithArm extends OpMode {
         leftDrive = hardwareMap.get(DcMotor.class, LEFT_DRIVE);
         rightDrive = hardwareMap.get(DcMotor.class, RIGHT_DRIVE);
         armDrive = hardwareMap.get(DcMotor.class, ARM_DRIVE);
-        pickupDrive = hardwareMap.get(DcMotor.class, PICKUP_DRIVE);
+        servo_left = hardwareMap.get(Servo.class, SERVO_DRIVE_1);
+        servo_right = hardwareMap.get(Servo.class, SERVO_DRIVE_2);
 
         leftDrive.setDirection(DcMotor.Direction.REVERSE);
         rightDrive.setDirection(DcMotor.Direction.FORWARD);
         armDrive.setDirection(DcMotor.Direction.FORWARD);
-        pickupDrive.setDirection(DcMotor.Direction.FORWARD);
+        servo_left.setDirection(Servo.Direction.REVERSE);// just changed this to reverse
+        servo_right.setDirection(Servo.Direction.FORWARD);
 
         telemetry.addData("Status", "initialization is complete");
     }
@@ -71,30 +73,34 @@ public class BasicRobotMoveWithArm extends OpMode {
         double leftPower;
         double rightPower;
         double armPower;
-        double pickupPower;
+        double servoPower;
 
         // POV Mode
         double drive = -gamepad1.left_stick_y;
         double turn = gamepad1.right_stick_x;
-
         double arm_up = gamepad2.right_stick_y;
         double arm_down = gamepad2.right_stick_x;
+        double servo_up = gamepad2.right_trigger;
+        double servo_down = gamepad2.left_trigger;
+        double servo_value = servo_up - servo_down;
 
-        leftPower = Range.clip(drive + turn, -10.0, 10.0); // TODO: Rahul - if 10.0 is high, the use 1.0
-        rightPower = Range.clip(drive - turn, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
+        //What does Range.clip do?
+        // If 10.0 is high, the use 1.0. If -10.0 is high, the use -1.0
 
-        armPower = Range.clip(arm_up - arm_down, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
-        pickupPower = Range.clip(arm_up - arm_down, -10.0, 10.0);
+        leftPower = Range.clip(drive + turn, -10.0, 10.0);
+        rightPower = Range.clip(drive - turn, -10.0, 10.0);
+        armPower = Range.clip(arm_up - arm_down, -5.0, 5.0);
+        servoPower = Range.clip(servo_value,-1.0,2.0 );
 
         // Send calculated power to wheels
         leftDrive.setPower(leftPower);
         rightDrive.setPower(rightPower);
         armDrive.setPower(armPower);
-        pickupDrive.setPower(pickupPower);
 
-        // Show the elapsed game time and wheel power.
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftPower, rightPower);
+        servo_left.setPosition(servoPower+0.1);
+        servo_right.setPosition(servoPower);
+
+        telemetry.addData("Status", "servoPower: " + servoPower);
     }
 
     /*

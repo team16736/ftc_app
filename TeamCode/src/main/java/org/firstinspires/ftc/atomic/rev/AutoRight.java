@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.atomic.rev;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -19,8 +19,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  *   - Stop
  */
 
-@Autonomous(name="Pushbot: AutoLeft", group="Pushbot")
-public class AutoLeft extends LinearOpMode {
+@Autonomous(name="Pushbot: AutoRight", group="Pushbot")
+public class AutoRight extends LinearOpMode {
 
     /* Declare OpMode members. */
     AtomicPushbot robot = new AtomicPushbot();   // Use a Pushbot's hardware
@@ -48,9 +48,9 @@ public class AutoLeft extends LinearOpMode {
             telemetry.update();
         }
 
-        // Step 2:  Spin left for 1.5 seconds
-        robot.leftDrive.setPower(-TURN_SPEED);
-        robot.rightDrive.setPower(TURN_SPEED);
+        // Step 2:  Spin right for 1.5 seconds
+        robot.leftDrive.setPower(TURN_SPEED);
+        robot.rightDrive.setPower(-TURN_SPEED);
         runtime.reset();
         while (opModeIsActive() && (runtime.seconds() < 1.5)) {
             telemetry.addData("Path", "Turning RIGHT", runtime.seconds());//print
@@ -74,5 +74,4 @@ public class AutoLeft extends LinearOpMode {
         telemetry.update();
         sleep(1000);
     }
-    
 }
