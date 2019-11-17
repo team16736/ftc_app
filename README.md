@@ -1,17 +1,16 @@
 ## Welcome!
-This repository contains the source to control a *FIRST* Tech Challenge competition robot.  To use this SDK, download/clone the entire project to your local computer.
+This repository contains the source to control a *FIRST* Tech Challenge competition robot.  
+To use this SDK, download/clone the entire project to your local computer.
 
 ![Team 16736](ftc_logo_16736.jpg)
 
 **************************************************************************************
-# Team 16736 - Atomic Narwahls
+# Team 16736 - Atomic Narwahls (2019-2020)
 **************************************************************************************
 
 Steps:
  * If you are using windows, create folder c:\dev\sandbox
  * clone repository under here - so it will look like c:\dev\sandbox\ftc_app
- * Add your java code under: C:\dev\tennisbox\ftc_app\TeamCode\src\main\java>
- * Feel free to introudce new packages. For example: com.atomic.narwahls.simple
 
 **************************************************************************************
 
