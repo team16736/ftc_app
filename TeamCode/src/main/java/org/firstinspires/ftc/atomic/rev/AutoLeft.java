@@ -19,7 +19,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  *   - Stop
  */
 
-@Autonomous(name="Pushbot: AutoLeft", group="Pushbot")
+
 public class AutoLeft extends LinearOpMode {
 
     /* Declare OpMode members. */
