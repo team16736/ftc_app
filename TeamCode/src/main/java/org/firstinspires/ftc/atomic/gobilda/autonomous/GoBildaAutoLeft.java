@@ -4,10 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.util.ConfigConstants;
+import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 
 @Autonomous(name = "Mecanum Auto Left 55", group = "GoBilda")
-
 public class GoBildaAutoLeft extends LinearOpMode {
 
     @Override
