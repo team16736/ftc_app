@@ -12,18 +12,13 @@ import java.util.List;
 
 public class MecanumDriveWheelActions {
 
-    public static final int DIRECTION_FORWARD = 0;
-    public static final int DIRECTION_REVERSE = 1;
-    public static final int DIRECTION_STRAFE_RIGHT = 2;
-    public static final int DIRECTION_STRAFE_LEFT = 3;
-
     public DcMotor motorFrontLeft;
     public DcMotor motorFrontRight;
     public DcMotor motorBackLeft;
     public DcMotor motorBackRight;
 
     private Telemetry telemetry;
-    private HardwareMap hardwareMap = null;
+    private HardwareMap hardwareMap;
 
     /**
      * Creates a mecanum motor using the 4 individual motors passed in as the arguments
@@ -141,7 +136,7 @@ public class MecanumDriveWheelActions {
     }
 
     /**
-     * This function stops the mecanum motor
+     * Stop all the 4 mecanum wheels
      */
     public void stop() {
         motorFrontLeft.setPower(0);
@@ -155,6 +150,14 @@ public class MecanumDriveWheelActions {
         motorBackRight.setPower(speed);
         motorFrontRight.setPower(speed);
         motorFrontLeft.setPower(speed);
+        opMode.sleep((long)(1000 * time));
+    }
+
+    public void reverseByTime(LinearOpMode opMode, double speed, double time) {
+        motorBackLeft.setPower(-speed);
+        motorBackRight.setPower(-speed);
+        motorFrontLeft.setPower(-speed);
+        motorFrontRight.setPower(-speed);
         opMode.sleep((long)(1000 * time));
     }
 
@@ -172,14 +175,6 @@ public class MecanumDriveWheelActions {
         motorBackLeft.setPower(speed);
         motorBackRight.setPower(-speed);
         opMode.sleep((long)(1000*time));
-    }
-
-    public void backwardByTime(LinearOpMode opMode, double speed, double time) {
-        motorBackLeft.setPower(-speed);
-        motorBackRight.setPower(-speed);
-        motorFrontLeft.setPower(-speed);
-        motorFrontRight.setPower(-speed);
-        opMode.sleep((long)(1000 * time));
     }
 
 }
