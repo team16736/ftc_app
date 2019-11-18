@@ -1,12 +1,15 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.atomic.gobilda.hardware.MecanumDrivetrain;
 import org.firstinspires.ftc.atomic.gobilda.util.MecanumConfigConstants;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Mecanum 0", group = "Linear Opmode")
+//@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name = "Mecanum Auto Left 55", group = "Linear Opmode")
+@Autonomous(name="Mecanum Auto Left 55", group="GoBilda")
+
 public class MecanumAutoLeft extends LinearOpMode {
 
     private static final double THROTTLE = 0.8;
@@ -25,30 +28,30 @@ public class MecanumAutoLeft extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        while (opModeIsActive()) {
 
-            // Step 1:  Drive forward for 1 second
+        //DO NOT CHANGE ANYTHING WITH FORWARD AND REVERSE
+
+            // Step 1:  Strafe Right for 1 second
+        //There are three reverses because our robot will only work like this
+        mecanumDrivetrain.motorBackLeft.setDirection(MecanumConfigConstants.FORWARD);
+            mecanumDrivetrain.motorBackRight.setDirection(MecanumConfigConstants.REVERSE);
+            mecanumDrivetrain.motorFrontLeft.setDirection(MecanumConfigConstants.REVERSE);
+            mecanumDrivetrain.motorFrontRight.setDirection(MecanumConfigConstants.REVERSE);
             mecanumDrivetrain.forwardByTime(this, 0.5, 1.0);
             mecanumDrivetrain.stop();
 
-            // Step 2:  Spin left for 1 second
-            mecanumDrivetrain.motorBackLeft.setDirection(MecanumConfigConstants.REVERSE);//changed
-            mecanumDrivetrain.motorBackRight.setDirection(MecanumConfigConstants.REVERSE);
-            mecanumDrivetrain.motorFrontLeft.setDirection(MecanumConfigConstants.FORWARD);//changed
-            mecanumDrivetrain.motorFrontRight.setDirection(MecanumConfigConstants.FORWARD);
-            mecanumDrivetrain.forwardByTime(this, 0.5, 1.0);
-
-
-            // Step 3:  Drive Forwards for 1 Second
+//            // Step 3:  Drive Forwards for 1 Second
             mecanumDrivetrain.motorBackLeft.setDirection(MecanumConfigConstants.REVERSE);
             mecanumDrivetrain.motorBackRight.setDirection(MecanumConfigConstants.REVERSE);
             mecanumDrivetrain.motorFrontLeft.setDirection(MecanumConfigConstants.REVERSE);
             mecanumDrivetrain.motorFrontRight.setDirection(MecanumConfigConstants.FORWARD);
             mecanumDrivetrain.forwardByTime(this, 0.5, 1.0);
+            mecanumDrivetrain.stop();
+
 
             // Step 4:  Stop
-            mecanumDrivetrain.stop();
-        }
+            //mecanumDrivetrain.stop();
+
 
     }
 }
