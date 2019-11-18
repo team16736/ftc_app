@@ -3,7 +3,7 @@ package org.firstinspires.ftc.atomic.gobilda.util;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-public class MecanumConfigConstants {
+public class ConfigConstants {
 
     public static final String FRONT_LEFT = "FL";
     public static final String FRONT_RIGHT = "FR";
