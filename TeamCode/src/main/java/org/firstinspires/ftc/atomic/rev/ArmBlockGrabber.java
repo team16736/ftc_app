@@ -85,15 +85,15 @@ public class ArmBlockGrabber extends OpMode {
         leftPower = Range.clip(drive + turn, -10.0, 10.0); // TODO: Rahul - if 10.0 is high, the use 1.0
         rightPower = Range.clip(drive - turn, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
 
-        armPower = Range.clip(arm_up - arm_down, -10.0, 10.0); // TODO: Rahul - if -10.0 is high, the use -1.0
+        armPower = Range.clip(arm_up - arm_down, -5.0, 5.0); // TODO: Rahul - if -10.0 is high, the use -1.0
        if (pickup_up){
 
-            pickupPower = 10.0;
+            pickupPower = -10.0;
 
         }
        else if(pickup_down){
 
-           pickupPower = -10.0;
+           pickupPower = 10.0;
         }
 
        else{

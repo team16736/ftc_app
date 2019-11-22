@@ -80,6 +80,7 @@ public class BasicRobotMoveWithArm extends OpMode {
         double turn = gamepad1.right_stick_x;
         double arm_up = gamepad2.right_stick_y;
         double arm_down = gamepad2.right_stick_x;
+
         double servo_up = gamepad2.right_trigger;
         double servo_down = gamepad2.left_trigger;
         double servo_value = servo_up - servo_down;

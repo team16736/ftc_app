@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.atomic.gobilda.actions;
 
+import com.qualcomm.hardware.motors.RevRoboticsCoreHexMotor;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -17,6 +18,9 @@ public class MecanumDriveWheelActions {
     public DcMotor motorBackLeft;
     public DcMotor motorBackRight;
 
+    //the amount to throttle the power of the motors
+    private static final double THROTTLE = 0.8;
+
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
@@ -24,11 +28,8 @@ public class MecanumDriveWheelActions {
      * Creates a mecanum motor using the 4 individual motors passed in as the arguments
      * @param telemetry : Telemetry to send messages to the Driver Control
      * @param hardwareMap : Hardware Mappings
-
      */
-    public MecanumDriveWheelActions(Telemetry telemetry,
-                                    HardwareMap hardwareMap ) {
-
+    public MecanumDriveWheelActions(Telemetry telemetry, HardwareMap hardwareMap ) {
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
 
@@ -87,15 +88,14 @@ public class MecanumDriveWheelActions {
      * @param speedX - the x value of the joystick controlling strafe
      * @param speedY - the y value of the joystick controlling the forward/backward motion
      * @param rotation - the x value of the joystick controlling the rotation
-     * @param throttle - the amount to throttle the power of the motors
      */
-    public void drive(double speedX, double speedY, double rotation, double throttle){
+    public void drive(double speedX, double speedY, double rotation){
 
-        double throttledX = speedX * throttle;
-        double throttledY = speedY * throttle;
-        double throttledRotation = rotation * throttle;
+        double throttledX = speedX * THROTTLE;
+        double throttledY = speedY * THROTTLE;
+        double throttledRotation = rotation * THROTTLE;
 
-        drive(throttledX, throttledY, throttledRotation);
+        driveUsingJoyStick(throttledX, throttledY, throttledRotation);
     }
 
     /**
@@ -104,10 +104,10 @@ public class MecanumDriveWheelActions {
      * @param speedY - the y value of the joystick controlling the forward/backwards motion
      * @param rotation - the x value of the joystick controlling the rotation
      */
-    public void drive(double speedX, double speedY, double rotation) {
-        telemetry.addData("Straf-speedX: ", speedX);
-        telemetry.addData("Motion-speedY: ", speedY);
-        telemetry.addData("rotation", rotation);
+    public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
+        telemetry.addData("Straf Speed X: = ", speedX);
+        telemetry.addData("Motion Speed Y: = ", speedY);
+        telemetry.addData("Rotations: = ", rotation);
         telemetry.update();
 
         double frontLeftValue = speedX + speedY + rotation;
@@ -143,6 +143,7 @@ public class MecanumDriveWheelActions {
         motorFrontRight.setPower(0);
         motorBackLeft.setPower(0);
         motorBackRight.setPower(0);
+        telemetry.addData("MecanumDrivetrainTeleOp", "stop");
     }
 
     public void forwardByTime(LinearOpMode opMode, double speed, double time) {

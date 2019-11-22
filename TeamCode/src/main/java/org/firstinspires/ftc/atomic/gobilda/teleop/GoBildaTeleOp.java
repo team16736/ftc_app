@@ -3,11 +3,11 @@ package org.firstinspires.ftc.atomic.gobilda.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mecanum 0", group="Linear Opmode")
 public class GoBildaTeleOp extends LinearOpMode {
 
-    private static final double THROTTLE = 0.8;
     private MecanumDriveWheelActions mecanumDriveWheelActions = null;
 
     @Override
@@ -20,11 +20,11 @@ public class GoBildaTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            /* Gamepad 1 */
-            mecanumDriveWheelActions.drive(gamepad1.left_stick_x, //speed x
-                                    -gamepad1.left_stick_y, //speed y
-                                    gamepad1.right_stick_x,  //rotation
-                                    THROTTLE); //throttle
+            /** Gamepad 1 **/
+            mecanumDriveWheelActions.drive(
+                    gamepad1.left_stick_x,      //joystick controlling strafe
+                    -gamepad1.left_stick_y,     //joystick controlling the forward/backward motion
+                    gamepad1.right_stick_x);    //joystick controlling the rotation
         }
 
         telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
