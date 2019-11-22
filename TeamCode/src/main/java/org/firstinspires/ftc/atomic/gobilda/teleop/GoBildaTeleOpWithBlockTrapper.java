@@ -42,8 +42,6 @@ public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
                     gamepad2.dpad_left,
                     gamepad2.dpad_right);
 
-
-//
 //            /** Gamepad 2 **/
 //            contiServoActions.trapperMoveUpDown(
 //                    gamepad2.dpad_left,         //move up

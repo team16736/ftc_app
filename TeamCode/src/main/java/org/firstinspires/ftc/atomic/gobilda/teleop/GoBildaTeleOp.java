@@ -28,6 +28,7 @@ public class GoBildaTeleOp extends LinearOpMode {
         }
 
         telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
+        idle();
 
         //mecanumDrivetrain.stop();
     }
