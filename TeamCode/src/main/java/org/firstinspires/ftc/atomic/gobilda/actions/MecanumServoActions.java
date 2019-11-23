@@ -13,6 +13,7 @@ public class MecanumServoActions {
     private Servo servo_right = null;
 
     private double hookServoPosition;
+    private double trapperServoPosition;
     private double MIN_POSITION  = 0;
     private double MAX_POSITION  = 0.8;
 
@@ -38,19 +39,14 @@ public class MecanumServoActions {
         servo_right.setPosition(MAX_POSITION);
     }
 
-    public void hookMoveUpDownPosition(boolean xButtonPressed, boolean yButtonPressed) {
+    public void hookMoveUpDownPosition(boolean leftButtonPressed, boolean rightButtonPressed) {
 
-//      if(xButtonPressed && hookServoPosition < MAX_POSITION){
-//      } else if(yButtonPressed && hookServoPosition > MIN_POSITION) {
-//
-//      }
-
-        if (xButtonPressed) {
+        if (leftButtonPressed) {
 
             hookServoPosition = hookServoPosition + 0.01;
             telemetry.addData("Position x: ", hookServoPosition);
 
-        } else if (yButtonPressed) {
+        } else if (rightButtonPressed) {
 
             hookServoPosition = hookServoPosition - 0.01;
             telemetry.addData("Position y: ", hookServoPosition);
@@ -59,7 +55,23 @@ public class MecanumServoActions {
         servo_left.setPosition(Range.clip(hookServoPosition * - 1.2, MIN_POSITION, MAX_POSITION));
         servo_right.setPosition(Range.clip(hookServoPosition, MIN_POSITION, MAX_POSITION));
 
-        telemetry.addData("xxxx current Position: ", servo_trap.getPosition());
+        telemetry.addData("Current Position: ", servo_trap.getPosition());
+        telemetry.update();
+    }
+
+    public void trapperUpDownPosition(boolean upButtonPressed, boolean downButtonPressed) {
+
+        if (upButtonPressed) {
+            trapperServoPosition = trapperServoPosition + 0.01;
+            telemetry.addData("Position Up: ", trapperServoPosition);
+
+        } else if (downButtonPressed) {
+            trapperServoPosition = trapperServoPosition - 0.01;
+            telemetry.addData("Position Down: ", trapperServoPosition);
+        }
+
+        servo_trap.setPosition(Range.clip(trapperServoPosition, MIN_POSITION, MAX_POSITION));
+        telemetry.addData("Current Position: ", servo_trap.getPosition());
         telemetry.update();
     }
 
