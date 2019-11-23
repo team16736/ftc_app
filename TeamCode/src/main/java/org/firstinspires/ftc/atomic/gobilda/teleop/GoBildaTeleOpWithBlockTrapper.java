@@ -42,10 +42,10 @@ public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
                     gamepad2.dpad_left,
                     gamepad2.dpad_right);
 
-            servoActions.trapperUpDownPosition(
-                    gamepad2.dpad_up,
-                    gamepad2.dpad_down
-            );
+           // servoActions.trapperUpDownPosition(
+           //         gamepad2.dpad_up,
+            //        gamepad2.dpad_down
+            //);
         }
         telemetry.update();
         idle();
