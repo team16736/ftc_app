@@ -3,36 +3,29 @@ package org.firstinspires.ftc.atomic.gobilda.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumCSRServoActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
 
-@TeleOp(name="MecannumTrapper 66", group="Linear Opmode")
+@TeleOp(name="MecannumHooks 713", group="Linear Opmode")
 public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
 
     private MecanumServoActions servoActions = null;
-    private MecanumCSRServoActions contiServoActions = null;
-    private MecanumDriveWheelActions driveWheelActions = null;
+    private MecanumDriveWheelActions mecanumDriveWheelActions = null;
+
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
 
-        //Regular Servo
         servoActions = new MecanumServoActions(telemetry, hardwareMap);
+        mecanumDriveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
 
-        //Continuous Rotation Servo (CR Servo)
-        //contiServoActions = new MecanumCSRServoActions(telemetry, hardwareMap);
-
-        telemetry.addData("Mode: ", "Waiting...");
-        telemetry.update();
-
-        //wait for start button
+        // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        while(opModeIsActive()){
+        while (opModeIsActive()) {
 
             /** Gamepad 1 **/
-            driveWheelActions.drive(
+            mecanumDriveWheelActions.drive(
                     gamepad1.left_stick_x,      //joystick controlling strafe
                     -gamepad1.left_stick_y,     //joystick controlling the forward/backward motion
                     gamepad1.right_stick_x);    //joystick controlling the rotation
@@ -41,14 +34,9 @@ public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
             servoActions.hookMoveUpDownPosition(
                     gamepad2.dpad_left,
                     gamepad2.dpad_right);
-
-           // servoActions.trapperUpDownPosition(
-           //         gamepad2.dpad_up,
-            //        gamepad2.dpad_down
-            //);
         }
-        telemetry.update();
+
+        telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
         idle();
     }
-
 }
