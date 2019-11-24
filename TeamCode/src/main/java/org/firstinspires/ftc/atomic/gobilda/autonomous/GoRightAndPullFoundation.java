@@ -6,8 +6,13 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 
-@Autonomous(name = "Mecanum Auto Left 55", group = "GoBilda")
-public class GoBildaAutoLeft extends LinearOpMode {
+/**
+ * Purpose: Go to the RIGHT side
+ *
+ * Strafes to the LEFT and goes forward (which is the RIGHT side of the bridge)
+ */
+@Autonomous(name = "Auto Right Foundation", group = "GoBilda")
+public class GoRightAndPullFoundation extends LinearOpMode {
 
     @Override
     public void runOpMode() {
@@ -21,10 +26,10 @@ public class GoBildaAutoLeft extends LinearOpMode {
 
         // Step 1:  Strafe Right for 1 second
         //There are three reverses because our robot will only work like this
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.motorBackRight.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
 

@@ -31,7 +31,7 @@ public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
                     gamepad1.right_stick_x);    //joystick controlling the rotation
 
             /** Gamepad 2 **/
-            servoActions.hookMoveUpDownPosition(
+            servoActions.hookMove(
                     gamepad2.dpad_left,
                     gamepad2.dpad_right);
         }
