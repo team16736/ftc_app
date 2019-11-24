@@ -32,55 +32,21 @@ public class MecanumDriveWheelActions {
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
 
-        setupDriveWheelMotors(); //initialize 4 dc motors
-        setMotorDirectionForward();
-        setupDriveWheelBrakes();
+        initializeHardware(); //initialize 4 dc motors
+
+        setMotorDirection_Forward();
     }
 
     /**
-     * Use the DCMotor names provided in the config
+     * Use the DCMotor names provided in the config.
      */
-    public void setupDriveWheelMotors() {
+    public void initializeHardware() {
         motorFrontLeft = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_LEFT);
         motorFrontRight = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_RIGHT);
         motorBackRight = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_RIGHT);
         motorBackLeft = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_LEFT);
     }
 
-    public void setupDriveWheelBrakes() {
-        motorBackLeft.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        motorBackRight.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        motorFrontLeft.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        motorFrontRight.setZeroPowerBehavior(ConfigConstants.BRAKE);
-    }
-
-    public void setMotorDirectionForward() {
-        motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        motorBackRight.setDirection(ConfigConstants.REVERSE);
-        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        motorFrontRight.setDirection(ConfigConstants.FORWARD);
-    }
-
-    public void setMotorDirectionReverse() {
-        motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        motorBackRight.setDirection(ConfigConstants.FORWARD);
-        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        motorFrontRight.setDirection(ConfigConstants.FORWARD);
-    }
-
-    public void setMotorDirectionStrafeLeft() {
-        motorBackLeft.setDirection(ConfigConstants.FORWARD);
-        motorBackRight.setDirection(ConfigConstants.FORWARD);
-        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        motorFrontRight.setDirection(ConfigConstants.REVERSE);
-    }
-
-    public void setMotorDirectionStrafeRight() {
-        motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        motorBackRight.setDirection(ConfigConstants.REVERSE);
-        motorFrontLeft.setDirection(ConfigConstants.FORWARD);
-        motorFrontRight.setDirection(ConfigConstants.FORWARD);
-    }
 
     /**
      * Drive method to throttle the power
@@ -115,13 +81,7 @@ public class MecanumDriveWheelActions {
         double backLeftValue= -speedX + speedY + rotation;
         double backRightValue = speedX + speedY - rotation;
 
-        List<Double> valueList = new LinkedList<>();
-        valueList.add(frontLeftValue);
-        valueList.add(frontRightValue);
-        valueList.add(backLeftValue);
-        valueList.add(backRightValue);
-
-        double max = Collections.max(valueList);
+        double max = getMaxPower(frontLeftValue, frontRightValue, backLeftValue, backRightValue);
         if (max > 1) {
             frontLeftValue = frontLeftValue / max;
             frontRightValue = frontRightValue / max;
@@ -133,17 +93,64 @@ public class MecanumDriveWheelActions {
         motorFrontLeft.setPower(frontLeftValue);
         motorBackRight.setPower(backRightValue);
         motorBackLeft.setPower(backLeftValue);
+
+        telemetry.addData("frontRightValue: = ", frontRightValue);
+        telemetry.addData("frontLeftValue: = ", frontLeftValue);
+        telemetry.addData("backRightValue: = ", backRightValue);
+        telemetry.addData("backLeftValue: = ", backLeftValue);
+
     }
 
-    /**
-     * Stop all the 4 mecanum wheels
-     */
+    private double getMaxPower(double frontLeftValue, double frontRightValue, double backLeftValue, double backRightValue) {
+        List<Double> valueList = new LinkedList<>();
+        valueList.add(frontLeftValue);
+        valueList.add(frontRightValue);
+        valueList.add(backLeftValue);
+        valueList.add(backRightValue);
+
+        return Collections.max(valueList);
+    }
+
+    public void setMotorDirection_Forward() {
+        motorBackLeft.setDirection(ConfigConstants.REVERSE);
+        motorBackRight.setDirection(ConfigConstants.REVERSE);
+        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
+        motorFrontRight.setDirection(ConfigConstants.FORWARD);
+    }
+
+    public void setMotorDirection_Reverse() {
+        motorBackLeft.setDirection(ConfigConstants.REVERSE);
+        motorBackRight.setDirection(ConfigConstants.FORWARD);
+        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
+        motorFrontRight.setDirection(ConfigConstants.FORWARD);
+    }
+
+    public void setMotorDirection_StrafeLeft() {
+        motorBackLeft.setDirection(ConfigConstants.FORWARD);
+        motorBackRight.setDirection(ConfigConstants.FORWARD);
+        motorFrontLeft.setDirection(ConfigConstants.REVERSE);
+        motorFrontRight.setDirection(ConfigConstants.REVERSE);
+    }
+
+    public void setMotorDirection_StrafeRight() {
+        motorBackLeft.setDirection(ConfigConstants.REVERSE);
+        motorBackRight.setDirection(ConfigConstants.REVERSE);
+        motorFrontLeft.setDirection(ConfigConstants.FORWARD);
+        motorFrontRight.setDirection(ConfigConstants.FORWARD);
+    }
+
+    public void applyBrake() {
+        motorBackLeft.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        motorBackRight.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        motorFrontLeft.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        motorFrontRight.setZeroPowerBehavior(ConfigConstants.BRAKE);
+    }
+
     public void stop() {
         motorFrontLeft.setPower(0);
         motorFrontRight.setPower(0);
         motorBackLeft.setPower(0);
         motorBackRight.setPower(0);
-        telemetry.addData("MecanumDrivetrainTeleOp", "stop");
     }
 
     public void forwardByTime(LinearOpMode opMode, double speed, double time) {

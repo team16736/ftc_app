@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+/**
+ * This program uses CSR Servo - Continuous Servo Rotation
+ */
 public class MecanumCSRServoActions {
 
     private double trapServoPower = 0.1;

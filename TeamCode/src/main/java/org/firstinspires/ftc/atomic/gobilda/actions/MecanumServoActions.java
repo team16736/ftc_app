@@ -23,10 +23,10 @@ public class MecanumServoActions {
     public MecanumServoActions(Telemetry telemetry, HardwareMap hardwareMap ) {
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
-        setupServoMotors();
+        initializeHardware();
     }
 
-    public void setupServoMotors() {
+    public void initializeHardware() {
        // servo_trap = hardwareMap.get(Servo.class, ConfigConstants.SERVO_TRAP);
         servo_left = hardwareMap.get(Servo.class, ConfigConstants.SERVO_LEFT);
         servo_right= hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);

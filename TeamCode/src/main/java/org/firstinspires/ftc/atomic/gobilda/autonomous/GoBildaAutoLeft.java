@@ -3,9 +3,8 @@ package org.firstinspires.ftc.atomic.gobilda.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 
 @Autonomous(name = "Mecanum Auto Left 55", group = "GoBilda")
 public class GoBildaAutoLeft extends LinearOpMode {

@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
 
 @Autonomous(name = "Mecanum Auto Right 55", group = "GoBilda")
 public class GoBildaAutoRight extends LinearOpMode {
