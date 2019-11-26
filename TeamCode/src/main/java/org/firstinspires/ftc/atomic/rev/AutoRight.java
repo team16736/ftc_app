@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.atomic.rev;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -20,6 +21,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 
 @Autonomous(name="Pushbot: AutoRight", group="Pushbot")
+@Disabled
 public class AutoRight extends LinearOpMode {
 
     /* Declare OpMode members. */

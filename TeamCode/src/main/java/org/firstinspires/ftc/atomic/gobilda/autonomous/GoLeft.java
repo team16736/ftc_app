@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
@@ -12,7 +13,8 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
  * 1. Strafes to the RIGHT
  * 2. Goes forward (which is the LEFT side of the bridge)
  */
-@Autonomous(name = "Mecanum Auto Left 55", group = "GoBilda")
+@Autonomous(name = "Auto Left", group = "GoBilda")
+@Disabled
 public class GoLeft extends LinearOpMode {
 
     @Override

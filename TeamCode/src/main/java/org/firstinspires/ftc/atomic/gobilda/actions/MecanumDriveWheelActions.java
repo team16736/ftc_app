@@ -153,36 +153,36 @@ public class MecanumDriveWheelActions {
         motorBackRight.setPower(0);
     }
 
-    public void forwardByTime(LinearOpMode opMode, double speed, double time) {
+    public void forwardByTime(LinearOpMode opMode, double speed, double drivingTime) {
         motorBackLeft.setPower(speed);
         motorBackRight.setPower(speed);
         motorFrontRight.setPower(speed);
         motorFrontLeft.setPower(speed);
-        opMode.sleep((long)(1000 * time));
+        opMode.sleep((long)(1000 * drivingTime));
     }
 
-    public void reverseByTime(LinearOpMode opMode, double speed, double time) {
+    public void reverseByTime(LinearOpMode opMode, double speed, double drivingTime) {
         motorBackLeft.setPower(-speed);
         motorBackRight.setPower(-speed);
         motorFrontLeft.setPower(-speed);
         motorFrontRight.setPower(-speed);
-        opMode.sleep((long)(1000 * time));
+        opMode.sleep((long)(1000 * drivingTime));
     }
 
-    public void strafeRightByTime(LinearOpMode opMode, double speed, double time) {
+    public void strafeRightByTime(LinearOpMode opMode, double speed, double drivingTime) {
         motorBackLeft.setPower(-speed);
         motorBackRight.setPower(speed);
         motorFrontLeft.setPower(speed);
         motorFrontRight.setPower(-speed);
-        opMode.sleep((long)(1000 * time));
+        opMode.sleep((long)(1000 * drivingTime));
     }
 
-    public void strafeLeftByTime(LinearOpMode opMode, double speed, double time) {
+    public void strafeLeftByTime(LinearOpMode opMode, double speed, double drivingTime) {
         motorFrontLeft.setPower(-speed);
         motorFrontRight.setPower(speed);
         motorBackLeft.setPower(speed);
         motorBackRight.setPower(-speed);
-        opMode.sleep((long)(1000*time));
+        opMode.sleep((long)(1000*drivingTime));
     }
 
 }

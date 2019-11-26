@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class MecanumServoActions {
 
-    private Servo servo_left = null;
-    private Servo servo_right = null;
+    public Servo servo_left = null;
+    public Servo servo_right = null;
 
     private double hookServoPosition;
     private double MIN_POSITION  = 0;
@@ -65,4 +65,8 @@ public class MecanumServoActions {
         servo_right.setDirection(Servo.Direction.REVERSE);
     }
 
+    public void stop() {
+        servo_left.setPosition(0.0);
+        servo_right.setPosition(0.0);
+    }
 }
