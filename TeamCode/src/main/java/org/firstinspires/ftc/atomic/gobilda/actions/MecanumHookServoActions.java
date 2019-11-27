@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-public class MecanumServoActions {
+public class MecanumHookServoActions {
 
     public Servo servo_left = null;
     public Servo servo_right = null;
@@ -18,7 +18,7 @@ public class MecanumServoActions {
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
-    public MecanumServoActions(Telemetry telemetry, HardwareMap hardwareMap ) {
+    public MecanumHookServoActions(Telemetry telemetry, HardwareMap hardwareMap ) {
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
 
@@ -65,8 +65,8 @@ public class MecanumServoActions {
         servo_right.setDirection(Servo.Direction.REVERSE);
     }
 
-    public void stop() {
-        servo_left.setPosition(0.0);
-        servo_right.setPosition(0.0);
-    }
+//    public void stop() {
+//        servo_left.setPosition(0.0);
+//        servo_right.setPosition(0.0);
+//    }
 }

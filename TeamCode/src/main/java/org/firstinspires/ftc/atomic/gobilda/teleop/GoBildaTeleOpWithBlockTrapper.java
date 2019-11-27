@@ -4,19 +4,19 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 @TeleOp(name="MecannumHooks 713", group="Linear Opmode")
 public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
 
-    private MecanumServoActions servoActions = null;
+    private MecanumHookServoActions servoActions = null;
     private MecanumDriveWheelActions mecanumDriveWheelActions = null;
 
 
     @Override
     public void runOpMode() {
 
-        servoActions = new MecanumServoActions(telemetry, hardwareMap);
+        servoActions = new MecanumHookServoActions(telemetry, hardwareMap);
         mecanumDriveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 /**
  * Purpose: Pull blue foundation to the building site
@@ -18,35 +18,33 @@ public class PullBlueFoundation extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap); //created a object
-        MecanumServoActions servoActions = new MecanumServoActions(telemetry, hardwareMap);
+        MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        MecanumHookServoActions hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Step 1:  Strafe RIGHT for 1 second
+        // Step 1:  Strafe RIGHT
         strafe_RightAndStop(wheelActions, SPEED, 0.2);
-        sleep(2000); //2 second wait
+        sleep(2000); //wait for 2 seconds
 
-        // Step 2:  Drive REVERSE for 1 Second
+        // Step 2:  Drive REVERSE towards the building zone
         drive_ReverseAndStop(wheelActions, SPEED, 0.2);
         sleep(2000);
 
         //Step 3: Move rear Hooks DOWN to grab the foundation
-        servoActions.servo_left.setPosition(0.3); //hook move down
-        servoActions.servo_right.setPosition(-0.3); //hook move down
-        servoActions.stop();
+        hookActions.servo_left.setPosition(0.5); //hook move down
+        hookActions.servo_right.setPosition(-0.5); //hook move down
         sleep(2000);
 
-        //Step4: Drive FORWARD towards the building zone
+        //Step4: Drive FORWARD towards building site
         drive_ForwardAndStop(wheelActions, SPEED, 0.2);
         sleep(2000);
 
         //Step5: Hook move UP to release the foundation
-        //servoActions.servo_left.setPosition(0.0);  //hook move up
-        //servoActions.servo_right.setPosition(0.0); //hook move up
-        servoActions.stop();
-        sleep(2000);
+        //hookActions.servo_left.setPosition(0.0);  //hook move up
+        //hookActions.servo_right.setPosition(0.0); //hook move up
+        //sleep(2000);
 
         // Step 6: Strafe LEFT and park under bridge
         strafe_LeftAndStop(wheelActions, SPEED, 0.2);

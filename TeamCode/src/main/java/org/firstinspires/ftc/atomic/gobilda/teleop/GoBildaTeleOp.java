@@ -3,7 +3,6 @@ package org.firstinspires.ftc.atomic.gobilda.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumServoActions;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mecanum 0", group="Linear Opmode")
 public class GoBildaTeleOp extends LinearOpMode {
