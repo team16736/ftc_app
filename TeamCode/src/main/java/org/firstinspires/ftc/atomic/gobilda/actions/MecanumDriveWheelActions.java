@@ -35,6 +35,23 @@ public class MecanumDriveWheelActions {
         initializeHardware(); //initialize 4 dc motors
 
         setMotorDirection_Forward();
+
+//        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//
+//
+//        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+       // previous code
+
+       // robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+       // robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
     }
 
     /**
@@ -183,6 +200,14 @@ public class MecanumDriveWheelActions {
         motorBackLeft.setPower(speed);
         motorBackRight.setPower(-speed);
         opMode.sleep((long)(1000*drivingTime));
+    }
+
+    public void forwardByDistance(LinearOpMode opMode, double speed, double drivingTime) {
+        motorBackLeft.setPower(speed);
+        motorBackRight.setPower(speed);
+        motorFrontRight.setPower(speed);
+        motorFrontLeft.setPower(speed);
+        opMode.sleep((long)(1000 * drivingTime));
     }
 
 }

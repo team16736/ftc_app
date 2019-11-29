@@ -14,7 +14,6 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
  * 2. Goes forward (which is the RIGHT side of the bridge)
  */
 @Autonomous(name = "Auto Right", group = "GoBilda")
-@Disabled
 public class GoRight extends LinearOpMode {
 
     @Override
@@ -27,22 +26,26 @@ public class GoRight extends LinearOpMode {
 
         //DO NOT CHANGE ANYTHING WITH FORWARD AND REVERSE
 
-        // Step 1:  Strafe Right for 1 second
-        //There are three reverses because our robot will only work like this
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.forwardByTime(this, 0.5, 1.0);
-        driveWheelActions.stop();
 
-        // Step 2:  Drive Forwards for 1 Second
+        // Step 1:  Drive Forwards for 1 Second
         driveWheelActions.motorBackLeft.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.motorBackRight.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.motorFrontRight.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
+
+
+        // Step 2:  Strafe Right for 1 second
+        //There are three reverses because our robot will only work like this
+        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.motorBackRight.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.REVERSE);//
+        driveWheelActions.forwardByTime(this, 0.5, 1.0);
+        driveWheelActions.stop();
+
+
     }
 }
 
