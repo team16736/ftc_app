@@ -29,11 +29,11 @@ public class PullBlueFoundation extends LinearOpMode {
         waitForStart();
 
         // Step 1:  Strafe RIGHT
-        strafe_RightAndStop(wheelActions, SPEED, 0.75);
+        strafe_RightAndStop(wheelActions, SPEED, 0.9);
         sleep(2000); //wait for 2 seconds
 
          // Step 2:  Drive REVERSE towards the building zone
-        drive_ReverseAndStop(wheelActions, SPEED, 1.0);
+        drive_ReverseAndStop(wheelActions, SPEED, 1.3);
         sleep(2000);
 
         //Step 3: Move rear Hooks DOWN to grab the foundation
@@ -45,20 +45,15 @@ public class PullBlueFoundation extends LinearOpMode {
             lefthookPosition = 1.0;
             righthookPosition = 0.0;
         }
-
         hookActions.servo_left.setPosition(lefthookPosition);
         hookActions.servo_right.setPosition(righthookPosition);
-
-   // hookActions.servo_left.setPosition(0.5); //hook move down
-        // hookActions.servo_right.setPosition(-0.5); //hook move down
         sleep(2000);
 
         //Step4: Drive FORWARD towards building site
-        drive_ForwardAndStop(wheelActions, SPEED, 2.0);
+        drive_ForwardAndStop(wheelActions, SPEED + 0.3, 1.1);
         sleep(2000);
 
-//        Step5: Hook move UP to release the foundation
-
+        //Step5: Hook move UP to release the foundation
         servoHookOn=false;
         if (servoHookOn){
             lefthookPosition = 0.0;
@@ -67,16 +62,15 @@ public class PullBlueFoundation extends LinearOpMode {
             lefthookPosition = 1.0;
             righthookPosition = 0.0;
         }
-
         hookActions.servo_left.setPosition(lefthookPosition);
-       hookActions.servo_right.setPosition(righthookPosition);
+        hookActions.servo_right.setPosition(righthookPosition);
 
        // hookActions.servo_left.setPosition(0.0);  //hook move up
        // hookActions.servo_right.setPosition(0.0); //hook move up
         sleep(2000);
 
 //         Step 6: Strafe LEFT and park under bridge
-        strafe_LeftAndStop(wheelActions, SPEED, 0.5);
+        strafe_LeftAndStop(wheelActions, SPEED, 1.8);
         sleep(2000);
     }
 
