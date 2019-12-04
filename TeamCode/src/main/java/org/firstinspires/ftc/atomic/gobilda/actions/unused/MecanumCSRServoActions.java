@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.atomic.gobilda.actions;
+package org.firstinspires.ftc.atomic.gobilda.actions.unused;
 
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**

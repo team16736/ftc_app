@@ -8,8 +8,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class MecanumHookServoActions {
 
-    public Servo servo_left = null;
-    public Servo servo_right = null;
+    public Servo left_hook = null;
+    public Servo right_hook = null;
 
     private double hookServoPosition;
     private double MIN_POSITION  = 0;
@@ -29,11 +29,11 @@ public class MecanumHookServoActions {
 
     public void initializeHardware() {
 
-        servo_left = hardwareMap.get(Servo.class, ConfigConstants.SERVO_LEFT);
-        servo_right= hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);
+        left_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_LEFT);
+        right_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);
 
-        //servo_left.setPosition(MIN_POSITION);
-        //servo_right.setPosition(MAX_POSITION);
+        //left_grip.setPosition(MIN_POSITION);
+        //right_grip.setPosition(MAX_POSITION);
     }
 
     public void hookMove(boolean leftButtonPressed, boolean rightButtonPressed) {
@@ -49,24 +49,24 @@ public class MecanumHookServoActions {
             telemetry.addData("Position y: ", hookServoPosition);
         }
 
-        servo_left.setPosition(Range.clip(hookServoPosition * - 1.2, MIN_POSITION, MAX_POSITION));
-        servo_right.setPosition(Range.clip(hookServoPosition, MIN_POSITION, MAX_POSITION));
+        left_hook.setPosition(Range.clip(hookServoPosition * - 1.2, MIN_POSITION, MAX_POSITION));
+        right_hook.setPosition(Range.clip(hookServoPosition, MIN_POSITION, MAX_POSITION));
 
         telemetry.update();
     }
 
     public void setServoDirection_Forward() {
-        servo_left.setDirection(Servo.Direction.FORWARD);
-        servo_right.setDirection(Servo.Direction.FORWARD);
+        left_hook.setDirection(Servo.Direction.FORWARD);
+        right_hook.setDirection(Servo.Direction.FORWARD);
     }
 
     public void setServoDirection_Reverse() {
-        servo_left.setDirection(Servo.Direction.REVERSE);
-        servo_right.setDirection(Servo.Direction.REVERSE);
+        left_hook.setDirection(Servo.Direction.REVERSE);
+        right_hook.setDirection(Servo.Direction.REVERSE);
     }
 
 //    public void stop() {
-//        servo_left.setPosition(0.0);
-//        servo_right.setPosition(0.0);
+//        left_grip.setPosition(0.0);
+//        right_grip.setPosition(0.0);
 //    }
 }

@@ -12,8 +12,13 @@ public class ConfigConstants {
     public static final String BACK_LEFT = "BL";
 
     //Hooks
-    public static final String SERVO_LEFT = "servo_left";
-    public static final String SERVO_RIGHT = "servo_right";
+    public static final String SERVO_LEFT = "left_hook";
+    public static final String SERVO_RIGHT = "right_hook";
+
+    //Hooks
+    public static final String LEFT_GRIP = "left_grip";
+    public static final String RIGHT_GRIP = "right_grip";
+
 
     //Trapper
     public static final String SERVO_TRAP = "servo_trap";

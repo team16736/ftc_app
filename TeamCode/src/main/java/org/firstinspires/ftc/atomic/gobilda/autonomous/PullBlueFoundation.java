@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
@@ -70,8 +67,8 @@ public class PullBlueFoundation extends PullFoundation {
             lefthookPosition = 1.0;
             righthookPosition = 0.0;
         }
-        hookActions.servo_left.setPosition(lefthookPosition);
-        hookActions.servo_right.setPosition(righthookPosition);
+        hookActions.left_hook.setPosition(lefthookPosition);
+        hookActions.right_hook.setPosition(righthookPosition);
     }
 
 }

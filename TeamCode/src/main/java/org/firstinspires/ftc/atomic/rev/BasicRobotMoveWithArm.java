@@ -18,8 +18,8 @@ public class BasicRobotMoveWithArm extends OpMode {
     public static final String LEFT_DRIVE = "left_drive";
     public static final String RIGHT_DRIVE = "right_drive";
     public static final String ARM_DRIVE = "arm_drive";
-    public static final String SERVO_DRIVE_1 = "servo_left";
-    public static final String SERVO_DRIVE_2 = "servo_right";
+    public static final String SERVO_DRIVE_1 = "left_grip";
+    public static final String SERVO_DRIVE_2 = "right_grip";
 
     private DcMotor leftDrive = null;
     private DcMotor rightDrive = null;
