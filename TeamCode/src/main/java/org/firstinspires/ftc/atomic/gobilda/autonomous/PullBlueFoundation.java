@@ -9,10 +9,10 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 /**
- * Purpose: Pull blue foundation to the building site
+ * Purpose: Pull BLUE foundation to the building site
  */
 @Autonomous(name = "Blue Foundation Pull", group = "GoBilda")
-public class PullBlueFoundation extends LinearOpMode {
+public class PullBlueFoundation extends PullFoundation {
 
     private final double SPEED = 0.5;
     double lefthookPosition = 0.0;
@@ -32,83 +32,46 @@ public class PullBlueFoundation extends LinearOpMode {
         strafe_RightAndStop(wheelActions, SPEED, 0.9);
         sleep(2000); //wait for 2 seconds
 
-         // Step 2:  Drive REVERSE towards the building zone
+
+         // Step 2: Drive REVERSE towards the building zone
         drive_ReverseAndStop(wheelActions, SPEED, 1.3);
-        sleep(2000);
 
-        //Step 3: Move rear Hooks DOWN to grab the foundation
+
+        // Step 3: Move rear Hooks DOWN to grab the foundation
         servoHookOn=true;
-        if (servoHookOn){
-         lefthookPosition = 0.0;
-           righthookPosition = 1.0;
-        } else {
-            lefthookPosition = 1.0;
-            righthookPosition = 0.0;
-        }
-        hookActions.servo_left.setPosition(lefthookPosition);
-        hookActions.servo_right.setPosition(righthookPosition);
+        moveHooksUpOrDown(hookActions);
         sleep(2000);
 
-        //Step4: Drive FORWARD towards building site
+
+        // Step 4: Drive FORWARD towards building site
         drive_ForwardAndStop(wheelActions, SPEED + 0.3, 1.1);
         sleep(2000);
 
-        //Step5: Hook move UP to release the foundation
-        servoHookOn=false;
-        if (servoHookOn){
-            lefthookPosition = 0.0;
-            righthookPosition = 1.0;
-        } else {
-            lefthookPosition = 1.0;
-            righthookPosition = 0.0;
-        }
-        hookActions.servo_left.setPosition(lefthookPosition);
-        hookActions.servo_right.setPosition(righthookPosition);
 
-       // hookActions.servo_left.setPosition(0.0);  //hook move up
-       // hookActions.servo_right.setPosition(0.0); //hook move up
+        // Step 5: Hook move UP to release the foundation
+        servoHookOn=false;
+        moveHooksUpOrDown(hookActions);
         sleep(2000);
 
-//         Step 6: Strafe LEFT and park under bridge
+
+        // Step 6: Strafe LEFT and park under bridge
         strafe_LeftAndStop(wheelActions, SPEED, 1.8);
         sleep(2000);
     }
 
-    private void drive_ReverseAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        //DO NOT CHANGE ANYTHING WITH FORWARD AND REVERSE
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.forwardByTime(this, speed, drivingTime);
-        driveWheelActions.stop();
+    private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
+
+        if (servoHookOn) {
+            // Move the hooks down
+            lefthookPosition = 0.0;
+            righthookPosition = 1.0;
+        } else {
+            // Move the hooks up
+            lefthookPosition = 1.0;
+            righthookPosition = 0.0;
+        }
+        hookActions.servo_left.setPosition(lefthookPosition);
+        hookActions.servo_right.setPosition(righthookPosition);
     }
 
-    private void drive_ForwardAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        //DO NOT CHANGE ANYTHING WITH FORWARD AND REVERSE
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.forwardByTime(this, speed, drivingTime);
-        driveWheelActions.stop();
-    }
-
-    private void strafe_RightAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.forwardByTime(this, speed, drivingTime);
-        driveWheelActions.stop();
-    }
-
-    private void strafe_LeftAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        driveWheelActions.motorBackLeft.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorBackRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.motorFrontRight.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.forwardByTime(this, speed, drivingTime);
-        driveWheelActions.stop();
-    }
 }

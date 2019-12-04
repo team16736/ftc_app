@@ -6,24 +6,73 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 /**
- * Purpose: Pull blue foundation to the building site
+ * Purpose: Pull RED foundation to the building site
  */
 @Autonomous(name = "Red Foundation Pull", group = "GoBilda")
-@Disabled
-public class PullRedFoundation extends LinearOpMode {
+public class PullRedFoundation extends PullFoundation {
+
+    private final double SPEED = 0.5;
+    double lefthookPosition = 0.0;
+    double righthookPosition = 0.0;
+    boolean servoHookOn = false;
 
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        MecanumHookServoActions hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //Coming soon
+        // Step 1:  Strafe LEFT
+        strafe_LeftAndStop(wheelActions, SPEED, 0.9);
+        sleep(2000); //wait for 2 seconds
 
+
+        // Step 2: Drive REVERSE towards the building zone
+        drive_ReverseAndStop(wheelActions, SPEED, 1.3);
+
+
+        // Step 3: Move rear Hooks DOWN to grab the foundation
+        servoHookOn=true;
+        moveHooksUpOrDown(hookActions);
+        sleep(2000);
+
+
+        // Step4: Drive FORWARD towards building site
+        drive_ForwardAndStop(wheelActions, SPEED + 0.3, 1.1);
+        sleep(2000);
+
+
+        // Step5: Hook move UP to release the foundation
+        servoHookOn=false;
+        moveHooksUpOrDown(hookActions);
+        sleep(2000);
+
+
+        // Step 6: Strafe RIGHT and park under bridge
+        strafe_RightAndStop(wheelActions, SPEED, 1.8);
+        sleep(2000);
     }
+
+    private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
+
+        if (servoHookOn) {
+            //Move the hooks down
+            lefthookPosition = 0.0;
+            righthookPosition = 1.0;
+        } else {
+            //Move the hooks up
+            lefthookPosition = 1.0;
+            righthookPosition = 0.0;
+        }
+        hookActions.servo_left.setPosition(lefthookPosition);
+        hookActions.servo_right.setPosition(righthookPosition);
+    }
+
 }
 
