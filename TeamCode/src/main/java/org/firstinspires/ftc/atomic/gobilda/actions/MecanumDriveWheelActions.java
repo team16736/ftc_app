@@ -36,22 +36,6 @@ public class MecanumDriveWheelActions {
 
         setMotorDirection_Forward();
 
-//        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//        motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//
-//
-//        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//        motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-       // previous code
-
-       // robot.leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-       // robot.rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
     }
 
     /**
@@ -82,21 +66,21 @@ public class MecanumDriveWheelActions {
 
     /**
      * This function makes the mecanum motor drive using the joystick
-     * @param speedX - the x value of the joystick controlling straf
+     * @param speedX - the x value of the joystick controlling strafe
      * @param speedY - the y value of the joystick controlling the forward/backwards motion
      * @param rotation - the x value of the joystick controlling the rotation
      */
     public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
 
-        telemetry.addData("Straf Speed X: = ", speedX);
+        telemetry.addData("Strafe Speed X: = ", speedX);
         telemetry.addData("Motion Speed Y: = ", speedY);
         telemetry.addData("Rotations: = ", rotation);
         telemetry.update();
 
-        double frontLeftValue = speedX + speedY + rotation;
-        double frontRightValue = -speedX + speedY - rotation;
-        double backLeftValue= -speedX + speedY + rotation;
-        double backRightValue = speedX + speedY - rotation;
+        double backLeftValue = speedX + speedY + rotation;
+        double frontLeftValue = -speedX + speedY + rotation;
+        double backRightValue = speedX + speedY - rotation; //working well
+        double frontRightValue = -speedX + speedY - rotation; //working well
 
         double max = getMaxPower(frontLeftValue, frontRightValue, backLeftValue, backRightValue);
         if (max > 1) {
@@ -115,7 +99,6 @@ public class MecanumDriveWheelActions {
         telemetry.addData("frontLeftValue: = ", frontLeftValue);
         telemetry.addData("backRightValue: = ", backRightValue);
         telemetry.addData("backLeftValue: = ", backLeftValue);
-
     }
 
     private double getMaxPower(double frontLeftValue, double frontRightValue, double backLeftValue, double backRightValue) {
@@ -146,14 +129,14 @@ public class MecanumDriveWheelActions {
         motorBackLeft.setDirection(ConfigConstants.FORWARD);
         motorBackRight.setDirection(ConfigConstants.FORWARD);
         motorFrontLeft.setDirection(ConfigConstants.REVERSE);
-        motorFrontRight.setDirection(ConfigConstants.REVERSE);
+        motorFrontRight.setDirection(ConfigConstants.FORWARD);
     }
 
     public void setMotorDirection_StrafeRight() {
         motorBackLeft.setDirection(ConfigConstants.REVERSE);
         motorBackRight.setDirection(ConfigConstants.REVERSE);
         motorFrontLeft.setDirection(ConfigConstants.FORWARD);
-        motorFrontRight.setDirection(ConfigConstants.FORWARD);
+        motorFrontRight.setDirection(ConfigConstants.REVERSE);
     }
 
     public void applyBrake() {

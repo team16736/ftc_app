@@ -11,7 +11,8 @@ public class MecanumHookServoActions {
     public Servo left_hook = null;
     public Servo right_hook = null;
 
-    private double hookServoPosition;
+    double lefthookPosition = 0.0;
+    double righthookPosition = 0.0;
     private double MIN_POSITION  = 0;
     private double MAX_POSITION  = 0.8;
 
@@ -40,17 +41,25 @@ public class MecanumHookServoActions {
 
         if (leftButtonPressed) {
 
-            hookServoPosition = hookServoPosition + 0.01;
-            telemetry.addData("Position x: ", hookServoPosition);
+          //  hookServoPosition = hookServoPosition + 0.01;
+
+            lefthookPosition = lefthookPosition+0.01;
+            righthookPosition=righthookPosition-0.01;
+            telemetry.addData("Position x: ", lefthookPosition);
+
 
         } else if (rightButtonPressed) {
 
-            hookServoPosition = hookServoPosition - 0.01;
-            telemetry.addData("Position y: ", hookServoPosition);
+           // hookServoPosition = hookServoPosition - 0.01;
+
+            lefthookPosition = lefthookPosition-0.01;
+            righthookPosition=righthookPosition+0.01;
+
+            telemetry.addData("Position y: ", righthookPosition);
         }
 
-        left_hook.setPosition(Range.clip(hookServoPosition * - 1.2, MIN_POSITION, MAX_POSITION));
-        right_hook.setPosition(Range.clip(hookServoPosition, MIN_POSITION, MAX_POSITION));
+        left_hook.setPosition(Range.clip(lefthookPosition, MIN_POSITION, MAX_POSITION));
+        right_hook.setPosition(Range.clip(righthookPosition, MIN_POSITION, MAX_POSITION));
 
         telemetry.update();
     }

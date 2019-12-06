@@ -19,7 +19,6 @@ public class ConfigConstants {
     public static final String LEFT_GRIP = "left_grip";
     public static final String RIGHT_GRIP = "right_grip";
 
-
     //Trapper
     public static final String SERVO_TRAP = "servo_trap";
 

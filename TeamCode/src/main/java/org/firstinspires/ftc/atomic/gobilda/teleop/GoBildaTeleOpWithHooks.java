@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
-@TeleOp(name="MecannumHooks 713", group="Linear Opmode")
-public class GoBildaTeleOpWithBlockTrapper extends LinearOpMode {
+@TeleOp(name="Mecannum-Hooks", group="Linear Opmode")
+public class GoBildaTeleOpWithHooks extends LinearOpMode {
 
     private MecanumHookServoActions servoActions = null;
     private MecanumDriveWheelActions mecanumDriveWheelActions = null;
