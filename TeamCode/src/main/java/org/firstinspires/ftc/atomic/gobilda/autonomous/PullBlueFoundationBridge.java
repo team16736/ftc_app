@@ -8,13 +8,12 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
-@Autonomous(name = "Blue Foundation Pull", group = "GoBilda")
-public class PullBlueFoundation extends PullFoundation {
+@Autonomous(name = "Blue Foundation Bridge Pull", group = "GoBilda")
+public class PullBlueFoundationBridge extends PullFoundation {
 
-    private final double SPEED = 0.5;
+    boolean servoHookOn = false;
     double lefthookPosition = 0.0;
     double righthookPosition = 0.0;
-    boolean servoHookOn = false;
 
     @Override
     public void runOpMode() {
@@ -41,7 +40,7 @@ public class PullBlueFoundation extends PullFoundation {
 
 
         // Step 4: Drive FORWARD towards building site
-        drive_ForwardAndStop(wheelActions, SPEED + 0.3, 1.1);
+        drive_ForwardAndStop(wheelActions, SPEED -0.2, 4.0); //SPEED-0.5, added 2.5 driving time
         sleep(2000);
 
 
@@ -51,9 +50,19 @@ public class PullBlueFoundation extends PullFoundation {
         sleep(2000);
 
 
-        // Step 6: Strafe LEFT and park under bridge
-        strafe_LeftAndStop(wheelActions, SPEED, 1.8);
+        // Step 6: Strafe LEFT
+        strafe_LeftAndStop(wheelActions, SPEED, 1.6);
         sleep(2000);
+
+        // Step 7: Move Backwards
+        drive_ReverseAndStop(wheelActions,SPEED,1.0);
+        sleep(2000);
+
+        //Step 8: Strafe LEFT and park under bridge
+        strafe_LeftAndStop(wheelActions, SPEED, 1.0);
+        sleep(2000);
+
+
     }
 
     private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {

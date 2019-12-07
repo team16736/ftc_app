@@ -6,15 +6,14 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 /**
- * Purpose: Pull RED foundation to the building site
+ * Purpose: Pull BLUE foundation to the building site
  */
-@Autonomous(name = "Red Foundation Pull", group = "GoBilda")
-public class PullRedFoundation extends PullFoundation {
+@Autonomous(name = "Blue Foundation Wall Pull", group = "GoBilda")
+public class PullBlueFoundationWall extends PullFoundation {
 
-    private final double SPEED = 0.5;
+    boolean servoHookOn = false;
     double lefthookPosition = 0.0;
     double righthookPosition = 0.0;
-    boolean servoHookOn = false;
 
     @Override
     public void runOpMode() {
@@ -25,12 +24,12 @@ public class PullRedFoundation extends PullFoundation {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Step 1:  Strafe LEFT
-        strafe_LeftAndStop(wheelActions, SPEED, 0.9);
+        // Step 1:  Strafe RIGHT
+        strafe_RightAndStop(wheelActions, SPEED, 0.9);
         sleep(2000); //wait for 2 seconds
 
 
-        // Step 2: Drive REVERSE towards the building zone
+         // Step 2: Drive REVERSE towards the building zone
         drive_ReverseAndStop(wheelActions, SPEED, 1.3);
 
 
@@ -40,30 +39,36 @@ public class PullRedFoundation extends PullFoundation {
         sleep(2000);
 
 
-        // Step4: Drive FORWARD towards building site
-        drive_ForwardAndStop(wheelActions, SPEED + 0.3, 1.1);
+        // Step 4: Drive FORWARD towards building site
+        drive_ForwardAndStop(wheelActions, SPEED -0.2, 4.0); //SPEED-0.5, added 2.5 driving time
         sleep(2000);
 
 
-        // Step5: Hook move UP to release the foundation
+        // Step 5: Hook move UP to release the foundation
         servoHookOn=false;
         moveHooksUpOrDown(hookActions);
         sleep(2000);
 
 
-        // Step 6: Strafe RIGHT and park under bridge
-        strafe_RightAndStop(wheelActions, SPEED, 1.8);
+        // Step 6: Strafe LEFT
+        strafe_LeftAndStop(wheelActions, SPEED, 2.6);
         sleep(2000);
+
+
+        // Step &: Turn left
+        //turn_LeftAndStop(wheelActions,SPEED,0.4);
+        //sleep(2000);
+
     }
 
     private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
 
         if (servoHookOn) {
-            //Move the hooks down
+            // Move the hooks down
             lefthookPosition = 0.0;
             righthookPosition = 1.0;
         } else {
-            //Move the hooks up
+            // Move the hooks up
             lefthookPosition = 1.0;
             righthookPosition = 0.0;
         }
@@ -72,4 +77,3 @@ public class PullRedFoundation extends PullFoundation {
     }
 
 }
-
