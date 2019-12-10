@@ -3,23 +3,23 @@ package org.firstinspires.ftc.atomic.gobilda.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmElbowGripperActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
 @TeleOp(name="Mecannum-Wiggly Arm", group="Linear Opmode")
 public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
 
-    private MecanumArmActions armActions = null;
-    private MecanumHookServoActions servoActions = null;
-    private MecanumDriveWheelActions mecanumDriveWheelActions = null;
+    private MecanumHookServoActions hookActions = null;
+    private MecanumDriveWheelActions driveWheelActions = null;
+    private MecanumArmElbowGripperActions armElbowGripActions = null;
 
     @Override
     public void runOpMode() {
 
-        armActions = new MecanumArmActions(telemetry, hardwareMap);
-        servoActions = new MecanumHookServoActions(telemetry, hardwareMap);
-        mecanumDriveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
+        driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        armElbowGripActions = new MecanumArmElbowGripperActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -27,25 +27,28 @@ public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
         while (opModeIsActive()) {
 
             /** Gamepad 1 **/
-            mecanumDriveWheelActions.drive(
+            driveWheelActions.drive(
                     gamepad1.left_stick_x,      //joystick controlling strafe
-                    -gamepad1.left_stick_y,     //joystick controlling the forward/backward motion
-                    gamepad1.right_stick_x);    //joystick controlling the rotation
+                    -gamepad1.left_stick_y,     //joystick controlling forward/backward
+                    gamepad1.right_stick_x);    //joystick controlling rotation
 
             /** Gamepad 2 **/
-            servoActions.hookUpDown(
+            hookActions.hookUpDown(
                     gamepad2.dpad_left,         //key to move up hookUpDown
                     gamepad2.dpad_right);       //key to move down hookUpDown
 
-            double arm_up = gamepad2.right_stick_y;
-            double arm_down = gamepad2.right_stick_x;
 
-//            armActions.arm - goes up and down
-//            armActions.elbow - open and close
-//            armActions.gripper - open and close
+//            armElbowGripActions.arm - goes up and down
+//            armElbowGripActions.elbow - open and close
+//            armElbowGripActions.gripper - open and close
+
+
+//            double armVal = gamepad2.left_stick_y;
+//            boolean elbowServoOn = gamepad2.left_bumper;
+//            boolean servoGrabberOn = gamepad2.right_bumper;
         }
 
-        telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
+        telemetry.addData("Mecannum-Wiggly Arm", "Stopping");
         idle();
     }
 }

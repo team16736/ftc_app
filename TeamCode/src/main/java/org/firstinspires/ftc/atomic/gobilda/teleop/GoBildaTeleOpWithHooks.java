@@ -36,7 +36,7 @@ public class GoBildaTeleOpWithHooks extends LinearOpMode {
 
         }
 
-        telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
+        telemetry.addData("Mecannum-Hooks", "Stopping");
         idle();
     }
 }

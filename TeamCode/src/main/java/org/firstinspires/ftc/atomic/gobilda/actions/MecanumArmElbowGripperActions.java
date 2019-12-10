@@ -19,12 +19,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * 2. Elbow open and close
  * 3. Grabber open and close
  */
-public class MecanumArmActions {
+public class MecanumArmElbowGripperActions {
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
-    public MecanumArmActions(Telemetry tele, HardwareMap hardware) {
+    public MecanumArmElbowGripperActions(Telemetry tele, HardwareMap hardware) {
 
         this.telemetry = tele;
         this.hardwareMap = hardware;
