@@ -6,61 +6,61 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+/**
+ * Make sure to have the following:
+ *
+ * 1. Hardware config
+ * 2. Setup direction of motors
+ * 3. Action method to do something (hookUpDown, drive, etc.,)
+ * 4. Helper methods (stop, brake, leftTurn, rightTurn, etc.,)
+ *
+ * Purpose: Hooks move up and down
+ */
 public class MecanumHookServoActions {
-
-    public Servo left_hook = null;
-    public Servo right_hook = null;
-
-    double lefthookPosition = 0.0;
-    double righthookPosition = 0.0;
-    private double MIN_POSITION  = 0;
-    private double MAX_POSITION  = 0.8;
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
-    public MecanumHookServoActions(Telemetry telemetry, HardwareMap hardwareMap ) {
-        this.telemetry = telemetry;
-        this.hardwareMap = hardwareMap;
+    public Servo left_hook;
+    public Servo right_hook;
 
-        initializeHardware();
+    private double left_hook_position = 0.0;
+    private double right_hook_position = 0.0;
 
-        setServoDirection_Forward();
-    }
+    private double MIN_POSITION  = 0;
+    private double MAX_POSITION  = 0.8;
 
-    public void initializeHardware() {
+    // Constructor
+    public MecanumHookServoActions(Telemetry tele, HardwareMap hardware) {
 
+        this.telemetry = tele;
+        this.hardwareMap = hardware;
+
+        // 1. Hardware config
         left_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_LEFT);
         right_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);
 
-        //left_grip.setPosition(MIN_POSITION);
-        //right_grip.setPosition(MAX_POSITION);
+        // 2. Set direction
+        setServoDirection_Forward();
     }
 
-    public void hookMove(boolean leftButtonPressed, boolean rightButtonPressed) {
+    public void hookUpDown(boolean leftButtonPressed, boolean rightButtonPressed) {
 
         if (leftButtonPressed) {
 
-          //  hookServoPosition = hookServoPosition + 0.01;
-
-            lefthookPosition = lefthookPosition+0.01;
-            righthookPosition=righthookPosition-0.01;
-            telemetry.addData("Position x: ", lefthookPosition);
-
+            left_hook_position = left_hook_position +0.01;
+            right_hook_position = right_hook_position -0.01;
+            telemetry.addData("Left Hook - Position x: ", left_hook_position);
 
         } else if (rightButtonPressed) {
 
-           // hookServoPosition = hookServoPosition - 0.01;
-
-            lefthookPosition = lefthookPosition-0.01;
-            righthookPosition=righthookPosition+0.01;
-
-            telemetry.addData("Position y: ", righthookPosition);
+            left_hook_position = left_hook_position -0.01;
+            right_hook_position = right_hook_position +0.01;
+            telemetry.addData("Right Hook - Position y: ", right_hook_position);
         }
 
-        left_hook.setPosition(Range.clip(lefthookPosition, MIN_POSITION, MAX_POSITION));
-        right_hook.setPosition(Range.clip(righthookPosition, MIN_POSITION, MAX_POSITION));
-
+        left_hook.setPosition(Range.clip(left_hook_position, MIN_POSITION, MAX_POSITION));
+        right_hook.setPosition(Range.clip(right_hook_position, MIN_POSITION, MAX_POSITION));
         telemetry.update();
     }
 
@@ -69,13 +69,4 @@ public class MecanumHookServoActions {
         right_hook.setDirection(Servo.Direction.FORWARD);
     }
 
-    public void setServoDirection_Reverse() {
-        left_hook.setDirection(Servo.Direction.REVERSE);
-        right_hook.setDirection(Servo.Direction.REVERSE);
-    }
-
-//    public void stop() {
-//        left_grip.setPosition(0.0);
-//        right_grip.setPosition(0.0);
-//    }
 }

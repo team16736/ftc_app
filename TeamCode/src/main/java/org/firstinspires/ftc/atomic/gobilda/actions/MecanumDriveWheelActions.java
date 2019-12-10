@@ -10,6 +10,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Make sure to have the following:
+ *
+ * 1. Hardware config
+ * 2. Setup direction of motors
+ * 3. Action method to do something (hookUpDown, drive, etc.,)
+ * 4. Helper methods (stop, brake, leftTurn, rightTurn, etc.,)
+ *
+ * Purpose: Drive the 4 wheels
+ */
 public class MecanumDriveWheelActions {
 
     public DcMotor leftFrontMotor;
@@ -25,26 +35,23 @@ public class MecanumDriveWheelActions {
 
     /**
      * Creates a mecanum motor using the 4 individual motors passed in as the arguments
-     * @param telemetry : Telemetry to send messages to the Driver Control
-     * @param hardwareMap : Hardware Mappings
+     * @param tele : Telemetry to send messages to the Driver Control
+     * @param hardware : Hardware Mappings
      */
-    public MecanumDriveWheelActions(Telemetry telemetry, HardwareMap hardwareMap ) {
-        this.telemetry = telemetry;
-        this.hardwareMap = hardwareMap;
+    // Constructor
+    public MecanumDriveWheelActions(Telemetry tele, HardwareMap hardware ) {
 
-        initializeHardware(); //initialize 4 dc motors
+        this.telemetry = tele;
+        this.hardwareMap = hardware;
 
-        setMotorDirection_Forward();
-    }
-
-    /**
-     * Use the DCMotor names provided in the config.
-     */
-    public void initializeHardware() {
+        // 1. Hardware config
         leftFrontMotor = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_LEFT);
         rightFrontMotor = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_RIGHT);
         rightBackMotor = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_RIGHT);
         leftBackMotor = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_LEFT);
+
+        // 2. Set direction
+        setMotorDirection_Forward();
     }
 
     /**

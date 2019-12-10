@@ -6,31 +6,41 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+/**
+ * Make sure to have the following:
+ *
+ * 1. Hardware config
+ * 2. Setup direction of motors
+ * 3. Action method to do something (hookUpDown, drive, etc.,)
+ * 4. Helper methods (stop, brake, leftTurn, rightTurn, etc.,)
+ *
+ * Purpose: Gripper open/close
+ */
 public class MecanumGripperActions {
+
+    private Telemetry telemetry;
+    private HardwareMap hardwareMap;
 
     public Servo left_grip = null;
     public Servo right_grip = null;
 
     private double gripperServoPosition;
+
     private double MIN_POSITION  = 0;
     private double MAX_POSITION  = 0.8;
 
-    private Telemetry telemetry;
-    private HardwareMap hardwareMap;
+    // Constructor
+    public MecanumGripperActions(Telemetry tele, HardwareMap hardware) {
 
-    public MecanumGripperActions(Telemetry telemetry, HardwareMap hardwareMap ) {
-        this.telemetry = telemetry;
-        this.hardwareMap = hardwareMap;
+        this.telemetry = tele;
+        this.hardwareMap = hardware;
 
-        initializeHardware();
-
-        setGripperDirection_Forward();
-    }
-
-    public void initializeHardware() {
-
+        // 1. Hardware config
         left_grip = hardwareMap.get(Servo.class, ConfigConstants.LEFT_GRIP);
         right_grip = hardwareMap.get(Servo.class, ConfigConstants.RIGHT_GRIP);
+
+        // 2. Set direction
+        setGripperDirection_Forward();
     }
 
     public void gripperMove(boolean leftButtonPressed, boolean rightButtonPressed) {
@@ -55,11 +65,6 @@ public class MecanumGripperActions {
     public void setGripperDirection_Forward() {
         left_grip.setDirection(Servo.Direction.FORWARD);
         right_grip.setDirection(Servo.Direction.FORWARD);
-    }
-
-    public void setGripperDirection_Reverse() {
-        left_grip.setDirection(Servo.Direction.REVERSE);
-        right_grip.setDirection(Servo.Direction.REVERSE);
     }
 
 }

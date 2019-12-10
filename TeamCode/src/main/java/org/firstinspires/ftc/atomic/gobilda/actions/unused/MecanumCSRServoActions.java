@@ -75,7 +75,7 @@ public class MecanumCSRServoActions {
             servo_left.setPower(0.0);
             servo_right.setPower(0.0);
         }
-        //telemetry.addData("hook-Power: ", hookServoPower);
+        //telemetry.addData("hookUpDown-Power: ", hookServoPower);
         telemetry.update();
     }
 
