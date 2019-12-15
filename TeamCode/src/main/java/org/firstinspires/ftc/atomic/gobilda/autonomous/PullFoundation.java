@@ -36,6 +36,13 @@ public abstract class PullFoundation extends LinearOpMode {
         driveWheelActions.stop();
     }
 
+//    //Not tested #################################################
+//    public void spin_RightAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
+//        driveWheelActions.setMotorDirection_SpinRight();
+//        driveWheelActions.forwardByTime(this, speed, drivingTime);
+//        driveWheelActions.stop();
+//    }
+
     //NEED TO TEST THIS
     //todo - Rahul
     public void turn_RightAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {

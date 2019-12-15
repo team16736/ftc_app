@@ -10,13 +10,11 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 /**
  * Purpose: Go to the LEFT side and park under bridge
  *
- * 1. Strafes to the RIGHT
- * 2. Goes forward (which is the LEFT side of the bridge)
+ * 1. Goes forward
+ * 2. Strafes to the LEFT
  */
 @Autonomous(name = "Auto Left", group = "GoBilda")
-@Disabled
 public class GoLeft extends LinearOpMode {
-
     @Override
     public void runOpMode() {
 
@@ -25,24 +23,27 @@ public class GoLeft extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //DO NOT CHANGE ANYTHING WITH FORWARD AND REVERSE
-
-        // Step 1:  Strafe Right for 1 second
-        //There are three reverses because our robot will only work like this
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.forwardByTime(this, 0.5, 1.0);
-        driveWheelActions.stop();
-
-        // Step 2:  Drive Forwards for 1 Second
+        // Step 1:  Drive Forwards for 1 Second
         driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
+
+
+
+        // Step 2:  Strafe RIGHT side
+        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.forwardByTime(this, 0.5, 1.0);
+        driveWheelActions.stop();
+
+
+
+
     }
 }
 

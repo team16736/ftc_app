@@ -1,3 +1,4 @@
+
 package org.firstinspires.ftc.atomic.gobilda.actions;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -10,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Wiggly Arm", group="Linear Opmode")
-
+@Disabled
 public class WigglyArm extends LinearOpMode {
 
     // Declare OpMode members.
@@ -25,7 +26,7 @@ public class WigglyArm extends LinearOpMode {
         armDrive  = hardwareMap.get(DcMotor.class, "arm");
         elbowServo = hardwareMap.get(Servo.class, "elbow_servo");
         grabberServo = hardwareMap.get(Servo.class, "grabber_servo");
-        
+
         armDrive.setDirection(DcMotor.Direction.REVERSE);
         elbowServo.setDirection(Servo.Direction.REVERSE);
         grabberServo.setDirection(Servo.Direction.FORWARD);

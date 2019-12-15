@@ -33,7 +33,6 @@ public class GoBildaTeleOpWithHooks extends LinearOpMode {
             servoActions.hookUpDown(
                     gamepad2.dpad_left,
                     gamepad2.dpad_right);
-
         }
 
         telemetry.addData("Mecannum-Hooks", "Stopping");

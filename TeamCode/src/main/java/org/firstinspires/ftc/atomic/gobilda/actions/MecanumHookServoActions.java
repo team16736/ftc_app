@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * Make sure to have the following:
  *
  * 1. Hardware config
- * 2. Setup direction of motors
+ * 2. Setup direction of servos
  * 3. Action method to do something (hookUpDown, drive, etc.,)
  * 4. Helper methods (stop, brake, leftTurn, rightTurn, etc.,)
  *
