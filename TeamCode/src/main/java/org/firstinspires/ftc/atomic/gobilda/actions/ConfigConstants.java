@@ -22,8 +22,21 @@ public class ConfigConstants {
     //Trapper
     public static final String SERVO_TRAP = "servo_trap";
 
+    //Added for simplicity
     public static final DcMotorSimple.Direction REVERSE = DcMotorSimple.Direction.REVERSE;
     public static final DcMotorSimple.Direction FORWARD = DcMotorSimple.Direction.FORWARD;
     public static final DcMotor.ZeroPowerBehavior BRAKE = DcMotor.ZeroPowerBehavior.BRAKE;
+
+
+    //Encoder FORWARD 1 inch
+    public static final float ENCODER_CLICKS_FORWARD_1_INCH = 18.75487911f;
+
+    //Encoder STRAFE 1 inch
+    public static final float ENCODER_CLICKS_STRAFE_1_INCH = 25.8944908f;
+
+    public static final int DIRECTION_FORWARD = 0;
+    public static final int DIRECTION_REVERSE = 1;
+    public static final int DIRECTION_STRAFE_RIGHT = 2;
+    public static final int DIRECTION_STRAFE_LEFT = 3;
 
 }
