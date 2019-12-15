@@ -24,6 +24,7 @@ public class PullRedFoundationWall extends PullFoundation {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
         // Step 1:  Strafe LEFT
         strafe_LeftAndStop(wheelActions, SPEED, 0.9);
         sleep(2000); //wait for 2 seconds

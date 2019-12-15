@@ -26,7 +26,7 @@ public class PullBlueFoundationBridge extends PullFoundation {
 
         // Step 1:  Strafe RIGHT
         strafe_RightAndStop(wheelActions, SPEED, 0.9);
-        sleep(2000); //wait for 2 seconds
+        sleep(2000); //wait for 2
 
 
          // Step 2: Drive REVERSE towards the building zone
@@ -41,7 +41,7 @@ public class PullBlueFoundationBridge extends PullFoundation {
 
         // Step 4: Drive FORWARD towards building site
         drive_ForwardAndStop(wheelActions, SPEED -0.2, 4.0); //SPEED-0.5, added 2.5 driving time
-        sleep(2000);
+
 
 
         // Step 5: Hook move UP to release the foundation
@@ -49,20 +49,19 @@ public class PullBlueFoundationBridge extends PullFoundation {
         moveHooksUpOrDown(hookActions);
         sleep(2000);
 
-
         // Step 6: Strafe LEFT
         strafe_LeftAndStop(wheelActions, SPEED, 1.6);
         sleep(2000);
+
 
         // Step 7: Move Backwards
         drive_ReverseAndStop(wheelActions,SPEED,1.0);
         sleep(2000);
 
+
         //Step 8: Strafe LEFT and park under bridge
         strafe_LeftAndStop(wheelActions, SPEED, 1.0);
         sleep(2000);
-
-
     }
 
     private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {

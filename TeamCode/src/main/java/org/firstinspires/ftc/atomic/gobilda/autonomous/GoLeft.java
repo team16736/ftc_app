@@ -11,7 +11,7 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
  * Purpose: Go to the LEFT side and park under bridge
  *
  * 1. Goes forward
- * 2. Strafes to the LEFT
+ * 2. Strafes to the RIGHT
  */
 @Autonomous(name = "Auto Left", group = "GoBilda")
 public class GoLeft extends LinearOpMode {
@@ -29,8 +29,8 @@ public class GoLeft extends LinearOpMode {
         driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
-        driveWheelActions.stop();
-
+        //driveWheelActions.stop();
+        sleep(2000); //wait for 2 seconds
 
 
         // Step 2:  Strafe RIGHT side
@@ -40,10 +40,6 @@ public class GoLeft extends LinearOpMode {
         driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
-
-
-
-
     }
 }
 

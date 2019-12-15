@@ -29,7 +29,7 @@ public class PullBlueFoundationWall extends PullFoundation {
         sleep(2000); //wait for 2 seconds
 
 
-         // Step 2: Drive REVERSE towards the building zone
+        // Step 2: Drive REVERSE towards the building zone
         drive_ReverseAndStop(wheelActions, SPEED, 1.3);
 
 
@@ -53,12 +53,6 @@ public class PullBlueFoundationWall extends PullFoundation {
         // Step 6: Strafe LEFT
         strafe_LeftAndStop(wheelActions, SPEED, 2.6);
         sleep(2000);
-
-
-        // Step &: Turn left
-        //turn_LeftAndStop(wheelActions,SPEED,0.4);
-        //sleep(2000);
-
     }
 
     private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {

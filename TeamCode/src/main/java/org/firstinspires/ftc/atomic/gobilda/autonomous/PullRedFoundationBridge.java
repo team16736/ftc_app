@@ -24,6 +24,7 @@ public class PullRedFoundationBridge extends PullFoundation {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
         // Step 1:  Strafe LEFT
         strafe_LeftAndStop(wheelActions, SPEED, 0.9);
         sleep(2000); //wait for 2 seconds
@@ -54,14 +55,14 @@ public class PullRedFoundationBridge extends PullFoundation {
         strafe_RightAndStop(wheelActions, SPEED, 1.6);
         sleep(2000);
 
+
         // Step 7: Move Backwards
         drive_ReverseAndStop(wheelActions,SPEED,1.0);
-        sleep(2000);
+
 
         //Step 8: Strafe RIGHT and park under bridge
         strafe_RightAndStop(wheelActions, SPEED, 1.0);
         sleep(2000);
-
     }
 
     private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
