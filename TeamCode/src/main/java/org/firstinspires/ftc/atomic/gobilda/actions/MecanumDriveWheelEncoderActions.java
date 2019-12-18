@@ -76,11 +76,11 @@ public class MecanumDriveWheelEncoderActions {
      * @param rotation - the x value of the joystick controlling the rotation
      */
     public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
-
-        telemetry.addData("Strafe Speed X: = ", speedX);
-        telemetry.addData("Motion Speed Y: = ", speedY);
-        telemetry.addData("Rotations: = ", rotation);
-        telemetry.update();
+//
+//        telemetry.addData("Strafe Speed X: = ", speedX);
+//        telemetry.addData("Motion Speed Y: = ", speedY);
+//        telemetry.addData("Rotations: = ", rotation);
+//        telemetry.update();
 
         double backLeftValue = speedX + speedY + rotation;
         double frontLeftValue = -speedX + speedY + rotation;
@@ -99,11 +99,11 @@ public class MecanumDriveWheelEncoderActions {
         leftFrontMotor.setPower(frontLeftValue);
         rightBackMotor.setPower(backRightValue);
         leftBackMotor.setPower(backLeftValue);
-
-        telemetry.addData("frontRightValue: = ", frontRightValue);
-        telemetry.addData("frontLeftValue: = ", frontLeftValue);
-        telemetry.addData("backRightValue: = ", backRightValue);
-        telemetry.addData("backLeftValue: = ", backLeftValue);
+//
+//        telemetry.addData("frontRightValue: = ", frontRightValue);
+//        telemetry.addData("frontLeftValue: = ", frontLeftValue);
+//        telemetry.addData("backRightValue: = ", backRightValue);
+//        telemetry.addData("backLeftValue: = ", backLeftValue);
     }
 
     /**
@@ -133,12 +133,17 @@ public class MecanumDriveWheelEncoderActions {
      * @param revolutions - the number of motor encoder ticks to move
      * @param power - the speed at which to move
      */
-    //Added 12/14 - not tested
     private void driveByRevolution(int revolutions, double power){
 
         leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         leftBackMotor.setTargetPosition(revolutions);
         leftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        int currentPosition = leftBackMotor.getCurrentPosition();
+        printLogOnDriverPhone("Wheel current position: " + currentPosition);
+
+        int targetPosition = leftBackMotor.getTargetPosition();
+        printLogOnDriverPhone("Wheel target Position: " + targetPosition);
 
         rightBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightBackMotor.setTargetPosition(revolutions);
@@ -297,6 +302,11 @@ public class MecanumDriveWheelEncoderActions {
         rightFrontMotor.setPower(speed);
         leftFrontMotor.setPower(speed);
         opMode.sleep((long)(1000 * drivingTime));
+    }
+
+    private void printLogOnDriverPhone(String logString){
+        //telemetry.addData(logString, " Moving ");
+        //telemetry.update();
     }
 
 }

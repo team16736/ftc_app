@@ -32,7 +32,7 @@ public class MecanumCSRServoActions {
     }
 
     public void setupServoMotors() {
-        servo_trap = hardwareMap.get(CRServo.class, ConfigConstants.SERVO_TRAP);
+        servo_trap = hardwareMap.get(CRServo.class, "servo_trap");
         servo_left = hardwareMap.get(CRServo.class, ConfigConstants.SERVO_LEFT);
         servo_right= hardwareMap.get(CRServo.class, ConfigConstants.SERVO_RIGHT);
 

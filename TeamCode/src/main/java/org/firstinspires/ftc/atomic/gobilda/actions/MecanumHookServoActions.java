@@ -27,8 +27,8 @@ public class MecanumHookServoActions {
     private double left_hook_position = 0.0;
     private double right_hook_position = 0.0;
 
-    private double MIN_POSITION  = 0;
-    private double MAX_POSITION  = 0.8;
+    private double HOOK_MIN_POSITION = 0;
+    private double HOOK_MAX_POSITION = 0.8;
 
     // Constructor
     public MecanumHookServoActions(Telemetry tele, HardwareMap hardware) {
@@ -41,32 +41,29 @@ public class MecanumHookServoActions {
         right_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);
 
         // 2. Set direction
-        setServoDirection_Forward();
+        left_hook.setDirection(Servo.Direction.FORWARD);
+        right_hook.setDirection(Servo.Direction.FORWARD);
     }
 
-    public void hookUpDown(boolean leftButtonPressed, boolean rightButtonPressed) {
+    //Note: Changed from 0.01 increment value to 0.05
+    public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {
 
-        if (leftButtonPressed) {
+        if (leftPadPressed) {
 
-            left_hook_position = left_hook_position +0.01;
-            right_hook_position = right_hook_position -0.01;
+            left_hook_position = left_hook_position + 0.05;
+            right_hook_position = right_hook_position - 0.05;
             telemetry.addData("Left Hook - Position x: ", left_hook_position);
 
-        } else if (rightButtonPressed) {
+        } else if (rightPadPressed) {
 
-            left_hook_position = left_hook_position -0.01;
-            right_hook_position = right_hook_position +0.01;
+            left_hook_position = left_hook_position - 0.05;
+            right_hook_position = right_hook_position + 0.05;
             telemetry.addData("Right Hook - Position y: ", right_hook_position);
         }
 
-        left_hook.setPosition(Range.clip(left_hook_position, MIN_POSITION, MAX_POSITION));
-        right_hook.setPosition(Range.clip(right_hook_position, MIN_POSITION, MAX_POSITION));
+        left_hook.setPosition(Range.clip(left_hook_position, HOOK_MIN_POSITION, HOOK_MAX_POSITION));
+        right_hook.setPosition(Range.clip(right_hook_position, HOOK_MIN_POSITION, HOOK_MAX_POSITION));
         telemetry.update();
-    }
-
-    public void setServoDirection_Forward() {
-        left_hook.setDirection(Servo.Direction.FORWARD);
-        right_hook.setDirection(Servo.Direction.FORWARD);
     }
 
 }

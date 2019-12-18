@@ -76,11 +76,11 @@ public class MecanumDriveWheelActions {
      * @param rotation - the x value of the joystick controlling the rotation
      */
     public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
-
-        telemetry.addData("Strafe Speed X: = ", speedX);
-        telemetry.addData("Motion Speed Y: = ", speedY);
-        telemetry.addData("Rotations: = ", rotation);
-        telemetry.update();
+//
+//        telemetry.addData("Strafe Speed X: = ", speedX);
+//        telemetry.addData("Motion Speed Y: = ", speedY);
+//        telemetry.addData("Rotations: = ", rotation);
+//        telemetry.update();
 
         double backLeftValue = speedX + speedY + rotation;
         double frontLeftValue = -speedX + speedY + rotation;
@@ -99,11 +99,11 @@ public class MecanumDriveWheelActions {
         leftFrontMotor.setPower(frontLeftValue);
         rightBackMotor.setPower(backRightValue);
         leftBackMotor.setPower(backLeftValue);
-
-        telemetry.addData("frontRightValue: = ", frontRightValue);
-        telemetry.addData("frontLeftValue: = ", frontLeftValue);
-        telemetry.addData("backRightValue: = ", backRightValue);
-        telemetry.addData("backLeftValue: = ", backLeftValue);
+//
+//        telemetry.addData("frontRightValue: = ", frontRightValue);
+//        telemetry.addData("frontLeftValue: = ", frontLeftValue);
+//        telemetry.addData("backRightValue: = ", backRightValue);
+//        telemetry.addData("backLeftValue: = ", backLeftValue);
     }
 
     private double getMaxPower(double frontLeftValue, double frontRightValue, double backLeftValue, double backRightValue) {
