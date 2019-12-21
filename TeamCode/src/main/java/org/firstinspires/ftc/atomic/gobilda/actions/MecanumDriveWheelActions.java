@@ -111,31 +111,36 @@ public class MecanumDriveWheelActions {
     //Working - 12/21
     public void setMotorDirection_Forward() {
         left_back.setDirection(ConfigConstants.REVERSE);
-        right_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.REVERSE);
+
+        right_back.setDirection(ConfigConstants.REVERSE);
         right_front.setDirection(ConfigConstants.FORWARD);
     }
 
     //Working - 12/21
     public void setMotorDirection_Reverse() {
         left_back.setDirection(ConfigConstants.FORWARD);
-        right_back.setDirection(ConfigConstants.FORWARD);
         left_front.setDirection(ConfigConstants.FORWARD);
+
+        right_back.setDirection(ConfigConstants.FORWARD);
         right_front.setDirection(ConfigConstants.REVERSE);
     }
 
+    //Working - 12/21
     public void setMotorDirection_StrafeLeft() {
         left_back.setDirection(ConfigConstants.REVERSE);
-        right_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.FORWARD);
-        right_front.setDirection(ConfigConstants.REVERSE);
+
+        right_back.setDirection(ConfigConstants.FORWARD);
+        right_front.setDirection(ConfigConstants.FORWARD);
     }
 
     //Working - 12/21
     public void setMotorDirection_StrafeRight() {
         left_back.setDirection(ConfigConstants.FORWARD);
-        right_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.REVERSE);
+
+        right_back.setDirection(ConfigConstants.REVERSE);
         right_front.setDirection(ConfigConstants.REVERSE);
 
         telemetry.addData("Strafe Right: ", "RIGHT");
