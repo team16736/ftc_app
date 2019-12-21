@@ -14,6 +14,7 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
  */
 @Autonomous(name = "Auto Right", group = "GoBilda")
 public class GoRight extends LinearOpMode {
+
     @Override
     public void runOpMode() {
 
@@ -22,25 +23,18 @@ public class GoRight extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
         // Step 1:  Drive Forwards for 1 Second
-        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.setMotorDirection_Forward();
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         //driveWheelActions.stop();
         sleep(2000); //wait for 2 seconds
 
 
         // Step 2:  Strafe LEFT side
-        driveWheelActions.left_back.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.right_back.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.setMotorDirection_StrafeLeft();
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
-
-
     }
 }
 
