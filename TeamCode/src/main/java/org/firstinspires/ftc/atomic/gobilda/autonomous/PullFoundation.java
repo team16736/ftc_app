@@ -46,10 +46,10 @@ public abstract class PullFoundation extends LinearOpMode {
     //NEED TO TEST THIS
     //todo - Rahul
     public void turn_RightAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_back.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.right_back.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_front.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.right_front.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.forwardByTime(this, speed, drivingTime);
         driveWheelActions.stop();
     }
@@ -57,10 +57,10 @@ public abstract class PullFoundation extends LinearOpMode {
     //NEED TO TEST THIS
     //todo - Rahul
     public void turn_LeftAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, speed, drivingTime);
         driveWheelActions.stop();
     }

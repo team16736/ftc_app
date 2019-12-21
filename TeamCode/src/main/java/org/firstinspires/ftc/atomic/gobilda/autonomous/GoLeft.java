@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
@@ -24,20 +23,20 @@ public class GoLeft extends LinearOpMode {
         waitForStart();
 
         // Step 1:  Drive Forwards for 1 Second
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         //driveWheelActions.stop();
         sleep(2000); //wait for 2 seconds
 
 
         // Step 2:  Strafe RIGHT side
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_front.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.right_front.setDirection(ConfigConstants.REVERSE);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
     }

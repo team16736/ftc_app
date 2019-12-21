@@ -22,10 +22,10 @@ import java.util.List;
  */
 public class MecanumDriveWheelActions {
 
-    public DcMotor leftFrontMotor;
-    public DcMotor rightFrontMotor;
-    public DcMotor leftBackMotor;
-    public DcMotor rightBackMotor;
+    public DcMotor left_front;
+    public DcMotor right_front;
+    public DcMotor left_back;
+    public DcMotor right_back;
 
     //the amount to throttle the power of the motors
     private static final double THROTTLE = 0.8;
@@ -45,10 +45,11 @@ public class MecanumDriveWheelActions {
         this.hardwareMap = hardware;
 
         // 1. Hardware config
-        leftFrontMotor = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_LEFT);
-        rightFrontMotor = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_RIGHT);
-        rightBackMotor = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_RIGHT);
-        leftBackMotor = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_LEFT);
+        left_front = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_LEFT);
+        right_front = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_RIGHT);
+
+        right_back = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_RIGHT);
+        left_back = hardwareMap.get(DcMotor.class, ConfigConstants.BACK_LEFT);
 
         // 2. Set direction
         setMotorDirection_Forward();
@@ -76,16 +77,12 @@ public class MecanumDriveWheelActions {
      * @param rotation - the x value of the joystick controlling the rotation
      */
     public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
-//
-//        telemetry.addData("Strafe Speed X: = ", speedX);
-//        telemetry.addData("Motion Speed Y: = ", speedY);
-//        telemetry.addData("Rotations: = ", rotation);
-//        telemetry.update();
 
-        double backLeftValue = speedX + speedY + rotation;
-        double frontLeftValue = -speedX + speedY + rotation;
-        double backRightValue = speedX + speedY - rotation; //working well
-        double frontRightValue = -speedX + speedY - rotation; //working well
+        double backLeftValue = -speedX + speedY + rotation;
+        double frontLeftValue = speedX + speedY + rotation;
+
+        double backRightValue = speedX + speedY - rotation;
+        double frontRightValue = -speedX + speedY - rotation;
 
         double max = getMaxPower(frontLeftValue, frontRightValue, backLeftValue, backRightValue);
         if (max > 1) {
@@ -95,15 +92,10 @@ public class MecanumDriveWheelActions {
             backRightValue = backRightValue / max;
         }
 
-        rightFrontMotor.setPower(frontRightValue);
-        leftFrontMotor.setPower(frontLeftValue);
-        rightBackMotor.setPower(backRightValue);
-        leftBackMotor.setPower(backLeftValue);
-//
-//        telemetry.addData("frontRightValue: = ", frontRightValue);
-//        telemetry.addData("frontLeftValue: = ", frontLeftValue);
-//        telemetry.addData("backRightValue: = ", backRightValue);
-//        telemetry.addData("backLeftValue: = ", backLeftValue);
+        right_front.setPower(frontRightValue);
+        left_front.setPower(frontLeftValue);
+        right_back.setPower(backRightValue);
+        left_back.setPower(backLeftValue);
     }
 
     private double getMaxPower(double frontLeftValue, double frontRightValue, double backLeftValue, double backRightValue) {
@@ -116,85 +108,91 @@ public class MecanumDriveWheelActions {
         return Collections.max(valueList);
     }
 
+    //Working - 12/21
     public void setMotorDirection_Forward() {
-        leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        left_back.setDirection(ConfigConstants.REVERSE);
+        right_back.setDirection(ConfigConstants.REVERSE);
+        left_front.setDirection(ConfigConstants.REVERSE);
+        right_front.setDirection(ConfigConstants.FORWARD);
     }
 
+    //Working - 12/21
     public void setMotorDirection_Reverse() {
-        leftBackMotor.setDirection(ConfigConstants.FORWARD);
-        rightBackMotor.setDirection(ConfigConstants.FORWARD);
-        leftFrontMotor.setDirection(ConfigConstants.FORWARD);
-        rightFrontMotor.setDirection(ConfigConstants.REVERSE);
+        left_back.setDirection(ConfigConstants.FORWARD);
+        right_back.setDirection(ConfigConstants.FORWARD);
+        left_front.setDirection(ConfigConstants.FORWARD);
+        right_front.setDirection(ConfigConstants.REVERSE);
     }
 
     public void setMotorDirection_StrafeLeft() {
-        leftBackMotor.setDirection(ConfigConstants.FORWARD);
-        rightBackMotor.setDirection(ConfigConstants.FORWARD);
-        leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        left_back.setDirection(ConfigConstants.REVERSE);
+        right_back.setDirection(ConfigConstants.REVERSE);
+        left_front.setDirection(ConfigConstants.FORWARD);
+        right_front.setDirection(ConfigConstants.REVERSE);
     }
 
+    //Working - 12/21
     public void setMotorDirection_StrafeRight() {
-        leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        leftFrontMotor.setDirection(ConfigConstants.FORWARD);
-        rightFrontMotor.setDirection(ConfigConstants.REVERSE);
+        left_back.setDirection(ConfigConstants.FORWARD);
+        right_back.setDirection(ConfigConstants.REVERSE);
+        left_front.setDirection(ConfigConstants.REVERSE);
+        right_front.setDirection(ConfigConstants.REVERSE);
+
+        telemetry.addData("Strafe Right: ", "RIGHT");
+        telemetry.update();
     }
 
     public void stop() {
-        leftFrontMotor.setPower(0);
-        rightFrontMotor.setPower(0);
-        leftBackMotor.setPower(0);
-        rightBackMotor.setPower(0);
+        left_front.setPower(0);
+        right_front.setPower(0);
+        left_back.setPower(0);
+        right_back.setPower(0);
     }
 
     public void applyBrake() {
-        leftBackMotor.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        rightBackMotor.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        leftFrontMotor.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        rightFrontMotor.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        left_back.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        right_back.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        left_front.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        right_front.setZeroPowerBehavior(ConfigConstants.BRAKE);
     }
 
     public void forwardByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        leftBackMotor.setPower(speed);
-        rightBackMotor.setPower(speed);
-        rightFrontMotor.setPower(speed);
-        leftFrontMotor.setPower(speed);
+        left_back.setPower(speed);
+        right_back.setPower(speed);
+        right_front.setPower(speed);
+        left_front.setPower(speed);
         opMode.sleep((long)(1000 * drivingTime));
     }
 
     public void reverseByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        leftBackMotor.setPower(-speed);
-        rightBackMotor.setPower(-speed);
-        leftFrontMotor.setPower(-speed);
-        rightFrontMotor.setPower(-speed);
+        left_back.setPower(-speed);
+        right_back.setPower(-speed);
+        left_front.setPower(-speed);
+        right_front.setPower(-speed);
         opMode.sleep((long)(1000 * drivingTime));
     }
 
     public void strafeRightByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        leftBackMotor.setPower(-speed);
-        rightBackMotor.setPower(speed);
-        leftFrontMotor.setPower(speed);
-        rightFrontMotor.setPower(-speed);
+        left_back.setPower(-speed);
+        right_back.setPower(speed);
+        left_front.setPower(speed);
+        right_front.setPower(-speed);
         opMode.sleep((long)(1000 * drivingTime));
     }
 
     public void strafeLeftByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        leftFrontMotor.setPower(-speed);
-        rightFrontMotor.setPower(speed);
-        leftBackMotor.setPower(speed);
-        rightBackMotor.setPower(-speed);
+        left_front.setPower(-speed);
+        right_front.setPower(speed);
+        left_back.setPower(speed);
+        right_back.setPower(-speed);
         opMode.sleep((long)(1000*drivingTime));
     }
 
     public void forwardByDistance(LinearOpMode opMode, double speed, double drivingTime) {
-        leftBackMotor.setPower(speed);
-        rightBackMotor.setPower(speed);
-        rightFrontMotor.setPower(speed);
-        leftFrontMotor.setPower(speed);
+        left_back.setPower(speed);
+        right_back.setPower(speed);
+        right_front.setPower(speed);
+        left_front.setPower(speed);
         opMode.sleep((long)(1000 * drivingTime));
     }
 

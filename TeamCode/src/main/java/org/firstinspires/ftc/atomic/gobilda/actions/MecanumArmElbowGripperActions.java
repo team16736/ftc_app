@@ -22,12 +22,13 @@ public class MecanumArmElbowGripperActions {
     private Servo elbowServo;
     private Servo grabberServo;
 
-    private double ARM_MIN_POSITION = -0.5;
-    private double ARM_MAX_POSITION = 0.5;
+    private int arm_current_position = 50;
+    private int ARM_MIN_POSITION = -45;
+    private int ARM_MAX_POSITION = 75;
 
     private double elbow_position = 0.0;
-    private double ELBOW_MIN_POSITION = 0;
-    private double ELBOX_MAX_POSITION = 0.5;
+    private double ELBOW_MIN_POSITION = -0.5;
+    private double ELBOW_MAX_POSITION = 0.5;
 
     private double grabber_position = 0.0;
     private double GRABBER_MIN_POSITION = 0;
@@ -49,6 +50,36 @@ public class MecanumArmElbowGripperActions {
         armMotor.setDirection(DcMotor.Direction.REVERSE);
         elbowServo.setDirection(Servo.Direction.REVERSE);
         grabberServo.setDirection(Servo.Direction.FORWARD);
+
+        //Not tested
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+
+    public void armUpDown(boolean armUp, boolean armDown) {
+
+        arm_current_position = armMotor.getCurrentPosition();
+        telemetry.addData("Arm CURRENT: ", armMotor.getCurrentPosition() + " Timestamp: " + System.currentTimeMillis());
+
+        if(armUp) {
+
+            arm_current_position = arm_current_position + 10;
+
+            armMotor.setTargetPosition(arm_current_position);
+            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armMotor.setPower(0.2);
+            telemetry.addData("Arm: ", "UP");
+
+        } else if(armDown) {
+
+            arm_current_position = arm_current_position - 10;
+
+            armMotor.setTargetPosition(arm_current_position);
+            armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armMotor.setPower(0.2);
+            telemetry.addData("Arm: ", "DOWN");
+        }
+
+        telemetry.addData("Arm TARGET: ", arm_current_position + " Timestamp: " + System.currentTimeMillis());
     }
 
 
@@ -62,38 +93,37 @@ public class MecanumArmElbowGripperActions {
     }
 
 
-    //0.01 seems to be fast. Changed to 0.005 so it can open/fold elbow very slowly
-    public void elbowOpenClose(boolean elbowOpen, boolean elbowClose) {
-
-        if (elbowOpen) {
-
-            elbow_position = elbow_position + 0.005;
-            telemetry.addData("Elbow Position X: ", elbow_position);
-
-        } else if (elbowClose) {
-
-            elbow_position = elbow_position - 0.005;
-            telemetry.addData("Elbow Position B: ", elbow_position);
-        }
-
-        elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOX_MAX_POSITION));
-    }
-
-
     public void grabberOpenClose(boolean grabberClose, boolean grabberOpen) {
 
-        if (grabberClose) {
+        if (grabberOpen) {
 
-            grabber_position = grabber_position + 0.01;
-            telemetry.addData("Grabber Position LB: ", grabber_position);
+            grabber_position = grabber_position + 0.05;
+            grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
 
-        } else if (grabberOpen) {
+        } else if (grabberClose) {
 
-            grabber_position = grabber_position - 0.01;
-            telemetry.addData("Grabber Position RB: ", grabber_position);
+            grabber_position = grabber_position - 0.05;
+            grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
         }
 
-        grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
+        telemetry.addData("Grabber position: ", grabber_position);
     }
 
+
+    public void elbowOpenClose(boolean elbowOpen, boolean elbowClose) {
+
+        if (elbowClose) {
+
+            elbow_position = elbow_position + 0.05;
+            elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
+
+        } else if (elbowOpen) {
+
+            elbow_position = elbow_position - 0.05;
+            elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
+        }
+
+        telemetry.addData("Elbow position: ", elbow_position);
+//        telemetry.update();
+    }
 }

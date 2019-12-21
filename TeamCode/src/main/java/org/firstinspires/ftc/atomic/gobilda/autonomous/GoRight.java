@@ -23,20 +23,20 @@ public class GoRight extends LinearOpMode {
         waitForStart();
 
         // Step 1:  Drive Forwards for 1 Second
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         //driveWheelActions.stop();
         sleep(2000); //wait for 2 seconds
 
 
         // Step 2:  Strafe LEFT side
-        driveWheelActions.leftBackMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.rightBackMotor.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.leftFrontMotor.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.rightFrontMotor.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_back.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.right_back.setDirection(ConfigConstants.FORWARD);
+        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
+        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
         driveWheelActions.forwardByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
 

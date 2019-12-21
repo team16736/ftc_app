@@ -10,7 +10,7 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmElbowGripperAction
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
-@TeleOp(name="Mecannum-Arm", group="Linear Opmode")
+@TeleOp(name="Mecannum-Christmas", group="Linear Opmode")
 public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
 
     private MecanumHookServoActions hookActions = null;
@@ -48,18 +48,26 @@ public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
                     -gamepad1.left_stick_y,     //joystick controlling forward/backward
                     gamepad1.right_stick_x);    //joystick controlling rotation
 
+
             /** Gamepad 2 **/
             hookActions.hookUpDown(
                     gamepad2.dpad_left,         //key to move up hookUpDown
                     gamepad2.dpad_right);       //key to move down hookUpDown
 
-            armElbowGripActions.armUpDown(gamepad2.left_stick_y);     //arm up/down
 
-            armElbowGripActions.elbowOpenClose(gamepad2.dpad_up,    //elbow up
-                                            gamepad2.dpad_down);    //elbow down
+            //armElbowGripActions.armUpDown(gamepad2.left_stick_y);     //arm up/down
+
+
+            armElbowGripActions.armUpDown(gamepad2.y,   //arm up - ORANGE button
+                                        gamepad2.x);    //arm down - GREEN button
+
 
             armElbowGripActions.grabberOpenClose(gamepad2.left_bumper,  //open grabber
                                                 gamepad2.right_bumper); //close grabber
+
+
+            armElbowGripActions.elbowOpenClose(gamepad2.dpad_up,    //elbow up
+                                            gamepad2.dpad_down);    //elbow down
 
             telemetry.update();
         }

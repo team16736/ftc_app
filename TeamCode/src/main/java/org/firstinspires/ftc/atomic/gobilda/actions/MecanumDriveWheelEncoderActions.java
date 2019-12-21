@@ -76,16 +76,16 @@ public class MecanumDriveWheelEncoderActions {
      * @param rotation - the x value of the joystick controlling the rotation
      */
     public void driveUsingJoyStick(double speedX, double speedY, double rotation) {
-//
-//        telemetry.addData("Strafe Speed X: = ", speedX);
-//        telemetry.addData("Motion Speed Y: = ", speedY);
-//        telemetry.addData("Rotations: = ", rotation);
-//        telemetry.update();
+
+        telemetry.addData("Strafe Speed X: = ", speedX);
+        telemetry.addData("Motion Speed Y: = ", speedY);
+        telemetry.addData("Rotations: = ", rotation);
+        telemetry.update();
 
         double backLeftValue = speedX + speedY + rotation;
         double frontLeftValue = -speedX + speedY + rotation;
-        double backRightValue = speedX + speedY - rotation; //working well
-        double frontRightValue = -speedX + speedY - rotation; //working well
+        double backRightValue = speedX + speedY - rotation;
+        double frontRightValue = -speedX + speedY - rotation;
 
         double max = getMaxPower(frontLeftValue, frontRightValue, backLeftValue, backRightValue);
         if (max > 1) {
@@ -99,11 +99,11 @@ public class MecanumDriveWheelEncoderActions {
         leftFrontMotor.setPower(frontLeftValue);
         rightBackMotor.setPower(backRightValue);
         leftBackMotor.setPower(backLeftValue);
-//
-//        telemetry.addData("frontRightValue: = ", frontRightValue);
-//        telemetry.addData("frontLeftValue: = ", frontLeftValue);
-//        telemetry.addData("backRightValue: = ", backRightValue);
-//        telemetry.addData("backLeftValue: = ", backLeftValue);
+
+        telemetry.addData("frontRightValue: = ", frontRightValue);
+        telemetry.addData("frontLeftValue: = ", frontLeftValue);
+        telemetry.addData("backRightValue: = ", backRightValue);
+        telemetry.addData("backLeftValue: = ", backLeftValue);
     }
 
     /**
@@ -118,7 +118,6 @@ public class MecanumDriveWheelEncoderActions {
      *                  - MecanumDrivetrain.DIRECTION_STRAFE_RIGHT
      * @param speed - The desired motor power (most accurate at low powers < 0.25)
      */
-    //Added 12/14 - not tested
     public void driveByDistance(int inches, int direction, double speed){
 
         setMotorDirection(direction);
@@ -135,32 +134,32 @@ public class MecanumDriveWheelEncoderActions {
      */
     private void driveByRevolution(int revolutions, double power){
 
-        leftBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftBackMotor.setTargetPosition(revolutions);
-        leftBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        int currentPosition = leftBackMotor.getCurrentPosition();
-        printLogOnDriverPhone("Wheel current position: " + currentPosition);
-
-        int targetPosition = leftBackMotor.getTargetPosition();
-        printLogOnDriverPhone("Wheel target Position: " + targetPosition);
-
-        rightBackMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightBackMotor.setTargetPosition(revolutions);
-        rightBackMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        leftFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        leftFrontMotor.setTargetPosition(revolutions);
-        leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        rightFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightFrontMotor.setTargetPosition(revolutions);
-        rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        leftFrontMotor.setPower(power);
-        rightBackMotor.setPower(power);
-        leftBackMotor.setPower(power);
-        rightFrontMotor.setPower(power);
+//        left_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        left_back.setTargetPosition(revolutions);
+//        left_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        int currentPosition = left_back.getCurrentPosition();
+//        printLogOnDriverPhone("Wheel current position: " + currentPosition);
+//
+//        int targetPosition = left_back.getTargetPosition();
+//        printLogOnDriverPhone("Wheel target Position: " + targetPosition);
+//
+//        right_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        right_back.setTargetPosition(revolutions);
+//        right_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        left_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        left_front.setTargetPosition(revolutions);
+//        left_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        right_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        right_front.setTargetPosition(revolutions);
+//        right_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//        left_front.setPower(power);
+//        right_back.setPower(power);
+//        left_back.setPower(power);
+//        right_front.setPower(power);
     }
 
     //Added 12/14 - not tested
@@ -302,11 +301,6 @@ public class MecanumDriveWheelEncoderActions {
         rightFrontMotor.setPower(speed);
         leftFrontMotor.setPower(speed);
         opMode.sleep((long)(1000 * drivingTime));
-    }
-
-    private void printLogOnDriverPhone(String logString){
-        //telemetry.addData(logString, " Moving ");
-        //telemetry.update();
     }
 
 }
