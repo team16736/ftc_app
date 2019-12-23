@@ -43,21 +43,24 @@ public class MecanumHookServoActions {
         // 2. Set direction
         left_hook.setDirection(Servo.Direction.FORWARD);
         right_hook.setDirection(Servo.Direction.FORWARD);
+
+        // 3. Set beginning position
+        //left_hook.setPosition(0.8);  //Not tested
+        //right_hook.setPosition(0.0); //Not tested
     }
 
-    //Note: Changed from 0.01 increment value to 0.05
     public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {
 
         if (leftPadPressed) {
 
-            left_hook_position = left_hook_position + 0.05;
-            right_hook_position = right_hook_position - 0.05;
+            left_hook_position = left_hook_position + 0.2;
+            right_hook_position = right_hook_position - 0.2;
             telemetry.addData("Left Hook - Position x: ", left_hook_position);
 
         } else if (rightPadPressed) {
 
-            left_hook_position = left_hook_position - 0.05;
-            right_hook_position = right_hook_position + 0.05;
+            left_hook_position = left_hook_position - 0.2;
+            right_hook_position = right_hook_position + 0.2;
             telemetry.addData("Right Hook - Position y: ", right_hook_position);
         }
 

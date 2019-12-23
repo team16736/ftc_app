@@ -28,7 +28,7 @@ public class MecanumDriveWheelActions {
     public DcMotor right_back;
 
     //the amount to throttle the power of the motors
-    private static final double THROTTLE = 0.8;
+    private static final double THROTTLE = 0.4;
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;

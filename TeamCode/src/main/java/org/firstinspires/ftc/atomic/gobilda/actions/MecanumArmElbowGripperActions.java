@@ -26,14 +26,13 @@ public class MecanumArmElbowGripperActions {
     private int ARM_MIN_POSITION = -45;
     private int ARM_MAX_POSITION = 75;
 
-    private double elbow_position = 0.0;
-    private double ELBOW_MIN_POSITION = -0.5;
-    private double ELBOW_MAX_POSITION = 0.5;
-
     private double grabber_position = 0.0;
     private double GRABBER_MIN_POSITION = 0;
     private double GRABBER_MAX_POSITION = 0.8;
 
+    private double elbow_position = 0.0;
+    private double ELBOW_MIN_POSITION = -0.5;
+    private double ELBOW_MAX_POSITION = 0.5;
 
     // Constructor
     public MecanumArmElbowGripperActions(Telemetry tele, HardwareMap hardware) {
@@ -92,17 +91,16 @@ public class MecanumArmElbowGripperActions {
         telemetry.addData("Arm power: ", armPower);
     }
 
-
     public void grabberOpenClose(boolean grabberClose, boolean grabberOpen) {
 
         if (grabberOpen) {
 
-            grabber_position = grabber_position + 0.05;
+            grabber_position = grabber_position + 0.2;
             grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
 
         } else if (grabberClose) {
 
-            grabber_position = grabber_position - 0.05;
+            grabber_position = grabber_position - 0.2;
             grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
         }
 
@@ -114,12 +112,12 @@ public class MecanumArmElbowGripperActions {
 
         if (elbowClose) {
 
-            elbow_position = elbow_position + 0.05;
+            elbow_position = elbow_position + 0.1;
             elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
 
         } else if (elbowOpen) {
 
-            elbow_position = elbow_position - 0.05;
+            elbow_position = elbow_position - 0.1;
             elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
         }
 
