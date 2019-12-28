@@ -23,14 +23,31 @@ public class SkystoneBlueWall extends PullFoundation {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //1. Move forward
+        // Move forward
 
-        //2. Sense the color
+        boolean foundBlack = false;
 
-        //3. Armbot or Pushbot
+        // Sense color
+        // if(yellow) -- then Strafe RIGHT 8 inches
+
+        // Sense color
+        // if(yellow) -- then Strafe RIGHT 8 inches
+
+        // Sense color
+        // if(black) -- then FORWARD, collect the block
+
+
+        // Collect block using Pushbot
+        // move FORWARD
+        // spin LEFT
+        // move FORWARD
+        // spin RIGHT
+        // move FORWARD
+        // move REVERSE
+        // park under bridge
 
         sleep(2000);
     }
 
-
+//hello//hello//
 }

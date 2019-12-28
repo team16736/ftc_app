@@ -25,10 +25,10 @@ public class MecanumHookServoActions {
     public Servo right_hook;
 
     private double left_hook_position = 0.0;
-    private double right_hook_position = 0.0;
+    private double right_hook_position = 1.0;
 
     private double HOOK_MIN_POSITION = 0;
-    private double HOOK_MAX_POSITION = 0.8;
+    private double HOOK_MAX_POSITION = 1.0;
 
     // Constructor
     public MecanumHookServoActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
@@ -41,26 +41,26 @@ public class MecanumHookServoActions {
         right_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_RIGHT);
 
         // 2. Set direction
-        left_hook.setDirection(Servo.Direction.FORWARD);
-        right_hook.setDirection(Servo.Direction.FORWARD);
+        left_hook.setDirection(Servo.Direction.REVERSE);
+        right_hook.setDirection(Servo.Direction.REVERSE);
 
         // 3. Set beginning position
-        left_hook.setPosition(0.8);  //Not tested
-        right_hook.setPosition(0.0); //Not tested
+        left_hook.setPosition(left_hook_position);
+        right_hook.setPosition(right_hook_position);
     }
 
     public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {
 
         if (leftPadPressed) {
 
-            left_hook_position = left_hook_position + 0.2;
-            right_hook_position = right_hook_position - 0.2;
+            left_hook_position = left_hook_position + 0.5;
+            right_hook_position = right_hook_position - 0.5;
             telemetry.addData("Left Hook - Position x: ", left_hook_position);
 
         } else if (rightPadPressed) {
 
-            left_hook_position = left_hook_position - 0.2;
-            right_hook_position = right_hook_position + 0.2;
+            left_hook_position = left_hook_position - 0.5;
+            right_hook_position = right_hook_position + 0.5;
             telemetry.addData("Right Hook - Position y: ", right_hook_position);
         }
 
