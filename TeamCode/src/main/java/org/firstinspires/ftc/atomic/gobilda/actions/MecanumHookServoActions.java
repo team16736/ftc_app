@@ -31,10 +31,10 @@ public class MecanumHookServoActions {
     private double HOOK_MAX_POSITION = 0.8;
 
     // Constructor
-    public MecanumHookServoActions(Telemetry tele, HardwareMap hardware) {
+    public MecanumHookServoActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
 
-        this.telemetry = tele;
-        this.hardwareMap = hardware;
+        this.telemetry = opModeTelemetry;
+        this.hardwareMap = opModeHardware;
 
         // 1. Hardware config
         left_hook = hardwareMap.get(Servo.class, ConfigConstants.SERVO_LEFT);
@@ -45,8 +45,8 @@ public class MecanumHookServoActions {
         right_hook.setDirection(Servo.Direction.FORWARD);
 
         // 3. Set beginning position
-        //left_hook.setPosition(0.8);  //Not tested
-        //right_hook.setPosition(0.0); //Not tested
+        left_hook.setPosition(0.8);  //Not tested
+        right_hook.setPosition(0.0); //Not tested
     }
 
     public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {

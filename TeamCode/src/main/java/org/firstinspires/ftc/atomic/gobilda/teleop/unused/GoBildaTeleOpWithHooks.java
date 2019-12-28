@@ -1,17 +1,23 @@
-package org.firstinspires.ftc.atomic.gobilda.teleop;
+package org.firstinspires.ftc.atomic.gobilda.teleop.unused;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mecanum 0", group="Linear Opmode")
-public class GoBildaTeleOp extends LinearOpMode {
+@TeleOp(name="Mecannum-Hooks", group="Linear Opmode")
+@Disabled
+public class GoBildaTeleOpWithHooks extends LinearOpMode {
 
+    private MecanumHookServoActions servoActions = null;
     private MecanumDriveWheelActions mecanumDriveWheelActions = null;
 
     @Override
     public void runOpMode() {
 
+        servoActions = new MecanumHookServoActions(telemetry, hardwareMap);
         mecanumDriveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
@@ -24,9 +30,14 @@ public class GoBildaTeleOp extends LinearOpMode {
                     gamepad1.left_stick_x,      //joystick controlling strafe
                     -gamepad1.left_stick_y,     //joystick controlling the forward/backward motion
                     gamepad1.right_stick_x);    //joystick controlling the rotation
+
+            /** Gamepad 2 **/
+            servoActions.hookUpDown(
+                    gamepad2.dpad_left,
+                    gamepad2.dpad_right);
         }
 
-        telemetry.addData("MecanumDrivetrainTeleOp", "Stopping");
+        telemetry.addData("Mecannum-Hooks", "Stopping");
         idle();
     }
 }

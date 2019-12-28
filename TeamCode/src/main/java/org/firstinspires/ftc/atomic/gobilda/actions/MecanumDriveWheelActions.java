@@ -28,21 +28,21 @@ public class MecanumDriveWheelActions {
     public DcMotor right_back;
 
     //the amount to throttle the power of the motors
-    private static final double THROTTLE = 0.4;
+    private static final double THROTTLE = 0.5;
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
     /**
      * Creates a mecanum motor using the 4 individual motors passed in as the arguments
-     * @param tele : Telemetry to send messages to the Driver Control
-     * @param hardware : Hardware Mappings
+     * @param opModeTelemetry : Telemetry to send messages to the Driver Control
+     * @param opModeHardware : Hardware Mappings
      */
     // Constructor
-    public MecanumDriveWheelActions(Telemetry tele, HardwareMap hardware ) {
+    public MecanumDriveWheelActions(Telemetry opModeTelemetry, HardwareMap opModeHardware ) {
 
-        this.telemetry = tele;
-        this.hardwareMap = hardware;
+        this.telemetry = opModeTelemetry;
+        this.hardwareMap = opModeHardware;
 
         // 1. Hardware config
         left_front = hardwareMap.get(DcMotor.class, ConfigConstants.FRONT_LEFT);
@@ -108,7 +108,6 @@ public class MecanumDriveWheelActions {
         return Collections.max(valueList);
     }
 
-    //Working - 12/21
     public void setMotorDirection_Forward() {
         left_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.REVERSE);
@@ -117,7 +116,6 @@ public class MecanumDriveWheelActions {
         right_front.setDirection(ConfigConstants.FORWARD);
     }
 
-    //Working - 12/21
     public void setMotorDirection_Reverse() {
         left_back.setDirection(ConfigConstants.FORWARD);
         left_front.setDirection(ConfigConstants.FORWARD);
@@ -126,7 +124,6 @@ public class MecanumDriveWheelActions {
         right_front.setDirection(ConfigConstants.REVERSE);
     }
 
-    //Working - 12/21
     public void setMotorDirection_StrafeLeft() {
         left_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.FORWARD);
@@ -135,16 +132,30 @@ public class MecanumDriveWheelActions {
         right_front.setDirection(ConfigConstants.FORWARD);
     }
 
-    //Working - 12/21
     public void setMotorDirection_StrafeRight() {
         left_back.setDirection(ConfigConstants.FORWARD);
         left_front.setDirection(ConfigConstants.REVERSE);
 
         right_back.setDirection(ConfigConstants.REVERSE);
         right_front.setDirection(ConfigConstants.REVERSE);
+    }
 
-        telemetry.addData("Strafe Right: ", "RIGHT");
-        telemetry.update();
+    //Working
+    public void setMotorDirection_SpinLeft() {
+        left_back.setDirection(ConfigConstants.FORWARD);
+        left_front.setDirection(ConfigConstants.FORWARD);
+
+        right_back.setDirection(ConfigConstants.REVERSE);
+        right_front.setDirection(ConfigConstants.FORWARD);
+    }
+
+    //Not tested
+    public void setMotorDirection_SpinRight() {
+        left_back.setDirection(ConfigConstants.REVERSE);
+        left_front.setDirection(ConfigConstants.REVERSE);
+
+        right_back.setDirection(ConfigConstants.FORWARD);
+        right_front.setDirection(ConfigConstants.REVERSE);
     }
 
     public void stop() {

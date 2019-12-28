@@ -35,10 +35,10 @@ public class MecanumArmElbowGripperActions {
     private double ELBOW_MAX_POSITION = 0.5;
 
     // Constructor
-    public MecanumArmElbowGripperActions(Telemetry tele, HardwareMap hardware) {
+    public MecanumArmElbowGripperActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
 
-        this.telemetry = tele;
-        this.hardwareMap = hardware;
+        this.telemetry = opModeTelemetry;
+        this.hardwareMap = opModeHardware;
 
         // 1. Hardware config
         armMotor = hardwareMap.get(DcMotor.class, ConfigConstants.ARM);
@@ -65,7 +65,7 @@ public class MecanumArmElbowGripperActions {
 
             armMotor.setTargetPosition(arm_current_position);
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(0.2);
+            armMotor.setPower(0.3);
             telemetry.addData("Arm: ", "UP");
 
         } else if(armDown) {
@@ -74,7 +74,7 @@ public class MecanumArmElbowGripperActions {
 
             armMotor.setTargetPosition(arm_current_position);
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(0.2);
+            armMotor.setPower(0.3);
             telemetry.addData("Arm: ", "DOWN");
         }
 
@@ -112,16 +112,29 @@ public class MecanumArmElbowGripperActions {
 
         if (elbowClose) {
 
-            elbow_position = elbow_position + 0.1;
+            elbow_position = elbow_position + 0.2;
             elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
 
         } else if (elbowOpen) {
 
-            elbow_position = elbow_position - 0.1;
+            elbow_position = elbow_position - 0.2;
             elbowServo.setPosition(Range.clip(elbow_position, ELBOW_MIN_POSITION, ELBOW_MAX_POSITION));
         }
 
         telemetry.addData("Elbow position: ", elbow_position);
 //        telemetry.update();
     }
+
+
+    public void elbowOpenCompletely() {
+
+        elbowServo.setPosition(ELBOW_MAX_POSITION);
+        telemetry.addData("## Elbow open completely ## : ", elbowServo.getPosition());
+
+        elbowServo.setPosition(ELBOW_MIN_POSITION);
+        telemetry.addData("## Elbow close completely ## : ", elbowServo.getPosition());
+
+        telemetry.update();
+    }
+
 }
