@@ -1,15 +1,18 @@
-package org.firstinspires.ftc.atomic.gobilda.autonomous;
+package org.firstinspires.ftc.atomic.gobilda.autonomous.unused;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmElbowGripperActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
+import org.firstinspires.ftc.atomic.gobilda.autonomous.PullFoundation;
 
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
 @Autonomous(name = "Blue Capstone Bridge ", group = "GoBilda")
+@Disabled
 public class BlueCapstoneBridge extends PullFoundation {
 
     @Override
@@ -22,6 +25,7 @@ public class BlueCapstoneBridge extends PullFoundation {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+
         //Step 1: Drive backwards
         drive_ReverseAndStop(wheelActions, SPEED, 0.75);
         sleep(1500);
@@ -33,7 +37,7 @@ public class BlueCapstoneBridge extends PullFoundation {
 
 
         //Step 3: Drive Backwards
-       drive_ReverseAndStop(wheelActions, SPEED, 0.9);
+        drive_ReverseAndStop(wheelActions, SPEED, 0.9);
         sleep(1500);
 
 
@@ -44,11 +48,13 @@ public class BlueCapstoneBridge extends PullFoundation {
 
         //Step 5: move forwards to push foundation to the wall
         drive_ForwardAndStop(wheelActions, SPEED , 1.0);
-       sleep(2000);
+        sleep(2000);
+
 
         //Step 6: open elbow
         armActions.elbowOpenCompletely();
         sleep(5000);
+
 
         //Remove 2 lines below ###########
         drive_ReverseAndStop(wheelActions, SPEED, 0.75);

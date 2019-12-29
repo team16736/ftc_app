@@ -172,7 +172,7 @@ public class MecanumDriveWheelActions {
         right_front.setZeroPowerBehavior(ConfigConstants.BRAKE);
     }
 
-    public void forwardByTime(LinearOpMode opMode, double speed, double drivingTime) {
+    public void driveByTime(LinearOpMode opMode, double speed, double drivingTime) {
         left_back.setPower(speed);
         right_back.setPower(speed);
         right_front.setPower(speed);

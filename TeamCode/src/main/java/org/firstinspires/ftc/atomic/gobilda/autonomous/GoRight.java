@@ -3,7 +3,6 @@ package org.firstinspires.ftc.atomic.gobilda.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 
 /**
@@ -26,14 +25,14 @@ public class GoRight extends LinearOpMode {
 
         // Step 1:  Drive Forwards for 1 Second
         driveWheelActions.setMotorDirection_Forward();
-        driveWheelActions.forwardByTime(this, 0.5, 1.0);
+        driveWheelActions.driveByTime(this, 0.5, 1.0);
         //driveWheelActions.stop();
         sleep(2000); //wait for 2 seconds
 
 
         // Step 2:  Strafe LEFT side
         driveWheelActions.setMotorDirection_StrafeLeft();
-        driveWheelActions.forwardByTime(this, 0.5, 1.0);
+        driveWheelActions.driveByTime(this, 0.5, 1.0);
         driveWheelActions.stop();
     }
 }

@@ -27,13 +27,13 @@ public class SpinnerTest extends LinearOpMode {
 
         // ################################ Spin left #########################
         driveWheelActions.setMotorDirection_SpinLeft();
-        driveWheelActions.forwardByTime(this, 0.5, 3.0);
+        driveWheelActions.driveByTime(this, 0.5, 3.0);
         sleep(1000); //wait for 1 seconds
 
 
         // ################################ Spin Right #########################
         driveWheelActions.setMotorDirection_SpinRight();
-        driveWheelActions.forwardByTime(this, 0.5, 3.0);
+        driveWheelActions.driveByTime(this, 0.5, 3.0);
         sleep(1000); //wait for 1 seconds
 
         driveWheelActions.stop();
