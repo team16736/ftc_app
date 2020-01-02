@@ -2,20 +2,20 @@ package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.HookServoActions;
 
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
 @Autonomous(name = "Blue Foundation Bridge Pull", group = "GoBilda")
-public class PullBlueFoundationBridge extends PullFoundation {
+public class PullBlueFoundationBridge extends HelperAction {
 
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
-        MecanumHookServoActions hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
+        DriveWheelActions wheelActions = new DriveWheelActions(telemetry, hardwareMap);
+        HookServoActions hookActions = new HookServoActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

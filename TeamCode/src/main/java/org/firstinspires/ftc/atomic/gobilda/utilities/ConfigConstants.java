@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.atomic.gobilda.actions;
+package org.firstinspires.ftc.atomic.gobilda.utilities;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;

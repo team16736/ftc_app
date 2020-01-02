@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
+
 /*
  * This is an example LinearOpMode that shows how to use a Modern Robotics Color Sensor.
  * The op mode assumes that the color sensor is configured with a name of "sensor_color".
@@ -15,7 +17,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
  * You can use the X button on gamepad1 to toggle the LED on and off.
  */
 @TeleOp(name = "Sensor: MR Color", group = "Sensor")
-public class SensorMRColorScott extends LinearOpMode {
+public class ColorTest extends LinearOpMode {
 
   ColorSensor colorSensor;    // Hardware Device Object
 
@@ -41,7 +43,7 @@ public class SensorMRColorScott extends LinearOpMode {
     boolean bLedOn = true;
 
     // get a reference to our ColorSensor object.
-    colorSensor = hardwareMap.get(ColorSensor.class, "sensor_color");
+    colorSensor = hardwareMap.get(ColorSensor.class, ConfigConstants.LEFT_COLOR);
 
     // Set the LED in the beginning
     colorSensor.enableLed(bLedOn);
@@ -75,13 +77,13 @@ public class SensorMRColorScott extends LinearOpMode {
       telemetry.addData("Clear", colorSensor.alpha());
       telemetry.addData("Red  ", colorSensor.red());
       telemetry.addData("Green", colorSensor.green());
-      telemetry.addData("Blue ", colorSensor.blue());
-      telemetry.addData("Hue", hsvValues[0]);
+
       if (hsvValues[0] < 50){
-        telemetry.addData("is yellow", hsvValues[0]);
+        telemetry.addData("YELLOW: Hue=", hsvValues[0]);
       } else {
-        telemetry.addData("NOT yellow", hsvValues[0]);
+        telemetry.addData("BLACK: Hue=", hsvValues[0]);
       }
+
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument
       // to the HSVToColor method.

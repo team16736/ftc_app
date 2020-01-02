@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
@@ -13,7 +14,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  * 2. Elbow open and close
  * 3. Grabber open and close
  */
-public class MecanumArmElbowGripperActions {
+public class ArmElbowGripperActions {
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
@@ -35,7 +36,7 @@ public class MecanumArmElbowGripperActions {
     private double ELBOW_MAX_POSITION = 0.5;
 
     // Constructor
-    public MecanumArmElbowGripperActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
+    public ArmElbowGripperActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
 
         this.telemetry = opModeTelemetry;
         this.hardwareMap = opModeHardware;

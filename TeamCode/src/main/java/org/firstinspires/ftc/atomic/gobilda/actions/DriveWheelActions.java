@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.util.Collections;
@@ -20,7 +21,7 @@ import java.util.List;
  *
  * Purpose: Drive the 4 wheels
  */
-public class MecanumDriveWheelActions {
+public class DriveWheelActions {
 
     public DcMotor left_front;
     public DcMotor right_front;
@@ -41,7 +42,7 @@ public class MecanumDriveWheelActions {
      * @param opModeHardware : Hardware Mappings
      */
     // Constructor
-    public MecanumDriveWheelActions(Telemetry opModeTelemetry, HardwareMap opModeHardware ) {
+    public DriveWheelActions(Telemetry opModeTelemetry, HardwareMap opModeHardware ) {
 
         this.telemetry = opModeTelemetry;
         this.hardwareMap = opModeHardware;
@@ -177,11 +178,15 @@ public class MecanumDriveWheelActions {
         left_back.setPower(speed);
         right_back.setPower(speed);
         right_front.setPower(speed);
-        left_front.setPower(speed);  //Speed needed for hooks (this is our normal speed)
 
         if(applySensorSpeed){
 
             left_front.setPower(speed * 1.1); //Speed needed for sensor
+
+        } else {
+
+            left_front.setPower(speed);  //Speed needed for hooks (this is our normal speed)
+
         }
 
         opMode.sleep((long)(1000 * drivingTime));

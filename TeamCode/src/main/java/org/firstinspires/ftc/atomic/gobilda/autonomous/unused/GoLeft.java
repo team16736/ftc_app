@@ -1,10 +1,10 @@
-package org.firstinspires.ftc.atomic.gobilda.autonomous;
+package org.firstinspires.ftc.atomic.gobilda.autonomous.unused;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
 
 /**
  * Purpose: Go to the LEFT side and park under bridge
@@ -19,7 +19,7 @@ public class GoLeft extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        DriveWheelActions driveWheelActions = new DriveWheelActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

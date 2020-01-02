@@ -3,24 +3,24 @@ package org.firstinspires.ftc.atomic.gobilda.autonomous.unused;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmElbowGripperActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
-import org.firstinspires.ftc.atomic.gobilda.autonomous.PullFoundation;
+import org.firstinspires.ftc.atomic.gobilda.actions.ArmElbowGripperActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.HookServoActions;
+import org.firstinspires.ftc.atomic.gobilda.autonomous.HelperAction;
 
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
 @Autonomous(name = "Blue Capstone BridgeBlue ", group = "GoBilda")
 @Disabled
-public class BlueCapstoneBridge extends PullFoundation {
+public class BlueCapstoneBridge extends HelperAction {
 
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
-        MecanumHookServoActions hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
-        MecanumArmElbowGripperActions armActions = new MecanumArmElbowGripperActions(telemetry, hardwareMap);
+        DriveWheelActions wheelActions = new DriveWheelActions(telemetry, hardwareMap);
+        HookServoActions hookActions = new HookServoActions(telemetry, hardwareMap);
+        ArmElbowGripperActions armActions = new ArmElbowGripperActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

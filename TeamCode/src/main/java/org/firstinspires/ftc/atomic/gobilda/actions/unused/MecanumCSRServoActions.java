@@ -1,12 +1,9 @@
 package org.firstinspires.ftc.atomic.gobilda.actions.unused;
 
 import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
@@ -24,7 +21,7 @@ public class MecanumCSRServoActions {
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
-    public MecanumCSRServoActions(Telemetry telemetry, HardwareMap hardwareMap ) {
+    public MecanumCSRServoActions(Telemetry telemetry, HardwareMap hardwareMap) {
 
         this.telemetry = telemetry;
         this.hardwareMap = hardwareMap;
@@ -34,7 +31,7 @@ public class MecanumCSRServoActions {
     public void setupServoMotors() {
         servo_trap = hardwareMap.get(CRServo.class, "servo_trap");
         servo_left = hardwareMap.get(CRServo.class, ConfigConstants.SERVO_LEFT);
-        servo_right= hardwareMap.get(CRServo.class, ConfigConstants.SERVO_RIGHT);
+        servo_right = hardwareMap.get(CRServo.class, ConfigConstants.SERVO_RIGHT);
 
         servo_trap.setDirection(CRServo.Direction.FORWARD);
 
@@ -42,12 +39,12 @@ public class MecanumCSRServoActions {
         servo_right.setDirection(CRServo.Direction.FORWARD);
     }
 
-    public void trapperMoveUpDown(boolean dpadLeftPressed, boolean dpadRightPressed){
+    public void trapperMoveUpDown(boolean dpadLeftPressed, boolean dpadRightPressed) {
 
-        if(dpadLeftPressed){
+        if (dpadLeftPressed) {
             trapServoPower = trapServoPower + 0.20;
 
-        } else if(dpadRightPressed) {
+        } else if (dpadRightPressed) {
             trapServoPower = trapServoPower - 0.20;
 
         } else {
@@ -60,13 +57,13 @@ public class MecanumCSRServoActions {
         telemetry.update();
     }
 
-    public void hookMoveUpDown(boolean dpadUpPressed, boolean dpadDownPressed){
+    public void hookMoveUpDown(boolean dpadUpPressed, boolean dpadDownPressed) {
 
-        if(dpadUpPressed){
+        if (dpadUpPressed) {
             servo_right.setPower(hookServoPower - 0.20);
             servo_left.setPower(hookServoPower + 0.20);
 
-        } else if(dpadDownPressed) {
+        } else if (dpadDownPressed) {
             servo_left.setPower(hookServoPower - 0.20);
             servo_right.setPower(hookServoPower + 0.20);
 
@@ -79,10 +76,10 @@ public class MecanumCSRServoActions {
         telemetry.update();
     }
 
-    public void trapBrick(){
+    public void trapBrick() {
     }
 
-    public void untrapBrick(){
+    public void untrapBrick() {
     }
 
 }

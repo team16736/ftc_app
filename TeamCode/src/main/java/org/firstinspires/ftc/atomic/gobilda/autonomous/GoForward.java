@@ -1,21 +1,22 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
 
 /**
- * Purpose: Go forward and park under bridge
+ * Purpose:
+ * Go forward and park under bridge
  */
+//SET ROBOT FORWARD FACING BRIDGE - ONE BRICK AWAY FROM RED OR BLUE BRIDGE
 @Autonomous(name = "Forward", group = "GoBilda")
-public class Forward extends LinearOpMode {
+public class GoForward extends LinearOpMode {
 
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        DriveWheelActions driveWheelActions = new DriveWheelActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

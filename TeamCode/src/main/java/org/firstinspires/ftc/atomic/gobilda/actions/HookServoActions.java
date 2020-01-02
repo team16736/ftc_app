@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 /**
@@ -16,7 +17,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  *
  * Purpose: Hooks move up and down
  */
-public class MecanumHookServoActions {
+public class HookServoActions {
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
@@ -31,7 +32,7 @@ public class MecanumHookServoActions {
     private double HOOK_MAX_POSITION = 1.0;
 
     // Constructor
-    public MecanumHookServoActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
+    public HookServoActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
 
         this.telemetry = opModeTelemetry;
         this.hardwareMap = opModeHardware;

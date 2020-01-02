@@ -4,23 +4,23 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
 
 /**
  * Purpose:
  * Start from Blue Quarry side - place on the 2nd tile
- * Go forward toward Quarry
- * Strafe left under bridge
+ * Go FORWARD toward Quarry
+ * Strafe LEFT under bridge
  */
-@Autonomous(name = "Bridge Blue", group = "GoBilda")
+@Autonomous(name = "Quarry To Blue Bridge", group = "GoBilda")
 @Disabled
-//ROBOT FACING FORWARD at BLUE QUARRY. START FROM 2nd TILE BY BLUE BRIDGE
-public class BlueQuarryToBridge extends LinearOpMode {
+//PLACE ROBOT FORWARD FACING BLUE QUARRY. ALIGHT WITH 2nd TILE ON BRIDGE SIDE.
+public class QuarryToBlueBridge extends LinearOpMode {
 
     @Override
     public void runOpMode() {
 
-        MecanumDriveWheelActions driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        DriveWheelActions driveWheelActions = new DriveWheelActions(telemetry, hardwareMap);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();

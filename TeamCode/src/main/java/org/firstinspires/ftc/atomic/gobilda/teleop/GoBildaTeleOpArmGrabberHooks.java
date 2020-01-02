@@ -5,17 +5,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumArmElbowGripperActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.ArmElbowGripperActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
+import org.firstinspires.ftc.atomic.gobilda.actions.HookServoActions;
+import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
 
 @TeleOp(name="Mecannum-Christmas", group="Linear Opmode")
 public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
 
-    private MecanumHookServoActions hookActions = null;
-    private MecanumDriveWheelActions driveWheelActions = null;
-    private MecanumArmElbowGripperActions armElbowGripActions = null;
+    private HookServoActions hookActions = null;
+    private DriveWheelActions driveWheelActions = null;
+    private ArmElbowGripperActions armElbowGripActions = null;
 
     private DcMotor armDrive = null;
     private Servo elbowServo = null;
@@ -25,9 +25,9 @@ public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        hookActions = new MecanumHookServoActions(telemetry, hardwareMap);
-        driveWheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
-        armElbowGripActions = new MecanumArmElbowGripperActions(telemetry, hardwareMap);
+        hookActions = new HookServoActions(telemetry, hardwareMap);
+        driveWheelActions = new DriveWheelActions(telemetry, hardwareMap);
+        armElbowGripActions = new ArmElbowGripperActions(telemetry, hardwareMap);
 
         armDrive  = hardwareMap.get(DcMotor.class, ConfigConstants.ARM);
         elbowServo = hardwareMap.get(Servo.class, ConfigConstants.ELBOW_SERVO);
