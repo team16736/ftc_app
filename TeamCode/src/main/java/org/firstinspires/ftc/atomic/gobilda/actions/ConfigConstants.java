@@ -24,6 +24,10 @@ public class ConfigConstants {
     //Grabber
     public static final String GRABBER_SERVO = "grabber_servo";
 
+    //Color Sensors
+    public static final String RIGHT_COLOR = "right_color";
+    public static final String LEFT_COLOR = "left_color";
+
     //Added for simplicity
     public static final DcMotorSimple.Direction REVERSE = DcMotorSimple.Direction.REVERSE;
     public static final DcMotorSimple.Direction FORWARD = DcMotorSimple.Direction.FORWARD;

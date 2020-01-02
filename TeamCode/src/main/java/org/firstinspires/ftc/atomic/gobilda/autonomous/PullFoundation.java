@@ -13,13 +13,10 @@ public abstract class PullFoundation extends LinearOpMode {
 
     public final double SPEED = 0.5;
 
-   public boolean servoHookOn = false;
+    public boolean servoHookOn = false;
 
-    private double left_hook_position = 0.0;
-    private double right_hook_position = 1.0;
-
-    private double HOOK_MIN_POSITION = 0;
-    private double HOOK_MAX_POSITION = 1.0;
+    public double left_hook_position = 0.0;
+    public double right_hook_position = 1.0;
 
 
     public void drive_ReverseAndStop(MecanumDriveWheelActions driveWheelActions, double speed, double drivingTime) {
@@ -63,8 +60,6 @@ public abstract class PullFoundation extends LinearOpMode {
     }
 
     public void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
-
-
 
         if (servoHookOn) {  //down
 

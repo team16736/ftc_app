@@ -5,6 +5,7 @@ import android.graphics.Color;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
+import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 
 /**
@@ -15,72 +16,77 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
  *
  * Sensors must be attached to one of the I2C ports
  */
-//START AT THIRD HOLE FROM THE LEFT FRAME
+//START AT THIRD HOLE FROM THE LEFT OF THE FRAME
 @Autonomous(name = "Skystone Red Bridge", group = "GoBilda")
 public class SkystoneRedBridge extends PullFoundation {
 
     ColorSensor colorSensor;
-    boolean sensorLedOn = true;// Hardware Device Object
     boolean foundStone = false;
     float hsvValues[] = {0F,0F,0F};
 
     @Override
     public void runOpMode() {
 
-        colorSensor = hardwareMap.get(ColorSensor.class, "left_color");
-        colorSensor.enableLed(sensorLedOn);
+        colorSensor = hardwareMap.get(ColorSensor.class, ConfigConstants.LEFT_COLOR);
+        colorSensor.enableLed(true);
 
         MecanumDriveWheelActions wheelActions = new MecanumDriveWheelActions(telemetry, hardwareMap);
+        wheelActions.applySensorSpeed = true;// we have altered the speed for the forwards movement
 
         waitForStart();
 
-        // Step 1: Move Forwards
+        // Step 1: Move FORWARD
         drive_ForwardAndStop(wheelActions, SPEED, 1.2);
         sleep(1000);
 
-        // Step --> use sensor and find stone
-
-        // Add code here to detect skystone using sensor
-        //foundStone = true;
+        // Step --> detect skystone using sensor
         foundStone = isThisSkystone(colorSensor, hsvValues);
 
         telemetry.update();
 
         // If stone is found, the collect it and deliver it
-        if(foundStone){
+        if (foundStone) {
 
             sleep(2020);
-            telemetry.addData("Found black block","1");
+            telemetry.addData("Found black block: ", "1");
             collectStoneAndDeliver(wheelActions, 2.0);
             telemetry.update();
-        } else{
 
-            strafe_LeftAndStop(wheelActions,SPEED,0.4);
+        } else {
+
+            strafe_LeftAndStop(wheelActions, SPEED, 0.4);
             sleep(3000);
-            foundStone=isThisSkystone(colorSensor, hsvValues);
+            foundStone = isThisSkystone(colorSensor, hsvValues);
             telemetry.update();
-            if(foundStone){
+
+            if (foundStone) {
 
                 sleep(2020);
-                telemetry.addData("Found black block","2");
+                telemetry.addData("Found black block: ", "2");
                 collectStoneAndDeliver(wheelActions, 2.7);
                 telemetry.update();
-            } else{
-                telemetry.addData("Found black block","3");
-                strafe_LeftAndStop(wheelActions,SPEED,0.4);
+
+            } else {
+
+                telemetry.addData("Found black block: ", "3");
+                strafe_LeftAndStop(wheelActions, SPEED, 0.4);
                 sleep(1000);
                 collectStoneAndDeliver(wheelActions, 3.0);
                 telemetry.update();
             }
-        }
 
-        foundStone = false;
+        }
 
         //Step8: Move backwards to park under bridge
         drive_ReverseAndStop(wheelActions, SPEED, 0.7);
+        foundStone = false;
         sleep(1000);
+
+        //Turn OFF the sensor LED
+        colorSensor.enableLed(false);
         telemetry.update();
     }
+
     public boolean isThisSkystone(ColorSensor colorSensor, float hsvValues[]){
 
         Color.RGBToHSV(colorSensor.red() * 8, colorSensor.green() * 8, colorSensor.blue() * 8, hsvValues);

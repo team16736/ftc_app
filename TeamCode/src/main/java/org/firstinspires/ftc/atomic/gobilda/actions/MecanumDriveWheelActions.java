@@ -33,6 +33,8 @@ public class MecanumDriveWheelActions {
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
 
+    public boolean applySensorSpeed = false;
+
     /**
      * Creates a mecanum motor using the 4 individual motors passed in as the arguments
      * @param opModeTelemetry : Telemetry to send messages to the Driver Control
@@ -140,7 +142,6 @@ public class MecanumDriveWheelActions {
         right_front.setDirection(ConfigConstants.REVERSE);
     }
 
-    //Working
     public void setMotorDirection_SpinLeft() {
         left_back.setDirection(ConfigConstants.FORWARD);
         left_front.setDirection(ConfigConstants.FORWARD);
@@ -149,7 +150,6 @@ public class MecanumDriveWheelActions {
         right_front.setDirection(ConfigConstants.FORWARD);
     }
 
-    //Not tested
     public void setMotorDirection_SpinRight() {
         left_back.setDirection(ConfigConstants.REVERSE);
         left_front.setDirection(ConfigConstants.REVERSE);
@@ -173,46 +173,17 @@ public class MecanumDriveWheelActions {
     }
 
     public void driveByTime(LinearOpMode opMode, double speed, double drivingTime) {
+
         left_back.setPower(speed);
         right_back.setPower(speed);
         right_front.setPower(speed);
+        left_front.setPower(speed);  //Speed needed for hooks (this is our normal speed)
 
-        left_front.setPower(speed * 1.1 );
+        if(applySensorSpeed){
 
-        //left_front.setPower(speed);  //needed for hooks
+            left_front.setPower(speed * 1.1); //Speed needed for sensor
+        }
 
-        opMode.sleep((long)(1000 * drivingTime));
-    }
-
-    public void reverseByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        left_back.setPower(-speed);
-        right_back.setPower(-speed);
-        left_front.setPower(-speed);
-        right_front.setPower(-speed);
-        opMode.sleep((long)(1000 * drivingTime));
-    }
-
-    public void strafeRightByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        left_back.setPower(-speed);
-        right_back.setPower(speed);
-        left_front.setPower(speed);
-        right_front.setPower(-speed);
-        opMode.sleep((long)(1000 * drivingTime));
-    }
-
-    public void strafeLeftByTime(LinearOpMode opMode, double speed, double drivingTime) {
-        left_front.setPower(-speed);
-        right_front.setPower(speed);
-        left_back.setPower(speed);
-        right_back.setPower(-speed);
-        opMode.sleep((long)(1000*drivingTime));
-    }
-
-    public void forwardByDistance(LinearOpMode opMode, double speed, double drivingTime) {
-        left_back.setPower(speed);
-        right_back.setPower(speed);
-        right_front.setPower(speed);
-        left_front.setPower(speed);
         opMode.sleep((long)(1000 * drivingTime));
     }
 
