@@ -11,7 +11,7 @@ import org.firstinspires.ftc.atomic.gobilda.autonomous.PullFoundation;
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
-@Autonomous(name = "Blue Capstone Bridge ", group = "GoBilda")
+@Autonomous(name = "Blue Capstone BridgeBlue ", group = "GoBilda")
 @Disabled
 public class BlueCapstoneBridge extends PullFoundation {
 

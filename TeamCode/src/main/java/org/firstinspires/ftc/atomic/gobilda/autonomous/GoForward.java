@@ -4,9 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.atomic.gobilda.actions.ConfigConstants;
-import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelEncoderActions;
-
 @Autonomous(name = "Auto Forward Encoder", group = "GoBilda")
 @Disabled
 public class GoForward extends LinearOpMode {

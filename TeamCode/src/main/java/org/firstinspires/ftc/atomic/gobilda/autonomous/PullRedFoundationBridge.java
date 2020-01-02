@@ -11,9 +11,6 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 @Autonomous(name = "Red Foundation Bridge Pull", group = "GoBilda")
 public class PullRedFoundationBridge extends PullFoundation {
 
-    boolean servoHookOn = false;
-    double lefthookPosition = 0.0;
-    double righthookPosition = 0.0;
 
     @Override
     public void runOpMode() {
@@ -32,7 +29,7 @@ public class PullRedFoundationBridge extends PullFoundation {
 
         // Step 2: Drive REVERSE towards the building zone
         drive_ReverseAndStop(wheelActions, SPEED, 1.3);
-
+        sleep(2000);
 
         // Step 3: Move rear Hooks DOWN to grab the foundation
         servoHookOn=true;
@@ -41,7 +38,7 @@ public class PullRedFoundationBridge extends PullFoundation {
 
 
         // Step4: Drive FORWARD towards building site
-        drive_ForwardAndStop(wheelActions, SPEED -0.2, 4.0); //SPEED-0.5, added 2.5 driving time
+        drive_ForwardAndStop(wheelActions, SPEED , 4.0); //SPEED-0.5, added 2.5 driving time
         sleep(2000);
 
 
@@ -58,27 +55,13 @@ public class PullRedFoundationBridge extends PullFoundation {
 
         // Step 7: Move Backwards
         drive_ReverseAndStop(wheelActions,SPEED,1.0);
-
+        sleep(2000);
 
         //Step 8: Strafe RIGHT and park under bridge
         strafe_RightAndStop(wheelActions, SPEED, 1.0);
         sleep(2000);
     }
 
-    private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
-
-        if (servoHookOn) {
-            //Move the hooks down
-            lefthookPosition = 0.0;
-            righthookPosition = 1.0;
-        } else {
-            //Move the hooks up
-            lefthookPosition = 1.0;
-            righthookPosition = 0.0;
-        }
-        hookActions.left_hook.setPosition(lefthookPosition);
-        hookActions.right_hook.setPosition(righthookPosition);
-    }
 
 }
 

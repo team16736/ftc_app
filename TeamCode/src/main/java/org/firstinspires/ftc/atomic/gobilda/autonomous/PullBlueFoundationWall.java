@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
@@ -11,9 +13,6 @@ import org.firstinspires.ftc.atomic.gobilda.actions.MecanumHookServoActions;
 @Autonomous(name = "Blue Foundation Wall Pull", group = "GoBilda")
 public class PullBlueFoundationWall extends PullFoundation {
 
-    boolean servoHookOn = false;
-    double lefthookPosition = 0.0;
-    double righthookPosition = 0.0;
 
     @Override
     public void runOpMode() {
@@ -40,7 +39,7 @@ public class PullBlueFoundationWall extends PullFoundation {
 
 
         // Step 4: Drive FORWARD towards building site
-        drive_ForwardAndStop(wheelActions, SPEED -0.2, 4.0); //SPEED-0.5, added 2.5 driving time
+        drive_ForwardAndStop(wheelActions, SPEED , 4.0); //SPEED-0.5, added 2.5 driving time
         sleep(2000);
 
 
@@ -55,19 +54,5 @@ public class PullBlueFoundationWall extends PullFoundation {
         sleep(2000);
     }
 
-    private void moveHooksUpOrDown(MecanumHookServoActions hookActions) {
-
-        if (servoHookOn) {
-            // Move the hooks down
-            lefthookPosition = 0.0;
-            righthookPosition = 1.0;
-        } else {
-            // Move the hooks up
-            lefthookPosition = 1.0;
-            righthookPosition = 0.0;
-        }
-        hookActions.left_hook.setPosition(lefthookPosition);
-        hookActions.right_hook.setPosition(righthookPosition);
-    }
 
 }

@@ -1,20 +1,15 @@
 package org.firstinspires.ftc.atomic.gobilda.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.atomic.gobilda.actions.MecanumDriveWheelActions;
 
 /**
- * Purpose: Go to the LEFT side and park under bridge
- *
- * 1. Goes forward
- * 2. Strafes to the RIGHT
+ * Purpose: Go forward and strafe left under bridge
  */
-@Autonomous(name = "Auto Left", group = "GoBilda")
-@Disabled
-public class GoLeft extends LinearOpMode {
+@Autonomous(name = "Bridge Blue", group = "GoBilda")
+public class BridgeBlue extends LinearOpMode {
 
     @Override
     public void runOpMode() {
@@ -24,16 +19,19 @@ public class GoLeft extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        // Step 1:  Drive Forwards for 1 Second
+
+        // Step 1:  Drive Forward
         driveWheelActions.setMotorDirection_Forward();
-        driveWheelActions.driveByTime(this, 0.5, 0.5);//changed
-        sleep(2000); //wait for 2 seconds
-
-
-        // Step 2:  Strafe RIGHT side
-        driveWheelActions.setMotorDirection_StrafeRight();
-        driveWheelActions.driveByTime(this, 0.5, 0.5);//changed
+        driveWheelActions.driveByTime(this, 0.3, 2.0);//changed
         driveWheelActions.stop();
+
+
+        // Step 2:  Strafe left
+        driveWheelActions.setMotorDirection_StrafeLeft();
+        driveWheelActions.driveByTime(this, 0.35, 2.75);//changed
+        driveWheelActions.stop();
+
+
     }
 }
 

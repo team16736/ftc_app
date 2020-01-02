@@ -176,7 +176,11 @@ public class MecanumDriveWheelActions {
         left_back.setPower(speed);
         right_back.setPower(speed);
         right_front.setPower(speed);
-        left_front.setPower(speed);
+
+        left_front.setPower(speed * 1.1 );
+
+        //left_front.setPower(speed);  //needed for hooks
+
         opMode.sleep((long)(1000 * drivingTime));
     }
 

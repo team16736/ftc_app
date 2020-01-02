@@ -65,7 +65,7 @@ public class MecanumArmElbowGripperActions {
 
             armMotor.setTargetPosition(arm_current_position);
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(0.3);
+            armMotor.setPower(1.0);
             telemetry.addData("Arm: ", "UP");
 
         } else if(armDown) {

@@ -51,13 +51,13 @@ public class MecanumHookServoActions {
 
     public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {
 
-        if (leftPadPressed) {
+        if (leftPadPressed) {  //down
 
             left_hook_position = left_hook_position + 0.5;
             right_hook_position = right_hook_position - 0.5;
             telemetry.addData("Left Hook - Position x: ", left_hook_position);
 
-        } else if (rightPadPressed) {
+        } else if (rightPadPressed) {  //up
 
             left_hook_position = left_hook_position - 0.5;
             right_hook_position = right_hook_position + 0.5;
