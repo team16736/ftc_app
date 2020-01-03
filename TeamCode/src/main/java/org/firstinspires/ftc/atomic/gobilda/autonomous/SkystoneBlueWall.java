@@ -14,29 +14,29 @@ import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
  *
  * Sensors must be attached to one of the I2C ports
  */
-//START AT FIRST HOLE FROM THE LEFT OF THE FRAME
-@Autonomous(name = "Skystone RED Bridge", group = "GoBilda")
-public class SkystoneRedBridge extends HelperAction {
+//START AT FIRST HOLE FROM THE RIGHT OF THE FRAME
+@Autonomous(name = "Skystone BLUE Wall", group = "GoBilda")
+public class SkystoneBlueWall extends HelperAction {
 
     @Override
     public void runOpMode() {
 
-        right_sensor = hardwareMap.get(ColorSensor.class, ConfigConstants.RIGHT_COLOR); //NOT USED
-        right_sensor.enableLed(false);
+        right_sensor = hardwareMap.get(ColorSensor.class, ConfigConstants.RIGHT_COLOR);
+        right_sensor.enableLed(true);
 
-        left_sensor = hardwareMap.get(ColorSensor.class, ConfigConstants.LEFT_COLOR);
-        left_sensor.enableLed(true);
+        left_sensor = hardwareMap.get(ColorSensor.class, ConfigConstants.LEFT_COLOR); // NOT USED
+        left_sensor.enableLed(false);
 
         DriveWheelActions wheelActions = new DriveWheelActions(telemetry, hardwareMap);
         waitForStart();
 
         // Step 1: Move FORWARD
-        wheelActions.applySensorSpeed = true;// w e have altered the speed for the forwards movement
+        wheelActions.applySensorSpeed = true;// we have altered the speed for the forwards movement
         drive_ForwardAndStop(wheelActions, SPEED, 1.2);
-        sleep(3000);
+        sleep(1000);
 
         // Step --> detect skystone using sensor
-        foundStone = isThisSkystone(left_sensor, hsvValues);
+        foundStone = isThisSkystone(right_sensor, hsvValues);
         telemetry.update();
 
         // If stone is found, the collect it and deliver it
@@ -46,64 +46,63 @@ public class SkystoneRedBridge extends HelperAction {
             telemetry.update();
 
             sleep(1000);
-            collectStoneAndDeliverRedSide(wheelActions, 2.0);
+            collectStoneAndDeliverBlueSide(wheelActions, 2.0);
 
         } else {
 
-            strafe_LeftAndStop(wheelActions, SPEED, 0.4);
+            strafe_RightAndStop(wheelActions, SPEED, 0.4);
             sleep(1000);
-            foundStone = isThisSkystone(left_sensor, hsvValues);
-            telemetry.update();
+            foundStone = isThisSkystone(right_sensor, hsvValues);
 
             if (foundStone) {
 
                 telemetry.addData("Found black block: ", "2");
                 telemetry.update();
 
-                sleep(1000);
-                collectStoneAndDeliverRedSide(wheelActions, 2.7);
+                sleep(2000);
+                collectStoneAndDeliverBlueSide(wheelActions, 2.7);
 
             } else {
 
                 telemetry.addData("Found black block: ", "3");
                 telemetry.update();
 
-                strafe_LeftAndStop(wheelActions, SPEED, 0.4);
-                sleep(1000);
-                collectStoneAndDeliverRedSide(wheelActions, 3.0);
+                strafe_RightAndStop(wheelActions, SPEED, 0.4);
+                sleep(2000);
+                collectStoneAndDeliverBlueSide(wheelActions, 3.0);
             }
-
         }
 
-        //Step8: Move backwards to park under bridge
-        drive_ReverseAndStop(wheelActions, SPEED, 0.7);
+        //Step 9: Move backwards to park under bridge
+        drive_ReverseAndStop(wheelActions, SPEED, 1.0);
         foundStone = false;
         sleep(1000);
 
         //Turn OFF the sensor LED
-        left_sensor.enableLed(false);
         right_sensor.enableLed(false);
+        left_sensor.enableLed(false);
         wheelActions.applySensorSpeed = false;// we have altered the speed for the forwards movement
+
+        telemetry.addData("Mission complete!! ", " Woot ");
         telemetry.update();
     }
-
 
     /**
      * This method will collect stone and deliver.
      * This method can be used again for 2nd stone.. collect and deliver
      */
-    private void collectStoneAndDeliverRedSide(DriveWheelActions wheelActions, double distance) {
+    private void collectStoneAndDeliverBlueSide(DriveWheelActions wheelActions, double distance) {
 
         //Step 2: if detect black block; Strafe RIGHT
-        strafe_LeftAndStop(wheelActions,SPEED,0.3);//changed
+        strafe_RightAndStop(wheelActions, SPEED, 0.3);//changed
         sleep(1000);
 
         //Step 3: Move FORWARD
         drive_ForwardAndStop(wheelActions, SPEED, 0.6);
-        sleep(2000);
+        sleep(1000);
 
-        //Step 4: Spin RIGHT
-        set_Direction_SpinRight(wheelActions);
+        //Step 4: Spin LEFT
+        set_Direction_SpinLeft(wheelActions);
         wheelActions.driveByTime(this, 0.3, 2.2);
         sleep(2000);
 
@@ -111,12 +110,18 @@ public class SkystoneRedBridge extends HelperAction {
         drive_ForwardAndStop(wheelActions, SPEED, 0.8);
         sleep(1000);
 
-        //Step6: Spin LEFT to face the BLUE bridge
-        set_Direction_SpinLeft(wheelActions);
+        //Step6: Spin RIGHT to face the BLUE bridge
+        set_Direction_SpinRight(wheelActions);
         wheelActions.driveByTime(this, 0.3, 0.1);
         sleep(2000);
 
-        // Step 7: Move FORWARD and deliver to the other side of the bridge
+
+        //Step7: strafe left and hit the wall //////////////////////////
+        strafe_LeftAndStop(wheelActions, SPEED, 1.5);
+        sleep(1000);
+
+
+        // Step8: Move FORWARD and deliver to the other side of the bridge
         drive_ForwardAndStop(wheelActions, SPEED, distance);
         sleep(1000);
     }

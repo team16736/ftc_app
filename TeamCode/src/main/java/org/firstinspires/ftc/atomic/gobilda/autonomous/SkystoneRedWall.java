@@ -15,8 +15,8 @@ import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
  * Sensors must be attached to one of the I2C ports
  */
 //START AT FIRST HOLE FROM THE LEFT OF THE FRAME
-@Autonomous(name = "Skystone RED Bridge", group = "GoBilda")
-public class SkystoneRedBridge extends HelperAction {
+@Autonomous(name = "Skystone RED Wall", group = "GoBilda")
+public class SkystoneRedWall extends HelperAction {
 
     @Override
     public void runOpMode() {
@@ -33,7 +33,7 @@ public class SkystoneRedBridge extends HelperAction {
         // Step 1: Move FORWARD
         wheelActions.applySensorSpeed = true;// w e have altered the speed for the forwards movement
         drive_ForwardAndStop(wheelActions, SPEED, 1.2);
-        sleep(3000);
+        sleep(1000);
 
         // Step --> detect skystone using sensor
         foundStone = isThisSkystone(left_sensor, hsvValues);
@@ -60,7 +60,7 @@ public class SkystoneRedBridge extends HelperAction {
                 telemetry.addData("Found black block: ", "2");
                 telemetry.update();
 
-                sleep(1000);
+                sleep(2000);
                 collectStoneAndDeliverRedSide(wheelActions, 2.7);
 
             } else {
@@ -69,14 +69,14 @@ public class SkystoneRedBridge extends HelperAction {
                 telemetry.update();
 
                 strafe_LeftAndStop(wheelActions, SPEED, 0.4);
-                sleep(1000);
+                sleep(2000);
                 collectStoneAndDeliverRedSide(wheelActions, 3.0);
             }
 
         }
 
-        //Step8: Move backwards to park under bridge
-        drive_ReverseAndStop(wheelActions, SPEED, 0.7);
+        //Step9: Move backwards to park under bridge
+        drive_ReverseAndStop(wheelActions, SPEED, 1.0);
         foundStone = false;
         sleep(1000);
 
@@ -100,7 +100,7 @@ public class SkystoneRedBridge extends HelperAction {
 
         //Step 3: Move FORWARD
         drive_ForwardAndStop(wheelActions, SPEED, 0.6);
-        sleep(2000);
+        sleep(1000);
 
         //Step 4: Spin RIGHT
         set_Direction_SpinRight(wheelActions);
@@ -116,7 +116,13 @@ public class SkystoneRedBridge extends HelperAction {
         wheelActions.driveByTime(this, 0.3, 0.1);
         sleep(2000);
 
-        // Step 7: Move FORWARD and deliver to the other side of the bridge
+        //Step7: strafe right and hit the wall //////////////////////////
+        strafe_RightAndStop(wheelActions, SPEED, 1.5);
+        sleep(1000);
+
+
+
+        // Step8: Move FORWARD and deliver to the other side of the bridge
         drive_ForwardAndStop(wheelActions, SPEED, distance);
         sleep(1000);
     }

@@ -14,7 +14,7 @@ import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
  *
  * Sensors must be attached to one of the I2C ports
  */
-//START AT THIRD HOLE FROM THE RIGHT OF THE FRAME
+//START AT FIRST HOLE FROM THE RIGHT OF THE FRAME
 @Autonomous(name = "Skystone BLUE Bridge", group = "GoBilda")
 public class SkystoneBlueBridge extends HelperAction {
 
@@ -94,7 +94,7 @@ public class SkystoneBlueBridge extends HelperAction {
     private void collectStoneAndDeliverBlueSide(DriveWheelActions wheelActions, double distance) {
 
         //Step 2: if detect black block; Strafe RIGHT
-        strafe_RightAndStop(wheelActions,SPEED,0.4);//changed
+        strafe_RightAndStop(wheelActions,SPEED,0.3);//changed
         sleep(1000);
 
         //Step 3: Move FORWARD

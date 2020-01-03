@@ -26,8 +26,8 @@ public class PullBlueFoundationBridge extends HelperAction {
 
 
          // Step 2: Drive REVERSE towards the building zone
-        drive_ReverseAndStop(wheelActions, SPEED, 1.3);
-
+        drive_ReverseAndStop(wheelActions, SPEED, 1.5);
+        sleep(4000);
 
         // Step 3: Move rear Hooks DOWN to grab the foundation
         servoHookOn=true;
@@ -45,7 +45,7 @@ public class PullBlueFoundationBridge extends HelperAction {
         sleep(2000);
 
         // Step 6: Strafe LEFT
-        strafe_LeftAndStop(wheelActions, SPEED, 1.6);
+        strafe_LeftAndStop(wheelActions, SPEED, 2.1);
         sleep(2000);
 
 
@@ -55,7 +55,7 @@ public class PullBlueFoundationBridge extends HelperAction {
 
 
         //Step 8: Strafe LEFT and park under bridge
-        strafe_LeftAndStop(wheelActions, SPEED, 1.0);
+        strafe_LeftAndStop(wheelActions, SPEED, 1.2);
         sleep(2000);
     }
 

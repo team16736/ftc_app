@@ -8,6 +8,7 @@ import org.firstinspires.ftc.atomic.gobilda.actions.HookServoActions;
 /**
  * Purpose: Pull BLUE foundation to the building site
  */
+//Right wheels to the left of
 @Autonomous(name = "Blue Foundation Wall Pull", group = "GoBilda")
 public class PullBlueFoundationWall extends HelperAction {
 
@@ -27,8 +28,8 @@ public class PullBlueFoundationWall extends HelperAction {
 
 
         // Step 2: Drive REVERSE towards the building zone
-        drive_ReverseAndStop(wheelActions, SPEED, 1.3);
-
+        drive_ReverseAndStop(wheelActions, SPEED, 1.5);
+        sleep(4000);
 
         // Step 3: Move rear Hooks DOWN to grab the foundation
         servoHookOn=true;
@@ -37,8 +38,11 @@ public class PullBlueFoundationWall extends HelperAction {
 
 
         // Step 4: Drive FORWARD towards building site
+        wheelActions.applySensorSpeed = true;// we have altered the speed for the forwards movement
         drive_ForwardAndStop(wheelActions, SPEED , 4.0); //SPEED-0.5, added 2.5 driving time
         sleep(2000);
+        wheelActions.applySensorSpeed = false;// we have altered the speed for the forwards movement
+
 
 
         // Step 5: Hook move UP to release the foundation
@@ -48,7 +52,7 @@ public class PullBlueFoundationWall extends HelperAction {
 
 
         // Step 6: Strafe LEFT
-        strafe_LeftAndStop(wheelActions, SPEED, 2.6);
+        strafe_LeftAndStop(wheelActions, SPEED, 3.3);
         sleep(2000);
     }
 
