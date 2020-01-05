@@ -37,6 +37,9 @@ public class GoBildaTeleOpArmGrabberHooks extends LinearOpMode {
         elbowServo.setDirection(Servo.Direction.REVERSE);
         grabberServo.setDirection(Servo.Direction.FORWARD);
 
+        //Set Speed for teleOp
+        driveWheelActions.setSpeed(1.0);
+
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 

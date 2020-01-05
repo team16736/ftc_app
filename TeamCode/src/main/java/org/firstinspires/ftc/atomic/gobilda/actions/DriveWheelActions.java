@@ -29,7 +29,7 @@ public class DriveWheelActions {
     public DcMotor right_back;
 
     //the amount to throttle the power of the motors
-    private static final double THROTTLE = 0.5;
+    public double THROTTLE = 0.5;
 
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
@@ -57,6 +57,11 @@ public class DriveWheelActions {
         // 2. Set direction
         setMotorDirection_Forward();
     }
+
+    public void setSpeed(double mySpeed){
+        THROTTLE = mySpeed;
+    }
+
 
     /**
      * Drive method to throttle the power
