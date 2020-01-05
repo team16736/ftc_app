@@ -12,7 +12,8 @@ import org.firstinspires.ftc.atomic.gobilda.actions.DriveWheelActions;
  * Go FORWARD toward Quarry
  * Strafe RIGHT under bridge
  */
-@Autonomous(name = "Quarry To RED Bridge", group = "GoBilda")
+@Autonomous(name = "Bridge Park Left-to-Right", group = "GoBilda")
+
 //PLACE ROBOT FORWARD FACING RED QUARRY. ALIGHT WITH 2nd TILE ON BRIDGE SIDE.
 public class QuarryToRedBridge extends LinearOpMode {
 
@@ -20,22 +21,20 @@ public class QuarryToRedBridge extends LinearOpMode {
     public void runOpMode() {
 
         DriveWheelActions driveWheelActions = new DriveWheelActions(telemetry, hardwareMap);
-
+        driveWheelActions.applySensorSpeed = true;
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
         // Step 1:  Drive Forward
-        driveWheelActions.applySensorSpeed = true;// we have altered the speed for the forwards movement
         driveWheelActions.setMotorDirection_Forward();
         driveWheelActions.driveByTime(this, 0.3, 2.0);
         driveWheelActions.stop();
 
-        // Step 2:  Strafe left
+        // Step 2:  Strafe right
         driveWheelActions.setMotorDirection_StrafeRight();
         driveWheelActions.driveByTime(this, 0.35, 2.75);
         driveWheelActions.stop();
 
-        driveWheelActions.applySensorSpeed = false;// we have altered the speed for the forwards movement
     }
 }
 
