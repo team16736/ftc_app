@@ -230,26 +230,25 @@ public class DriveWheelActions {
      */
     private void driveByRevolution(int revolutions, double power){
 
+        left_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         left_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        left_back.setTargetPosition(revolutions);
-        left_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        right_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         right_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        left_front.setTargetPosition(revolutions);
+        left_back.setTargetPosition(revolutions);
+        right_front.setTargetPosition(revolutions);
         right_back.setTargetPosition(revolutions);
+
+        left_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        left_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        right_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         right_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        left_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        left_front.setTargetPosition(revolutions);
-        left_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-        right_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        right_front.setTargetPosition(revolutions);
-        right_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
         left_front.setPower(power);
-        right_back.setPower(power);
         left_back.setPower(power);
         right_front.setPower(power);
+        right_back.setPower(power);
 
         telemetry.addData("Current Position: ",
                 "left_front: ", left_front.getCurrentPosition(),

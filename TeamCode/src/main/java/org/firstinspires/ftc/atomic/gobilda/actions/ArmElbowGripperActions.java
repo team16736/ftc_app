@@ -29,11 +29,11 @@ public class ArmElbowGripperActions {
 
     private double grabber_position = 0.0;
     private double GRABBER_MIN_POSITION = 0;
-    private double GRABBER_MAX_POSITION = 0.8;
+    private double GRABBER_MAX_POSITION = 1.0;
 
     private double elbow_position = 0.0;
-    private double ELBOW_MIN_POSITION = -0.5;
-    private double ELBOW_MAX_POSITION = 0.5;
+    private double ELBOW_MIN_POSITION = 0;
+    private double ELBOW_MAX_POSITION = 1.0;
 
     // Constructor
     public ArmElbowGripperActions(Telemetry opModeTelemetry, HardwareMap opModeHardware) {
@@ -64,18 +64,21 @@ public class ArmElbowGripperActions {
 
             arm_current_position = arm_current_position + 10;
 
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             armMotor.setTargetPosition(arm_current_position);
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             armMotor.setPower(1.0);
+
             telemetry.addData("Arm: ", "UP");
 
         } else if(armDown) {
 
             arm_current_position = arm_current_position - 10;
 
+            armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             armMotor.setTargetPosition(arm_current_position);
             armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            armMotor.setPower(0.3);
+            armMotor.setPower(0.5);
             telemetry.addData("Arm: ", "DOWN");
         }
 
@@ -86,26 +89,55 @@ public class ArmElbowGripperActions {
     public void armUpDown(double armVal) {
 
         double armPower = Range.clip(armVal, ARM_MIN_POSITION, ARM_MAX_POSITION);
-
         armMotor.setPower(armPower);
-
         telemetry.addData("Arm power: ", armPower);
     }
 
-    public void grabberOpenClose(boolean grabberClose, boolean grabberOpen) {
+    /**
+     * Open and close incrementally
+     *
+     * @param grabberClose
+     * @param grabberOpen
+     */
+    public void grabberOpenClose_Incrementally(boolean grabberClose, boolean grabberOpen) {
 
         if (grabberOpen) {
 
-            grabber_position = grabber_position + 0.2;
+            grabber_position = grabber_position + 0.5;
             grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
 
         } else if (grabberClose) {
 
-            grabber_position = grabber_position - 0.2;
+            grabber_position = grabber_position - 0.5;
             grabberServo.setPosition(Range.clip(grabber_position, GRABBER_MIN_POSITION, GRABBER_MAX_POSITION));
         }
 
         telemetry.addData("Grabber position: ", grabber_position);
+        telemetry.update();
+    }
+
+    /**
+     * Open to MAX position
+     * Close to MIN position
+     *
+     * @param grabberClose
+     * @param grabberOpen
+     */
+    public void grabberOpenClose(boolean grabberClose, boolean grabberOpen) {
+
+        if (grabberOpen) {
+
+            grabber_position = 1.0;
+            grabberServo.setPosition(grabber_position);
+
+        } else if (grabberClose) {
+
+            grabber_position = 0;
+            grabberServo.setPosition(grabber_position);
+        }
+
+        telemetry.addData("Grabber position: ", grabber_position);
+        telemetry.update();
     }
 
 
@@ -123,19 +155,8 @@ public class ArmElbowGripperActions {
         }
 
         telemetry.addData("Elbow position: ", elbow_position);
-//        telemetry.update();
-    }
-
-
-    public void elbowOpenCompletely() {
-
-        elbowServo.setPosition(ELBOW_MAX_POSITION);
-        telemetry.addData("## Elbow open completely ## : ", elbowServo.getPosition());
-
-        elbowServo.setPosition(ELBOW_MIN_POSITION);
-        telemetry.addData("## Elbow close completely ## : ", elbowServo.getPosition());
-
         telemetry.update();
     }
+
 
 }
