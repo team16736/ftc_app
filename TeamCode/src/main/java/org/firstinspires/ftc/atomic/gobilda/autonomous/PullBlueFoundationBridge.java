@@ -30,8 +30,7 @@ public class PullBlueFoundationBridge extends HelperAction {
         sleep(4000);
 
         // Step 3: Move rear Hooks DOWN to grab the foundation
-        servoHookOn=true;
-        moveHooksUpOrDown(hookActions);
+        hookActions.moveHooksDown();
         sleep(2000);
 
 
@@ -40,8 +39,7 @@ public class PullBlueFoundationBridge extends HelperAction {
         sleep(2000);
 
         // Step 5: Hook move UP to release the foundation
-        servoHookOn=false;
-        moveHooksUpOrDown(hookActions);
+        hookActions.moveHooksUp();
         sleep(2000);
 
         // Step 6: Strafe LEFT

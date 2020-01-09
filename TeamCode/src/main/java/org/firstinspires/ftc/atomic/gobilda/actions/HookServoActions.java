@@ -50,24 +50,40 @@ public class HookServoActions {
         right_hook.setPosition(right_hook_position);
     }
 
+    //Todo - according to James, it is not useful to add small values. Just provide the final position.
+
     public void hookUpDown(boolean leftPadPressed, boolean rightPadPressed) {
 
         if (leftPadPressed) {  //down
 
-            left_hook_position = left_hook_position + 0.5;
-            right_hook_position = right_hook_position - 0.5;
-            telemetry.addData("Left Hook - Position x: ", left_hook_position);
+            left_hook_position = 1.0;
+            right_hook_position = 0;
+            telemetry.addData("Left Hook - DOWN Position x: ", left_hook_position);
 
         } else if (rightPadPressed) {  //up
 
-            left_hook_position = left_hook_position - 0.5;
-            right_hook_position = right_hook_position + 0.5;
-            telemetry.addData("Right Hook - Position y: ", right_hook_position);
+            left_hook_position = 0;
+            right_hook_position = 1.0;
+            telemetry.addData("Right Hook - UP Position y: ", right_hook_position);
         }
 
-        left_hook.setPosition(Range.clip(left_hook_position, HOOK_MIN_POSITION, HOOK_MAX_POSITION));
-        right_hook.setPosition(Range.clip(right_hook_position, HOOK_MIN_POSITION, HOOK_MAX_POSITION));
+        left_hook.setPosition(left_hook_position);
+        right_hook.setPosition(right_hook_position);
         telemetry.update();
     }
+
+    public void moveHooksDown() {
+
+        hookUpDown(true, false);
+    }
+
+    /**
+     * Move UP
+     */
+    public void moveHooksUp() {
+
+        hookUpDown(false, true);
+    }
+
 
 }

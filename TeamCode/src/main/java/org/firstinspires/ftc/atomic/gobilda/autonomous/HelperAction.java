@@ -20,10 +20,6 @@ public abstract class HelperAction extends LinearOpMode {
     protected float hsvValues[] = {0F,0F,0F};
 
     public final double SPEED = 0.5;
-    public boolean servoHookOn = false;
-    public double left_hook_position = 0.0;
-    public double right_hook_position = 1.0;
-
 
     public void drive_ReverseAndStop(DriveWheelActions driveWheelActions, double speed, double drivingTime) {
         driveWheelActions.setMotorDirection_Reverse();
@@ -48,43 +44,6 @@ public abstract class HelperAction extends LinearOpMode {
         driveWheelActions.driveByTime(this, speed, drivingTime);
         driveWheelActions.stop();
     }
-
-    public void set_Direction_SpinLeft(DriveWheelActions driveWheelActions) {
-        driveWheelActions.left_back.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.left_front.setDirection(ConfigConstants.FORWARD);
-
-        driveWheelActions.right_back.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.right_front.setDirection(ConfigConstants.FORWARD);
-    }
-
-    public void set_Direction_SpinRight(DriveWheelActions driveWheelActions) {
-        driveWheelActions.left_back.setDirection(ConfigConstants.REVERSE);
-        driveWheelActions.left_front.setDirection(ConfigConstants.REVERSE);
-
-        driveWheelActions.right_back.setDirection(ConfigConstants.FORWARD);
-        driveWheelActions.right_front.setDirection(ConfigConstants.REVERSE);
-    }
-
-    public void moveHooksUpOrDown(HookServoActions hookActions) {
-
-        if (servoHookOn) {  //down
-
-            left_hook_position = 1.0;
-            right_hook_position = 0;
-            telemetry.addData("Left Hook - DOWN Position x: ", left_hook_position);
-
-        } else {  //up
-
-            left_hook_position = 0;
-            right_hook_position = 1.0;
-            telemetry.addData("Right Hook - UP Position y: ", right_hook_position);
-        }
-
-        hookActions.left_hook.setPosition(left_hook_position);
-        hookActions.right_hook.setPosition(right_hook_position);
-        telemetry.update();
-    }
-
 
     public boolean isThisSkystone(ColorSensor colorSensor, float hsvValues[]){
 

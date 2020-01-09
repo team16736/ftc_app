@@ -103,7 +103,7 @@ public class SkystoneRedBridge extends HelperAction {
         sleep(2000);
 
         //Step 4: Spin RIGHT
-        set_Direction_SpinRight(wheelActions);
+        wheelActions.setMotorDirection_SpinRight();
         wheelActions.driveByTime(this, 0.3, 2.2);
         sleep(2000);
 
@@ -112,7 +112,7 @@ public class SkystoneRedBridge extends HelperAction {
         sleep(1000);
 
         //Step6: Spin LEFT to face the BLUE bridge
-        set_Direction_SpinLeft(wheelActions);
+        wheelActions.setMotorDirection_SpinLeft();
         wheelActions.driveByTime(this, 0.3, 0.1);
         sleep(2000);
 

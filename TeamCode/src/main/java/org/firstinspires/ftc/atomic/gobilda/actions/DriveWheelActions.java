@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.atomic.gobilda.utilities.ConfigConstants;
+import org.firstinspires.ftc.atomic.gobilda.utilities.MotorConstants;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 import java.util.Collections;
@@ -117,51 +118,51 @@ public class DriveWheelActions {
     }
 
     public void setMotorDirection_Forward() {
-        left_back.setDirection(ConfigConstants.REVERSE);
-        left_front.setDirection(ConfigConstants.REVERSE);
+        left_back.setDirection(MotorConstants.REVERSE);
+        left_front.setDirection(MotorConstants.REVERSE);
 
-        right_back.setDirection(ConfigConstants.REVERSE);
-        right_front.setDirection(ConfigConstants.FORWARD);
+        right_back.setDirection(MotorConstants.REVERSE);
+        right_front.setDirection(MotorConstants.FORWARD);
     }
 
     public void setMotorDirection_Reverse() {
-        left_back.setDirection(ConfigConstants.FORWARD);
-        left_front.setDirection(ConfigConstants.FORWARD);
+        left_back.setDirection(MotorConstants.FORWARD);
+        left_front.setDirection(MotorConstants.FORWARD);
 
-        right_back.setDirection(ConfigConstants.FORWARD);
-        right_front.setDirection(ConfigConstants.REVERSE);
+        right_back.setDirection(MotorConstants.FORWARD);
+        right_front.setDirection(MotorConstants.REVERSE);
     }
 
     public void setMotorDirection_StrafeLeft() {
-        left_back.setDirection(ConfigConstants.REVERSE);
-        left_front.setDirection(ConfigConstants.FORWARD);
+        left_back.setDirection(MotorConstants.REVERSE);
+        left_front.setDirection(MotorConstants.FORWARD);
 
-        right_back.setDirection(ConfigConstants.FORWARD);
-        right_front.setDirection(ConfigConstants.FORWARD);
+        right_back.setDirection(MotorConstants.FORWARD);
+        right_front.setDirection(MotorConstants.FORWARD);
     }
 
     public void setMotorDirection_StrafeRight() {
-        left_back.setDirection(ConfigConstants.FORWARD);
-        left_front.setDirection(ConfigConstants.REVERSE);
+        left_back.setDirection(MotorConstants.FORWARD);
+        left_front.setDirection(MotorConstants.REVERSE);
 
-        right_back.setDirection(ConfigConstants.REVERSE);
-        right_front.setDirection(ConfigConstants.REVERSE);
+        right_back.setDirection(MotorConstants.REVERSE);
+        right_front.setDirection(MotorConstants.REVERSE);
     }
 
     public void setMotorDirection_SpinLeft() {
-        left_back.setDirection(ConfigConstants.FORWARD);
-        left_front.setDirection(ConfigConstants.FORWARD);
+        left_back.setDirection(MotorConstants.FORWARD);
+        left_front.setDirection(MotorConstants.FORWARD);
 
-        right_back.setDirection(ConfigConstants.REVERSE);
-        right_front.setDirection(ConfigConstants.FORWARD);
+        right_back.setDirection(MotorConstants.REVERSE);
+        right_front.setDirection(MotorConstants.FORWARD);
     }
 
     public void setMotorDirection_SpinRight() {
-        left_back.setDirection(ConfigConstants.REVERSE);
-        left_front.setDirection(ConfigConstants.REVERSE);
+        left_back.setDirection(MotorConstants.REVERSE);
+        left_front.setDirection(MotorConstants.REVERSE);
 
-        right_back.setDirection(ConfigConstants.FORWARD);
-        right_front.setDirection(ConfigConstants.REVERSE);
+        right_back.setDirection(MotorConstants.FORWARD);
+        right_front.setDirection(MotorConstants.REVERSE);
     }
 
     public void stop() {
@@ -172,10 +173,10 @@ public class DriveWheelActions {
     }
 
     public void applyBrake() {
-        left_back.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        right_back.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        left_front.setZeroPowerBehavior(ConfigConstants.BRAKE);
-        right_front.setZeroPowerBehavior(ConfigConstants.BRAKE);
+        left_back.setZeroPowerBehavior(MotorConstants.BRAKE);
+        right_back.setZeroPowerBehavior(MotorConstants.BRAKE);
+        left_front.setZeroPowerBehavior(MotorConstants.BRAKE);
+        right_front.setZeroPowerBehavior(MotorConstants.BRAKE);
     }
 
     public void driveByTime(LinearOpMode opMode, double speed, double drivingTime) {
@@ -196,5 +197,114 @@ public class DriveWheelActions {
 
         opMode.sleep((long)(1000 * drivingTime));
     }
+
+
+
+
+
+    /**
+     * Method to drive a specified distance using motor encoder functionality
+     *
+     * @param inches - The Number Of Inches to Move
+     * @param direction - The Direction to Move
+     *                  - Valid Directions:
+     *                  - MecanumDrivetrain.DIRECTION_FORWARD
+     *                  - MecanumDrivetrain.DIRECTION_REVERSE
+     *                  - MecanumDrivetrain.DIRECTION_STRAFE_LEFT
+     *                  - MecanumDrivetrain.DIRECTION_STRAFE_RIGHT
+     * @param speed - The desired motor power (most accurate at low powers < 0.25)
+     */
+    public void driveByInches(int inches, int direction, double speed){
+
+        setMotorDirection(direction);
+
+        driveByRevolution(convertDistanceToTarget(inches, direction) * 3, speed);
+    }
+
+    /**
+     * Method will motors a specified number of revolutions at the desired power
+     * agnostic of direction.
+     *
+     * @param revolutions - the number of motor encoder ticks to move
+     * @param power - the speed at which to move
+     */
+    private void driveByRevolution(int revolutions, double power){
+
+        left_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        left_back.setTargetPosition(revolutions);
+        left_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        right_back.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        right_back.setTargetPosition(revolutions);
+        right_back.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        left_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        left_front.setTargetPosition(revolutions);
+        left_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        right_front.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        right_front.setTargetPosition(revolutions);
+        right_front.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        left_front.setPower(power);
+        right_back.setPower(power);
+        left_back.setPower(power);
+        right_front.setPower(power);
+
+        telemetry.addData("Current Position: ",
+                "left_front: ", left_front.getCurrentPosition(),
+                        "left_back: ", left_back.getCurrentPosition(),
+                        "right_front: ", right_front.getCurrentPosition(),
+                        "right_back: ", right_back.getCurrentPosition());
+        telemetry.update();
+    }
+
+    //NOT TESTED
+    private int convertDistanceToTarget(int inches, int direction){
+
+        float target;
+
+        if (direction == MotorConstants.DIRECTION_FORWARD
+                || direction == MotorConstants.DIRECTION_REVERSE){
+
+            target = inches * MotorConstants.ENCODER_CLICKS_FORWARD_1_INCH;
+
+        } else{
+            target = inches * MotorConstants.ENCODER_CLICKS_STRAFE_1_INCH;
+        }
+
+        return Math.round(target);
+    }
+
+    /**
+     * Returns true if the robot is moving
+     */
+    public boolean isMoving() {
+
+        return left_front.isBusy() || left_back.isBusy() || right_front.isBusy() || right_back.isBusy();
+    }
+
+    //NOT TESTED
+    private void setMotorDirection(int direction){
+
+        if (direction == MotorConstants.DIRECTION_REVERSE){
+
+            setMotorDirection_Reverse();
+
+        } else if (direction == MotorConstants.DIRECTION_STRAFE_LEFT){
+
+            setMotorDirection_StrafeLeft();
+
+        } else if (direction == MotorConstants.DIRECTION_STRAFE_RIGHT){
+
+            setMotorDirection_StrafeRight();
+
+        } else {
+
+            setMotorDirection_Forward();
+        }
+    }
+
+
 
 }
